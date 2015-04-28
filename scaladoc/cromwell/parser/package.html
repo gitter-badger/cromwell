@@ -47,13 +47,42 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"></div>
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>Workflow Description Language Parser</h4><p>This package contains the parser for WDL, which is auto-generated from the <i>grammar.hgr</i> file in <i>src/main/java/cromwell/resources</i>.</p><p>The main interface to this package are the following functions:</p><p>- lex() which takes WDL source and tokenizes it
+- parse() which takes the output of lex(), a sequence of tokens, and returns a parse tree</p><p>Here's a quick example of using this package to obtain an Abstract Syntax Tree of a WDL file:</p><pre><span class="kw">val</span> wdlFile = scala.io.Source.fromFile(<span class="lit">"/path/to/file.wdl"</span>)
+<span class="kw">val</span> wdlContents = <span class="kw">try</span> wdlFile.mkString <span class="kw">finally</span> wdlFile.close()
+<span class="kw">val</span> parser = <span class="kw">new</span> WdlParser()
+<span class="kw">val</span> tokens = <span class="kw">new</span> WdlParser.TokenStream(parser.lex(wdlContents, args(<span class="num">1</span>)))
+<span class="kw">val</span> ast = parser.parse(tokens).toAst()
+println(ast.toPrettyString())</pre></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
         
 
       <div id="mbrsel">
         <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
-        
-        
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="cromwell.parser"><span>parser</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
             <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
@@ -96,7 +125,11 @@
         </div>
 
         <div id="inheritedMembers">
-        
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
         
         </div>
 
