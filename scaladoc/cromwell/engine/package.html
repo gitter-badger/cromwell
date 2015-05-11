@@ -91,7 +91,26 @@ and query its progress.</p><p>Internally, this package is built on top of <a hre
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="cromwell.engine.Engine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="cromwell.engine.CallActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CallActorextendsActor"></a>
+      <a id="CallActor:CallActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CallActor.html"><span class="name">CallActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@CallActorextendsActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Probably not the right level of abstraction for a system that supports richer
+control structures like loops, conditionals, scatter etc., but this should be
+sufficient for Sprint 2/3.</p>
+    </li><li name="cromwell.engine.Engine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="EngineextendsAnyRef"></a>
       <a id="Engine:Engine"></a>
       <h4 class="signature">
@@ -108,6 +127,143 @@ and query its progress.</p><p>Internally, this package is built on top of <a hre
       </a>
     </span>
       
+    </li><li name="cromwell.engine.EngineFunctions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EngineFunctionsextendsWdlFunctions"></a>
+      <a id="EngineFunctions:EngineFunctions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="EngineFunctions.html"><span class="name">EngineFunctions</span></a><span class="result"> extends <a href="../binding/WdlFunctions.html" class="extype" name="cromwell.binding.WdlFunctions">WdlFunctions</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@EngineFunctionsextendsWdlFunctions" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.ExecutionStatusStore" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExecutionStatusStoreextendsAnyRef"></a>
+      <a id="ExecutionStatusStore:ExecutionStatusStore"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExecutionStatusStore.html"><span class="name">ExecutionStatusStore</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@ExecutionStatusStoreextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Corresponds to the &quot;execution table&quot; of our discussions.</p>
+    </li><li name="cromwell.engine.SymbolStore" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SymbolStoreextendsAnyRef"></a>
+      <a id="SymbolStore:SymbolStore"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SymbolStore.html"><span class="name">SymbolStore</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@SymbolStoreextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.SymbolStoreEntry" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SymbolStoreEntryextendsProductwithSerializable"></a>
+      <a id="SymbolStoreEntry:SymbolStoreEntry"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SymbolStoreEntry.html"><span class="name">SymbolStoreEntry</span></a><span class="params">(<span name="key">key: <a href="SymbolStoreKey.html" class="extype" name="cromwell.engine.SymbolStoreKey">SymbolStoreKey</a></span>, <span name="wdlType">wdlType: <a href="../binding/types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a></span>, <span name="wdlValue">wdlValue: <span class="extype" name="scala.Option">Option</span>[<a href="../binding/WdlValue.html" class="extype" name="cromwell.binding.WdlValue">WdlValue</a>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@SymbolStoreEntryextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.SymbolStoreKey" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SymbolStoreKeyextendsProductwithSerializable"></a>
+      <a id="SymbolStoreKey:SymbolStoreKey"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SymbolStoreKey.html"><span class="name">SymbolStoreKey</span></a><span class="params">(<span name="scope">scope: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="iteration">iteration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="input">input: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@SymbolStoreKeyextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.TaskExecutionContext" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TaskExecutionContextextendsAnyRef"></a>
+      <a id="TaskExecutionContext:TaskExecutionContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="TaskExecutionContext.html"><span class="name">TaskExecutionContext</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@TaskExecutionContextextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.UnsatisfiedInputsException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UnsatisfiedInputsExceptionextendsRuntimeException"></a>
+      <a id="UnsatisfiedInputsException:UnsatisfiedInputsException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="UnsatisfiedInputsException.html"><span class="name">UnsatisfiedInputsException</span></a><span class="result"> extends <span class="extype" name="scala.RuntimeException">RuntimeException</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@UnsatisfiedInputsExceptionextendsRuntimeException" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowActorextendsActor"></a>
+      <a id="WorkflowActor:WorkflowActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="WorkflowActor.html"><span class="name">WorkflowActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowActorextendsActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the root of a single workflow instance, not a manager of multiple
+workflows.</p>
     </li></ol>
             </div>
 
@@ -115,7 +271,24 @@ and query its progress.</p><p>Internally, this package is built on top of <a hre
 
         <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li name="cromwell.engine.Engine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="cromwell.engine.CallActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CallActor"></a>
+      <a id="CallActor:CallActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CallActor$.html"><span class="name">CallActor</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@CallActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.Engine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Engine"></a>
       <a id="Engine:Engine"></a>
       <h4 class="signature">
@@ -133,6 +306,40 @@ and query its progress.</p><p>Internally, this package is built on top of <a hre
     </span>
       <p class="shortcomment cmt">An engine to run workflows and tasks
 </p>
+    </li><li name="cromwell.engine.SymbolStoreEntry" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SymbolStoreEntry"></a>
+      <a id="SymbolStoreEntry:SymbolStoreEntry"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SymbolStoreEntry$.html"><span class="name">SymbolStoreEntry</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@SymbolStoreEntry" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowActor"></a>
+      <a id="WorkflowActor:WorkflowActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="WorkflowActor$.html"><span class="name">WorkflowActor</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This model assumes workflow actors are transient, created once per workflow instance.</p>
     </li></ol>
             </div>
 

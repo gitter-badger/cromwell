@@ -42,16 +42,20 @@
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">class</span>
+        <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Workflow</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">Workflow</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="calls">calls: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="Call.html" class="extype" name="cromwell.binding.Call">Call</a>]</span>)</span><span class="result"> extends <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a <code>workflow</code> definition in WDL which currently
+only supports a set of <code>call</code> declarations and a name for
+the workflow
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>The name of the workflow</p></dd><dt class="param">calls</dt><dd class="cmt"><p>The set of <code>call</code> declarations
+</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -69,7 +73,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="cromwell.binding.Workflow"><span>Workflow</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="cromwell.binding.Workflow"><span>Workflow</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="cromwell.binding.Scope"><span>Scope</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -89,8 +93,8 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="cromwell.binding.Workflow#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;():cromwell.binding.Workflow"></a>
+              <ol><li name="cromwell.binding.Workflow#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(name:String,calls:Set[cromwell.binding.Call]):cromwell.binding.Workflow"></a>
       <a id="&lt;init&gt;:Workflow"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -98,14 +102,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Workflow</span><span class="params">()</span>
+        <span class="name">Workflow</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="calls">calls: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="Call.html" class="extype" name="cromwell.binding.Call">Call</a>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.Workflow@&lt;init&gt;():cromwell.binding.Workflow" title="Permalink" target="_top">
+      <a href="../../index.html#cromwell.binding.Workflow@&lt;init&gt;(name:String,calls:Set[cromwell.binding.Call]):cromwell.binding.Workflow" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>The name of the workflow</p></dd><dt class="param">calls</dt><dd class="cmt"><p>The set of <code>call</code> declarations
+</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -183,6 +188,24 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="cromwell.binding.Workflow#calls" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="calls:Set[cromwell.binding.Call]"></a>
+      <a id="calls:Set[Call]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">calls</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="Call.html" class="extype" name="cromwell.binding.Call">Call</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Workflow@calls:Set[cromwell.binding.Call]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The set of <code>call</code> declarations
+</p>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -223,23 +246,6 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a>
-      <a id="equals(Any):Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.Workflow@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -263,6 +269,23 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="cromwell.binding.Scope#fullyQualifiedName" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fullyQualifiedName:String"></a>
+      <a id="fullyQualifiedName:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fullyQualifiedName</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Workflow@fullyQualifiedName:String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -280,23 +303,26 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hashCode():Int"></a>
-      <a id="hashCode():Int"></a>
+    </li><li name="cromwell.binding.Workflow#inputs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="inputs:Map[cromwell.binding.FullyQualifiedName,cromwell.binding.types.WdlType]"></a>
+      <a id="inputs:Map[FullyQualifiedName,WdlType]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">inputs</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="package.html#FullyQualifiedName=String" class="extmbr" name="cromwell.binding.FullyQualifiedName">FullyQualifiedName</a>, <a href="types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.Workflow@hashCode():Int" title="Permalink" target="_top">
+      <a href="../../index.html#cromwell.binding.Workflow@inputs:Map[cromwell.binding.FullyQualifiedName,cromwell.binding.types.WdlType]" title="Permalink" target="_top">
         <img src="../../lib/permalink.png" />
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+      <p class="shortcomment cmt">All inputs for this workflow and their associated types.</p><div class="fullcomment"><div class="comment cmt"><p>All inputs for this workflow and their associated types.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a Map[FullyQualifiedName, WdlType] representing the
+        inputs that the user needs to provide to this workflow
+</p></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -314,6 +340,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="cromwell.binding.Workflow#name" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="name:String"></a>
+      <a id="name:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">name</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Workflow@name:String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The name of the workflow</p><div class="fullcomment"><div class="comment cmt"><p>The name of the workflow</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.Workflow">Workflow</a> → <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -365,6 +408,46 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="cromwell.binding.Workflow#outputs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="outputs:Map[cromwell.binding.FullyQualifiedName,cromwell.binding.types.WdlType]"></a>
+      <a id="outputs:Map[FullyQualifiedName,WdlType]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">outputs</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="package.html#FullyQualifiedName=String" class="extmbr" name="cromwell.binding.FullyQualifiedName">FullyQualifiedName</a>, <a href="types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Workflow@outputs:Map[cromwell.binding.FullyQualifiedName,cromwell.binding.types.WdlType]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">All outputs for this workflow and their associated types
+</p><div class="fullcomment"><div class="comment cmt"><p>All outputs for this workflow and their associated types
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a Map[FullyQualifiedName, WdlType] representing the union
+        of all outputs from all <code>call</code>s within this workflow
+</p></dd></dl></div>
+    </li><li name="cromwell.binding.Workflow#parent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="parent:Option[cromwell.binding.Scope]"></a>
+      <a id="parent:Option[Scope]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">parent</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Workflow@parent:Option[cromwell.binding.Scope]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Parent node for this workflow.</p><div class="fullcomment"><div class="comment cmt"><p>Parent node for this workflow.  Since we do not support nested
+workflows currently, this is always <code>None</code>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.Workflow">Workflow</a> → <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -382,23 +465,6 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toString():String"></a>
-      <a id="toString():String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.Workflow@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -477,7 +543,17 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.Serializable">
+              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.Product">
+              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
+            </div><div class="parent" name="scala.Equals">
+              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
+            </div><div class="parent" name="cromwell.binding.Scope">
+              <h3>Inherited from <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
