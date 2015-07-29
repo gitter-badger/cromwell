@@ -5,15 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>Cromwell by broadinstitute</title>
+    <style>
+      .keyword {color: #cb4b16; font-weight: bold}
+      .section {color: #cb4b16}
+      .name {color: #268bd2}
+      .variable {color: #268bd2}
+      .type {color: #d33682}
+      .command {background-color: #eee}
+      .stdout-cmd {font-weight: bolder; color: #cb4b16}
+    </style>
+
+    <title>Cromwell</title>
   </head>
 
   <body>
@@ -21,88 +28,145 @@
       <div class="inner">
         <h1>Cromwell</h1>
         <h2>A Workflow Engine using WDL</h2>
-        <a href="https://github.com/broadinstitute/cromwell" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>
-            <a id="what-is-cromwell" class="anchor" href="#what-is-cromwell" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-            What is Cromwell?
-          </h3>
+    <a href="https://github.com/broadinstitute/cromwell">Source Code (GitHub)</a>
+    <a href="http://github.com/broadinstitute/wdl">Workflow Description Language (GitHub)</a>
+    <a href="https://github.com/broadinstitute/wdl/blob/wdl2/SPEC.md">WDL Language Specification</a>
 
-          <p>Cromwell is a workflow executor using the <a href="http://github.com/broadinstitute/wdl">Workflow Description Language</a> (WDL) as the language to describe tasks and workflows</p>
+    <h3>Releases</h3>
 
-          <p>An example of a WDL file to run a few simple steps would look like this:</p>
+    <h4 id="release-0.7">0.7</h4>
+    <ul>
+      <li>New <a href="https://github.com/broadinstitute/cromwell/tree/develop#getting-started-with-wdl">Getting Started Guide</a> to help new users get a feel for WDL and using it with Cromwell</li>
+      <li>Improved WDL language feature support.  Many of the features added are in the above Getting Started Guide.</li>
+      <li>Google JES backend for launching jobs</li>
+    </ul>
 
-          <pre><code>
-task grep {
-  command {
-    grep ${pattern} ${flags?} ${file file_name}
+    <h3>Example</h3>
+
+<p>An example of a WDL file to run a few simple steps would look like this:</p>
+
+<pre><code>
+<span class="keyword">task</span> <span class="name">concat_files</span> {
+  <span class="section">command</span> {
+    <span class="command">cat ${default='-s' <span class="type">String</span> <span class="variable">flags</span>?} ${sep=' ' <span class="type">File</span> <span class="variable">files</span>+}</span>
   }
-  output {
-    file out = "stdout"
-  }
-  runtime {
-    memory: "2MB"
-    cores: 1
-    disk: "3MB"
+  <span class="section">output</span> {
+    <span class="type">File</span> <span class="variable">concatenated</span> = <span class="function">stdout</span>()
   }
 }
 
-task wc {
-  command {
-    wc -l ${sep=' ' file files+} | tail -1 | cut -d' ' -f 2
+<span class="keyword">task</span> <span class="name">find</span> {
+  <span class="section">command</span> {
+    <span class="command">find ${<span class="type">File</span> <span class="variable">root</span>} ${'-name ' <span class="type">String</span> <span class="variable">pattern</span>?}</span>
   }
-  output {
-    int count = read_int("stdout")
+  <span class="section">output</span> {
+    <span class="type">Array[String]</span> <span class="variable">results</span> = <span class="function">read_lines</span>(<span class="function">stdout</span>())
   }
 }
 
-workflow scatter_gather_grep_wc {
-  array[file] input_files
-  scatter(f in input_files) {
-    call grep {
-      input: file_name = f
-    }
+<span class="keyword">workflow</span> <span class="name">wf</span> {
+  <span class="type">Array[File]</span> <span class="name">files</span>
+  <span class="type">String</span> <span class="name">test</span> = "abc" + " def"
+
+  <span class="keyword">call</span> <span class="name">concat_files</span> as <span class="alias">concat</span> {
+    input: files=files
   }
-  call wc {
-    input: files = grep.out
+  <span class="keyword">call</span> <span class="name">concat_files</span> as <span class="alias">concat2</span> {
+    input: flags="", files=files
   }
+  <span class="keyword">call</span> <span class="name">find</span>
 }
 </code></pre>
 
-          <h3>
-            <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-            Installation
-          </h3>
+Before running this, run <code>java -jar target/scala-2.11/cromwell-0.7.jar inputs demo.wdl</code> to get a JSON skeleton of the inputs you need to specify to run this workflow.  The JSON inputs I'll be using are:
 
-          <pre><code>
-$ sbt assembly
-$</code></pre>
+<pre>
+{
+  "wf.find.root": "src",
+  "wf.find.pattern": "*.hgr",
+  "wf.files": ["f1", "f2"]
+}
+</pre>
 
-          <h3>
-            <a id="scaladoc" class="anchor" href="#scaladoc" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-            API Docs
-          </h3>
+Running this with Cromwell the execution would look like this:
 
-        <p>Scala-doc can be found <a href="scaladoc">here</a>.</p>
-        </section>
+<pre>
+$ java -jar target/scala-2.11/cromwell-0.7.jar run demo.wdl demo.json
+[info] Slf4jLogger started
+[info] Backend is: LOCAL
+[info] RUN sub-command
+[info]   WDL file: demo.wdl
+[info]   Inputs: demo.json
+[info] input: wf.find.root => "src"
+[info] input: wf.find.pattern => "*.hgr"
+[info] input: wf.files => ["f1","f2"]
+[info] Running with database url = jdbc:hsqldb:mem:a3386cc3-610c-4b6a-b6d2-2e700a04161d;shutdown=false;hsqldb.tx=mvcc
+[*] [info] SingleWorkflowRunnerActor: launching workflow
+[*] [info] WorkflowManagerActor submitWorkflow input id = None, effective id = da89cf60-ee3a-4af4-87f0-131082033b3a
+[*] [info] WorkflowManagerActor Found no workflows to restart.
+[*] [info] SingleWorkflowRunnerActor: workflow ID da89cf60-ee3a-4af4-87f0-131082033b3a
+[*] [info] WorkflowActor [da89cf60] Start message received
+[*] [info] Initial symbols:
 
-        <aside id="sidebar">
-          <a href="https://github.com/broadinstitute/cromwell/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/broadinstitute/cromwell/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-          <p class="repo-owner"><a href="https://github.com/broadinstitute/cromwell"></a> is maintained by <a href="https://github.com/broadinstitute">The Broad Institute</a>.</p>
-        </aside>
-      </div>
-    </div>
+|SCOPE     |NAME   |I/O  |TYPE       |VALUE                                                                                               |
+|----------|-------|-----|-----------|----------------------------------------------------------------------------------------------------|
+|wf        |files  |INPUT|Array[File]|(Array[File]) ["/Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-1310|
+|wf        |test   |INPUT|String     |(String) abc def                                                                                    |
+|wf.concat |files  |INPUT|Expression |(Expression) files                                                                                  |
+|wf.concat2|files  |INPUT|Expression |(Expression) files                                                                                  |
+|wf.concat2|flags  |INPUT|Expression |(Expression) ""                                                                                     |
+|wf.find   |pattern|INPUT|String     |(String) *.hgr                                                                                      |
+|wf.find   |root   |INPUT|File       |(File) /Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/|
+
+[*] [info] WorkflowActor [da89cf60] starting calls: wf.concat, wf.concat2, wf.find
+[*] [info] WorkflowActor [da89cf60] persisting status of calls wf.concat, wf.concat2, wf.find to Starting.
+[*] [info] WorkflowActor [da89cf60] inputs for call 'wf.concat':
+[*] [info] WorkflowActor [da89cf60]     files -> WdlArray(WdlArrayType(WdlFileType),Vector(WdlFile(/Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/f1), WdlFile(/Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/f2)))
+[*] [info] WorkflowActor [da89cf60] created call actor for wf.concat.
+[*] [info] WorkflowActor [da89cf60] inputs for call 'wf.concat2':
+[*] [info] WorkflowActor [da89cf60]     files -> WdlArray(WdlArrayType(WdlFileType),Vector(WdlFile(/Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/f1), WdlFile(/Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/f2)))
+[*] [info] WorkflowActor [da89cf60]     flags -> WdlString()
+[*] [info] WorkflowActor [da89cf60] created call actor for wf.concat2.
+[*] [info] WorkflowActor [da89cf60] inputs for call 'wf.find':
+[*] [info] WorkflowActor [da89cf60]     pattern -> WdlString(*.hgr)
+[*] [info] WorkflowActor [da89cf60]     root -> WdlFile(/Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/src)
+[*] [info] WorkflowActor [da89cf60] created call actor for wf.find.
+[*] [info] WorkflowActor [da89cf60] transitioning from Submitted to Running.
+[*] [info] CallActor [da89cf60:find]: launching <span class="stdout-cmd">find /Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/src -name *.hgr</span>
+[*] [info] CallActor [da89cf60:concat]: launching <span class="stdout-cmd">cat -s /Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/f1 /Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/f2</span>
+[*] [info] CallActor [da89cf60:concat2]: launching <span class="stdout-cmd">cat  /Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/f1 /Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/workflow-inputs/f2</span>
+[*] [info] WorkflowActor [da89cf60] persisting status of calls wf.find to Running.
+[*] [info] WorkflowActor [da89cf60] persisting status of calls wf.concat2 to Running.
+[*] [info] WorkflowActor [da89cf60] persisting status of calls wf.concat to Running.
+[*] [info] SingleWorkflowRunnerActor: received CurrentState(Running)
+[*] [info] WorkflowActor [da89cf60] handling completion of call 'wf.find'.
+[*] [info] WorkflowActor [da89cf60] persisting status of calls wf.find to Done.
+[*] [info] WorkflowActor [da89cf60] no runnable calls to start.
+[*] [info] WorkflowActor [da89cf60] handling completion of call 'wf.concat2'.
+[*] [info] WorkflowActor [da89cf60] persisting status of calls wf.concat2 to Done.
+[*] [info] WorkflowActor [da89cf60] no runnable calls to start.
+[*] [info] WorkflowActor [da89cf60] handling completion of call 'wf.concat'.
+[*] [info] WorkflowActor [da89cf60] persisting status of calls wf.concat to Done.
+[*] [info] WorkflowActor [da89cf60] transitioning from Running to Succeeded.
+[*] [info] SingleWorkflowRunnerActor: workflow finished with status 'Succeeded'.
+{
+  "wf.concat.concatenated": "/Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/call-concat/stdout7053152627373227656.tmp",
+  "wf.concat2.concatenated": "/Users/sfrazer/projects/cromwell/cromwell-executions/wf/da89cf60-ee3a-4af4-87f0-131082033b3a/call-concat2/stdout7761349411277150310.tmp",
+  "wf.find.results": [""]
+}
+</pre>
+
+The JSON blob at the end are the outputs of the workflow.  The contents of the files referenced above would both have the same contents:
+
+<pre>
+file 'f1' first line
+file 'f1' second line
+file f2 - first line
+file f2 - second line
+file f2 - third line
+</pre>
   </body>
 </html>
