@@ -1,0 +1,325 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>jes - cromwell.engine.backend.jes</title>
+          <meta name="description" content="jes - cromwell.engine.backend.jes" />
+          <meta name="keywords" content="jes cromwell.engine.backend.jes" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'cromwell.engine.backend.jes.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="cromwell">cromwell</a>.<a href="../../package.html" class="extype" name="cromwell.engine">engine</a>.<a href="../package.html" class="extype" name="cromwell.engine.backend">backend</a></p>
+        <h1>jes</h1><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">jes</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="cromwell.engine.backend.jes.JesBackend" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesBackendextendsBackendwithLazyLogging"></a>
+      <a id="JesBackend:JesBackend"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="JesBackend.html"><span class="name">JesBackend</span></a><span class="result"> extends <a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a> with <span class="extype" name="com.typesafe.scalalogging.LazyLogging">LazyLogging</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@JesBackendextendsBackendwithLazyLogging" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.JesEngineFunctions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesEngineFunctionsextendsEngineFunctionswithProductwithSerializable"></a>
+      <a id="JesEngineFunctions:JesEngineFunctions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="JesEngineFunctions.html"><span class="name">JesEngineFunctions</span></a><span class="params">(<span name="callDir">callDir: <a href="../../../util/google/GoogleCloudStoragePath.html" class="extype" name="cromwell.util.google.GoogleCloudStoragePath">GoogleCloudStoragePath</a></span>, <span name="jesConnection">jesConnection: <a href="JesInterface.html" class="extype" name="cromwell.engine.backend.jes.JesInterface">JesInterface</a></span>)</span><span class="result"> extends <a href="../../EngineFunctions.html" class="extype" name="cromwell.engine.EngineFunctions">EngineFunctions</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@JesEngineFunctionsextendsEngineFunctionswithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation of engine functions for the JES backend.</p>
+    </li><li name="cromwell.engine.backend.jes.JesInterface" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesInterfaceextendsProductwithSerializable"></a>
+      <a id="JesInterface:JesInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="JesInterface.html"><span class="name">JesInterface</span></a><span class="params">(<span name="credential">credential: <span class="extype" name="com.google.api.client.auth.oauth2.Credential">Credential</span></span>, <span name="genomics">genomics: <span class="extype" name="com.google.api.services.genomics.Genomics">Genomics</span></span>, <span name="storage">storage: <a href="../../../util/google/GoogleCloudStorage.html" class="extype" name="cromwell.util.google.GoogleCloudStorage">GoogleCloudStorage</a></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@JesInterfaceextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.JesRuntimeInfo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesRuntimeInfoextendsProductwithSerializable"></a>
+      <a id="JesRuntimeInfo:JesRuntimeInfo"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="JesRuntimeInfo.html"><span class="name">JesRuntimeInfo</span></a><span class="params">(<span name="resources">resources: <span class="extype" name="com.google.api.services.genomics.model.Resources">Resources</span></span>, <span name="docker">docker: <span class="extype" name="com.google.api.services.genomics.model.DockerExecutor">DockerExecutor</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@JesRuntimeInfoextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.OperationMetadata" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OperationMetadataextendsProductwithSerializable"></a>
+      <a id="OperationMetadata:OperationMetadata"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="OperationMetadata.html"><span class="name">OperationMetadata</span></a><span class="params">(<span name="created">created: <span class="extype" name="java.util.Date">Date</span></span>, <span name="started">started: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="java.util.Date">Date</span>]</span>, <span name="finished">finished: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="java.util.Date">Date</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@OperationMetadataextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.Pipeline" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PipelineextendsProductwithSerializable"></a>
+      <a id="Pipeline:Pipeline"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Pipeline.html"><span class="name">Pipeline</span></a><span class="params">(<span name="command">command: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id">id: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="projectId">projectId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="gcsPath">gcsPath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="call">call: <a href="../../../binding/Call.html" class="extype" name="cromwell.binding.Call">Call</a></span>, <span name="jesParameters">jesParameters: <span class="extype" name="scala.Seq">Seq</span>[<a href="JesBackend$$JesParameter.html" class="extype" name="cromwell.engine.backend.jes.JesBackend.JesParameter">JesParameter</a>]</span>, <span name="genomicsService">genomicsService: <span class="extype" name="com.google.api.services.genomics.Genomics">Genomics</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@PipelineextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.Run" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RunextendsProductwithSerializable"></a>
+      <a id="Run:Run"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Run.html"><span class="name">Run</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pipeline">pipeline: <a href="Pipeline.html" class="extype" name="cromwell.engine.backend.jes.Pipeline">Pipeline</a></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@RunextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="cromwell.engine.backend.jes.JesBackend" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesBackend"></a>
+      <a id="JesBackend:JesBackend"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="JesBackend$.html"><span class="name">JesBackend</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@JesBackend" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.JesInterface" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesInterface"></a>
+      <a id="JesInterface:JesInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="JesInterface$.html"><span class="name">JesInterface</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@JesInterface" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.JesRuntimeInfo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesRuntimeInfo"></a>
+      <a id="JesRuntimeInfo:JesRuntimeInfo"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="JesRuntimeInfo$.html"><span class="name">JesRuntimeInfo</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@JesRuntimeInfo" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.OperationMetadata" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OperationMetadata"></a>
+      <a id="OperationMetadata:OperationMetadata"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="OperationMetadata$.html"><span class="name">OperationMetadata</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@OperationMetadata" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.Pipeline" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Pipeline"></a>
+      <a id="Pipeline:Pipeline"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Pipeline$.html"><span class="name">Pipeline</span></a><span class="result"> extends <span class="extype" name="com.typesafe.scalalogging.LazyLogging">LazyLogging</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@Pipeline" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.Run" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Run"></a>
+      <a id="Run:Run"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Run$.html"><span class="name">Run</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.jes.package@Run" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

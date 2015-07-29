@@ -1,0 +1,309 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>values - cromwell.binding.values</title>
+          <meta name="description" content="values - cromwell.binding.values" />
+          <meta name="keywords" content="values cromwell.binding.values" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'cromwell.binding.values.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="cromwell">cromwell</a>.<a href="../package.html" class="extype" name="cromwell.binding">binding</a></p>
+        <h1>values</h1><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">values</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="cromwell.binding.values.WdlArray" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlArrayextendsWdlValuewithProductwithSerializable"></a>
+      <a id="WdlArray:WdlArray"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlArray.html"><span class="name">WdlArray</span></a><span class="params">(<span name="wdlType">wdlType: <a href="../types/WdlArrayType.html" class="extype" name="cromwell.binding.types.WdlArrayType">WdlArrayType</a></span>, <span name="value">value: <span class="extype" name="scala.Seq">Seq</span>[<a href="WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>)</span><span class="result"> extends <a href="WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlArrayextendsWdlValuewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlBoolean" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlBooleanextendsWdlPrimitive"></a>
+      <a id="WdlBoolean:WdlBoolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlBoolean.html"><span class="name">WdlBoolean</span></a><span class="result"> extends <a href="WdlPrimitive.html" class="extype" name="cromwell.binding.values.WdlPrimitive">WdlPrimitive</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlBooleanextendsWdlPrimitive" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The constructor is private to force access through the companion
+object <code>apply</code> which ensures the use of one of the canonical instances.</p>
+    </li><li name="cromwell.binding.values.WdlFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlFileextendsWdlPrimitivewithProductwithSerializable"></a>
+      <a id="WdlFile:WdlFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlFile.html"><span class="name">WdlFile</span></a><span class="params">(<span name="value">value: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="WdlPrimitive.html" class="extype" name="cromwell.binding.values.WdlPrimitive">WdlPrimitive</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlFileextendsWdlPrimitivewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlFloat" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlFloatextendsWdlPrimitivewithProductwithSerializable"></a>
+      <a id="WdlFloat:WdlFloat"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlFloat.html"><span class="name">WdlFloat</span></a><span class="params">(<span name="value">value: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="WdlPrimitive.html" class="extype" name="cromwell.binding.values.WdlPrimitive">WdlPrimitive</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlFloatextendsWdlPrimitivewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlInteger" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlIntegerextendsWdlPrimitivewithProductwithSerializable"></a>
+      <a id="WdlInteger:WdlInteger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlInteger.html"><span class="name">WdlInteger</span></a><span class="params">(<span name="value">value: <span class="extype" name="java.lang.Integer">Integer</span></span>)</span><span class="result"> extends <a href="WdlPrimitive.html" class="extype" name="cromwell.binding.values.WdlPrimitive">WdlPrimitive</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlIntegerextendsWdlPrimitivewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlObject" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlObjectextendsWdlValuewithProductwithSerializable"></a>
+      <a id="WdlObject:WdlObject"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlObject.html"><span class="name">WdlObject</span></a><span class="params">(<span name="value">value: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>)</span><span class="result"> extends <a href="WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlObjectextendsWdlValuewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlPrimitive" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WdlPrimitiveextendsWdlValue"></a>
+      <a id="WdlPrimitive:WdlPrimitive"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlPrimitive.html"><span class="name">WdlPrimitive</span></a><span class="result"> extends <a href="WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlPrimitiveextendsWdlValue" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlString" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlStringextendsWdlPrimitivewithProductwithSerializable"></a>
+      <a id="WdlString:WdlString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlString.html"><span class="name">WdlString</span></a><span class="params">(<span name="value">value: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="WdlPrimitive.html" class="extype" name="cromwell.binding.values.WdlPrimitive">WdlPrimitive</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlStringextendsWdlPrimitivewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlValue" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WdlValueextendsAnyRef"></a>
+      <a id="WdlValue:WdlValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlValue.html"><span class="name">WdlValue</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlValueextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="cromwell.binding.values.WdlBoolean" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlBoolean"></a>
+      <a id="WdlBoolean:WdlBoolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlBoolean$.html"><span class="name">WdlBoolean</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlBoolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlFile"></a>
+      <a id="WdlFile:WdlFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlFile$.html"><span class="name">WdlFile</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlFile" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.values.WdlValueJsonFormatter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WdlValueJsonFormatter"></a>
+      <a id="WdlValueJsonFormatter:WdlValueJsonFormatter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="WdlValueJsonFormatter$.html"><span class="name">WdlValueJsonFormatter</span></a><span class="result"> extends <span class="extype" name="spray.json.DefaultJsonProtocol">DefaultJsonProtocol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.values.package@WdlValueJsonFormatter" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>webservice - cromwell.webservice</title>
+          <meta name="description" content="webservice - cromwell.webservice" />
+          <meta name="keywords" content="webservice cromwell.webservice" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'cromwell.webservice.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../lib/package_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="cromwell">cromwell</a></p>
+        <h1>webservice</h1><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">webservice</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="cromwell.webservice.CromwellApiHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CromwellApiHandlerextendsActor"></a>
+      <a id="CromwellApiHandler:CromwellApiHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CromwellApiHandler.html"><span class="name">CromwellApiHandler</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@CromwellApiHandlerextendsActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.CromwellApiService" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="CromwellApiServiceextendsHttpServicewithPerRequestCreator"></a>
+      <a id="CromwellApiService:CromwellApiService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CromwellApiService.html"><span class="name">CromwellApiService</span></a><span class="result"> extends <span class="extype" name="spray.routing.HttpService">HttpService</span> with <a href="PerRequestCreator.html" class="extype" name="cromwell.webservice.PerRequestCreator">PerRequestCreator</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@CromwellApiServiceextendsHttpServicewithPerRequestCreator" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Api</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="cromwell.webservice.CromwellApiServiceActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CromwellApiServiceActorextendsActorwithCromwellApiService"></a>
+      <a id="CromwellApiServiceActor:CromwellApiServiceActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CromwellApiServiceActor.html"><span class="name">CromwellApiServiceActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="CromwellApiService.html" class="extype" name="cromwell.webservice.CromwellApiService">CromwellApiService</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@CromwellApiServiceActorextendsActorwithCromwellApiService" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.PerRequest" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="PerRequestextendsActor"></a>
+      <a id="PerRequest:PerRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PerRequest.html"><span class="name">PerRequest</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@PerRequestextendsActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This actor controls the lifecycle of a request.</p><div class="fullcomment"><div class="comment cmt"><p>This actor controls the lifecycle of a request. It is responsible for forwarding the initial message
+to a target handling actor. This actor waits for the target actor to signal completion (via a message),
+timeout, or handle an exception. It is this actors responsibility to respond to the request and
+shutdown itself and child actors.</p><p>Request completion can be signaled in 2 ways:
+1) with just a response object
+2) with a RequestComplete message which can specify http status code as well as the response
+</p></div></div>
+    </li><li name="cromwell.webservice.PerRequestCreator" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PerRequestCreatorextendsAnyRef"></a>
+      <a id="PerRequestCreator:PerRequestCreator"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PerRequestCreator.html"><span class="name">PerRequestCreator</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@PerRequestCreatorextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Provides factory methods for creating per request actors
+</p>
+    </li><li name="cromwell.webservice.SwaggerConfigHttpService" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SwaggerConfigHttpServiceextendsSwaggerHttpServicewithSwaggerUiHttpService"></a>
+      <a id="SwaggerConfigHttpService:SwaggerConfigHttpService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SwaggerConfigHttpService.html"><span class="name">SwaggerConfigHttpService</span></a><span class="result"> extends <span class="extype" name="com.gettyimages.spray.swagger.SwaggerHttpService">SwaggerHttpService</span> with <a href="SwaggerUiHttpService.html" class="extype" name="cromwell.webservice.SwaggerUiHttpService">SwaggerUiHttpService</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@SwaggerConfigHttpServiceextendsSwaggerHttpServicewithSwaggerUiHttpService" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.SwaggerService" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SwaggerServiceextendsSwaggerConfigHttpService"></a>
+      <a id="SwaggerService:SwaggerService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SwaggerService.html"><span class="name">SwaggerService</span></a><span class="result"> extends <a href="SwaggerConfigHttpService.html" class="extype" name="cromwell.webservice.SwaggerConfigHttpService">SwaggerConfigHttpService</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@SwaggerServiceextendsSwaggerConfigHttpService" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.SwaggerUiHttpService" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SwaggerUiHttpServiceextendsHttpService"></a>
+      <a id="SwaggerUiHttpService:SwaggerUiHttpService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SwaggerUiHttpService.html"><span class="name">SwaggerUiHttpService</span></a><span class="result"> extends <span class="extype" name="spray.routing.HttpService">HttpService</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@SwaggerUiHttpServiceextendsHttpService" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.WorkflowOutputResponse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WorkflowOutputResponseextendsProductwithSerializable"></a>
+      <a id="WorkflowOutputResponse:WorkflowOutputResponse"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WorkflowOutputResponse.html"><span class="name">WorkflowOutputResponse</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="outputs">outputs: <span class="extype" name="scala.Predef.Map">Map</span>[<a href="../binding/package.html#FullyQualifiedName=String" class="extmbr" name="cromwell.binding.FullyQualifiedName">FullyQualifiedName</a>, <a href="../binding/values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@WorkflowOutputResponseextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@ApiModel</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="cromwell.webservice.WorkflowStatusResponse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WorkflowStatusResponseextendsProductwithSerializable"></a>
+      <a id="WorkflowStatusResponse:WorkflowStatusResponse"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WorkflowStatusResponse.html"><span class="name">WorkflowStatusResponse</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@WorkflowStatusResponseextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@ApiModel</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="cromwell.webservice.WorkflowSubmitResponse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WorkflowSubmitResponseextendsProductwithSerializable"></a>
+      <a id="WorkflowSubmitResponse:WorkflowSubmitResponse"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="WorkflowSubmitResponse.html"><span class="name">WorkflowSubmitResponse</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@WorkflowSubmitResponseextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@ApiModel</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="cromwell.webservice.CromwellApiHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CromwellApiHandler"></a>
+      <a id="CromwellApiHandler:CromwellApiHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CromwellApiHandler$.html"><span class="name">CromwellApiHandler</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@CromwellApiHandler" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.CromwellApiService" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CromwellApiService"></a>
+      <a id="CromwellApiService:CromwellApiService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CromwellApiService$.html"><span class="name">CromwellApiService</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@CromwellApiService" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.CromwellApiServiceActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CromwellApiServiceActor"></a>
+      <a id="CromwellApiServiceActor:CromwellApiServiceActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CromwellApiServiceActor$.html"><span class="name">CromwellApiServiceActor</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@CromwellApiServiceActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.PerRequest" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PerRequest"></a>
+      <a id="PerRequest:PerRequest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PerRequest$.html"><span class="name">PerRequest</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@PerRequest" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.SwaggerService" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SwaggerService"></a>
+      <a id="SwaggerService:SwaggerService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SwaggerService$.html"><span class="name">SwaggerService</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@SwaggerService" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.webservice.WorkflowJsonSupport" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowJsonSupport"></a>
+      <a id="WorkflowJsonSupport:WorkflowJsonSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="WorkflowJsonSupport$.html"><span class="name">WorkflowJsonSupport</span></a><span class="result"> extends <span class="extype" name="spray.json.DefaultJsonProtocol">DefaultJsonProtocol</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.webservice.package@WorkflowJsonSupport" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

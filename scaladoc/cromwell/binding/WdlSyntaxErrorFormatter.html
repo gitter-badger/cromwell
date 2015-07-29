@@ -28,13 +28,13 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/class_big.png" />
+        <img alt="Class" src="../../lib/class_big.png" />
         <p id="owner"><a href="../package.html" class="extype" name="cromwell">cromwell</a>.<a href="package.html" class="extype" name="cromwell.binding">binding</a></p>
         <h1>WdlSyntaxErrorFormatter</h1><h3><span class="morelinks"><div>Related Doc:
             <a href="package.html" class="extype" name="cromwell.binding">package binding</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,7 +45,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">WdlSyntaxErrorFormatter</span><span class="params">(<span name="sourceCode">sourceCode: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="cromwell.parser.WdlParser.SyntaxErrorFormatter">SyntaxErrorFormatter</span> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">WdlSyntaxErrorFormatter</span><span class="params">(<span name="terminalMap">terminalMap: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span>, <a href="package.html#WdlSource=String" class="extmbr" name="cromwell.binding.WdlSource">WdlSource</a>]</span>)</span><span class="result"> extends <span class="extype" name="cromwell.parser.WdlParser.SyntaxErrorFormatter">SyntaxErrorFormatter</span> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -77,7 +77,6 @@
               <li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -90,7 +89,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="cromwell.binding.WdlSyntaxErrorFormatter#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(sourceCode:String):cromwell.binding.WdlSyntaxErrorFormatter"></a>
+      <a id="&lt;init&gt;(terminalMap:Map[cromwell.parser.WdlParser.Terminal,cromwell.binding.WdlSource]):cromwell.binding.WdlSyntaxErrorFormatter"></a>
       <a id="&lt;init&gt;:WdlSyntaxErrorFormatter"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -98,11 +97,11 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">WdlSyntaxErrorFormatter</span><span class="params">(<span name="sourceCode">sourceCode: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">WdlSyntaxErrorFormatter</span><span class="params">(<span name="terminalMap">terminalMap: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span>, <a href="package.html#WdlSource=String" class="extmbr" name="cromwell.binding.WdlSource">WdlSource</a>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@&lt;init&gt;(sourceCode:String):cromwell.binding.WdlSyntaxErrorFormatter" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@&lt;init&gt;(terminalMap:Map[cromwell.parser.WdlParser.Terminal,cromwell.binding.WdlSource]):cromwell.binding.WdlSyntaxErrorFormatter" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -128,7 +127,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -145,7 +144,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -162,10 +161,44 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#arrayMustHaveATypeParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="arrayMustHaveATypeParameter(arrayDecl:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="arrayMustHaveATypeParameter(Terminal):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">arrayMustHaveATypeParameter</span><span class="params">(<span name="arrayDecl">arrayDecl: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@arrayMustHaveATypeParameter(arrayDecl:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#arrayMustHaveOnlyOneTypeParameter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="arrayMustHaveOnlyOneTypeParameter(arrayDecl:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="arrayMustHaveOnlyOneTypeParameter(Terminal):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">arrayMustHaveOnlyOneTypeParameter</span><span class="params">(<span name="arrayDecl">arrayDecl: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@arrayMustHaveOnlyOneTypeParameter(arrayDecl:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -179,7 +212,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -196,7 +229,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@callReferencesBadTaskInput(callInputAst:cromwell.parser.WdlParser.Ast,taskAst:cromwell.parser.WdlParser.Ast):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -213,7 +246,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@callReferencesBadTaskName(callAst:cromwell.parser.WdlParser.Ast,taskName:String):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -230,7 +263,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -240,6 +273,57 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#defaultAttributeOnlyAllowedForOptionalParameters" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="defaultAttributeOnlyAllowedForOptionalParameters(location:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="defaultAttributeOnlyAllowedForOptionalParameters(Terminal):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">defaultAttributeOnlyAllowedForOptionalParameters</span><span class="params">(<span name="location">location: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@defaultAttributeOnlyAllowedForOptionalParameters(location:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#duplicateTask" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="duplicateTask(taskAsts:Seq[cromwell.parser.WdlParser.Ast]):String"></a>
+      <a id="duplicateTask(Seq[Ast]):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">duplicateTask</span><span class="params">(<span name="taskAsts">taskAsts: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="cromwell.parser.WdlParser.Ast">Ast</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@duplicateTask(taskAsts:Seq[cromwell.parser.WdlParser.Ast]):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#emptyInputSection" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="emptyInputSection(callTaskName:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="emptyInputSection(Terminal):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">emptyInputSection</span><span class="params">(<span name="callTaskName">callTaskName: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@emptyInputSection(callTaskName:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -253,7 +337,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -270,7 +354,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@excessTokens(method:String,terminal:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.WdlSyntaxErrorFormatter">WdlSyntaxErrorFormatter</a> → SyntaxErrorFormatter</dd></dl></div>
@@ -287,7 +371,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -310,7 +394,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -327,7 +411,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@invalidTerminal(method:String,invalid:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.WdlSyntaxErrorFormatter">WdlSyntaxErrorFormatter</a> → SyntaxErrorFormatter</dd></dl></div>
@@ -344,24 +428,58 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#lines" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="lines:Seq[String]"></a>
-      <a id="lines:Seq[String]"></a>
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#memberAccessReferencesBadTaskInput" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="memberAccessReferencesBadTaskInput(ast:cromwell.parser.WdlParser.Ast):String"></a>
+      <a id="memberAccessReferencesBadTaskInput(Ast):String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">lines</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">memberAccessReferencesBadTaskInput</span><span class="params">(<span name="ast">ast: <span class="extype" name="cromwell.parser.WdlParser.Ast">Ast</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@lines:Seq[String]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@memberAccessReferencesBadTaskInput(ast:cromwell.parser.WdlParser.Ast):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#multipleCallsAndHaveSameName" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="multipleCallsAndHaveSameName(names:Seq[cromwell.parser.WdlParser.Terminal]):String"></a>
+      <a id="multipleCallsAndHaveSameName(Seq[Terminal]):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">multipleCallsAndHaveSameName</span><span class="params">(<span name="names">names: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@multipleCallsAndHaveSameName(names:Seq[cromwell.parser.WdlParser.Terminal]):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#multipleInputStatementsOnCall" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="multipleInputStatementsOnCall(secondInputStatement:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="multipleInputStatementsOnCall(Terminal):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">multipleInputStatementsOnCall</span><span class="params">(<span name="secondInputStatement">secondInputStatement: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@multipleInputStatementsOnCall(secondInputStatement:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -378,7 +496,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -395,7 +513,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@noMoreTokens(method:String,expecting:cromwell.parser.WdlParser.TerminalIdentifier,last:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.WdlSyntaxErrorFormatter">WdlSyntaxErrorFormatter</a> → SyntaxErrorFormatter</dd></dl></div>
@@ -412,7 +530,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -429,24 +547,41 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#sourceCode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="sourceCode:String"></a>
-      <a id="sourceCode:String"></a>
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#parametersWithSameNameMustHaveSameDefinition" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="parametersWithSameNameMustHaveSameDefinition(taskName:cromwell.parser.WdlParser.Terminal,firstParam:cromwell.parser.WdlParser.Terminal,secondParam:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="parametersWithSameNameMustHaveSameDefinition(Terminal,Terminal,Terminal):String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">sourceCode</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">parametersWithSameNameMustHaveSameDefinition</span><span class="params">(<span name="taskName">taskName: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>, <span name="firstParam">firstParam: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>, <span name="secondParam">secondParam: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@sourceCode:String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@parametersWithSameNameMustHaveSameDefinition(taskName:cromwell.parser.WdlParser.Terminal,firstParam:cromwell.parser.WdlParser.Terminal,secondParam:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#postfixQualifierRequiresSeparator" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="postfixQualifierRequiresSeparator(quantifier:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="postfixQualifierRequiresSeparator(Terminal):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">postfixQualifierRequiresSeparator</span><span class="params">(<span name="quantifier">quantifier: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@postfixQualifierRequiresSeparator(quantifier:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -463,24 +598,75 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#tooManyWorkflows" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="tooManyWorkflows(workflowAsts:java.util.Set[cromwell.parser.WdlParser.Ast]):String"></a>
-      <a id="tooManyWorkflows(Set[Ast]):String"></a>
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#taskAndNamespaceHaveSameName" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="taskAndNamespaceHaveSameName(taskAst:cromwell.parser.WdlParser.Ast,namespace:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="taskAndNamespaceHaveSameName(Ast,Terminal):String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">tooManyWorkflows</span><span class="params">(<span name="workflowAsts">workflowAsts: <span class="extype" name="java.util.Set">Set</span>[<span class="extype" name="cromwell.parser.WdlParser.Ast">Ast</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">taskAndNamespaceHaveSameName</span><span class="params">(<span name="taskAst">taskAst: <span class="extype" name="cromwell.parser.WdlParser.Ast">Ast</span></span>, <span name="namespace">namespace: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@tooManyWorkflows(workflowAsts:java.util.Set[cromwell.parser.WdlParser.Ast]):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@taskAndNamespaceHaveSameName(taskAst:cromwell.parser.WdlParser.Ast,namespace:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#terminalMap" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="terminalMap:Map[cromwell.parser.WdlParser.Terminal,cromwell.binding.WdlSource]"></a>
+      <a id="terminalMap:Map[Terminal,WdlSource]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">terminalMap</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span>, <a href="package.html#WdlSource=String" class="extmbr" name="cromwell.binding.WdlSource">WdlSource</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@terminalMap:Map[cromwell.parser.WdlParser.Terminal,cromwell.binding.WdlSource]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#tooManyWorkflows" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="tooManyWorkflows(workflowAsts:java.util.List[cromwell.parser.WdlParser.Ast]):String"></a>
+      <a id="tooManyWorkflows(List[Ast]):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tooManyWorkflows</span><span class="params">(<span name="workflowAsts">workflowAsts: <span class="extype" name="java.util.List">List</span>[<span class="extype" name="cromwell.parser.WdlParser.Ast">Ast</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@tooManyWorkflows(workflowAsts:java.util.List[cromwell.parser.WdlParser.Ast]):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#undefinedMemberAccess" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="undefinedMemberAccess(ast:cromwell.parser.WdlParser.Ast):String"></a>
+      <a id="undefinedMemberAccess(Ast):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">undefinedMemberAccess</span><span class="params">(<span name="ast">ast: <span class="extype" name="cromwell.parser.WdlParser.Ast">Ast</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@undefinedMemberAccess(ast:cromwell.parser.WdlParser.Ast):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -497,7 +683,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@unexpectedEof(method:String,expected:java.util.List[cromwell.parser.WdlParser.TerminalIdentifier],nt_rules:java.util.List[String]):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.WdlSyntaxErrorFormatter">WdlSyntaxErrorFormatter</a> → SyntaxErrorFormatter</dd></dl></div>
@@ -514,7 +700,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@unexpectedSymbol(method:String,actual:cromwell.parser.WdlParser.Terminal,expected:java.util.List[cromwell.parser.WdlParser.TerminalIdentifier],rule:String):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.WdlSyntaxErrorFormatter">WdlSyntaxErrorFormatter</a> → SyntaxErrorFormatter</dd></dl></div>
@@ -531,7 +717,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -554,7 +740,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -577,7 +763,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -587,6 +773,23 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="cromwell.binding.WdlSyntaxErrorFormatter#workflowAndNamespaceHaveSameName" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="workflowAndNamespaceHaveSameName(workflowAst:cromwell.parser.WdlParser.Ast,namespace:cromwell.parser.WdlParser.Terminal):String"></a>
+      <a id="workflowAndNamespaceHaveSameName(Ast,Terminal):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">workflowAndNamespaceHaveSameName</span><span class="params">(<span name="workflowAst">workflowAst: <span class="extype" name="cromwell.parser.WdlParser.Ast">Ast</span></span>, <span name="namespace">namespace: <span class="extype" name="cromwell.parser.WdlParser.Terminal">Terminal</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.WdlSyntaxErrorFormatter@workflowAndNamespaceHaveSameName(workflowAst:cromwell.parser.WdlParser.Ast,namespace:cromwell.parser.WdlParser.Terminal):String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li></ol>
             </div>
 

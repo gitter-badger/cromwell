@@ -28,13 +28,15 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../lib/class_big.png" />
+        <a href="Call$.html" title="See companion object"><img alt="Class/Object" src="../../lib/class_to_object_big.png" /></a>
         <p id="owner"><a href="../package.html" class="extype" name="cromwell">cromwell</a>.<a href="package.html" class="extype" name="cromwell.binding">binding</a></p>
-        <h1>Call</h1><h3><span class="morelinks"><div>Related Doc:
-            <a href="package.html" class="extype" name="cromwell.binding">package binding</a>
+        <h1><a href="Call$.html" title="See companion object">Call</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="Call$.html" title="See companion object">object Call</a>
+            | <a href="package.html" class="extype" name="cromwell.binding">package binding</a>
           </div></span></h3><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,7 +47,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Call</span><span class="params">(<span name="alias">alias: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="task">task: <a href="Task.html" class="extype" name="cromwell.binding.Task">Task</a></span>, <span name="inputMappings">inputMappings: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="WdlExpression.html" class="extype" name="cromwell.binding.WdlExpression">WdlExpression</a>]</span>)</span><span class="result"> extends <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Call</span><span class="params">(<span name="alias">alias: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="taskFqn">taskFqn: <a href="package.html#FullyQualifiedName=String" class="extmbr" name="cromwell.binding.FullyQualifiedName">FullyQualifiedName</a></span>, <span name="task">task: <a href="Task.html" class="extype" name="cromwell.binding.Task">Task</a></span>, <span name="inputMappings">inputMappings: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="WdlExpression.html" class="extype" name="cromwell.binding.WdlExpression">WdlExpression</a>]</span>)</span><span class="result"> extends <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -55,8 +57,7 @@ All remaining inputs to the task that are not declared in the <code>input</code>
 of the <code>call</code> block are called unsatisfiedInputs
 </p></div><dl class="paramcmts block"><dt class="param">alias</dt><dd class="cmt"><p>The alias for this call.  If two calls in a workflow use the same task
              then one of them needs to be aliased to a different name</p></dd><dt class="param">task</dt><dd class="cmt"><p>The task that this <code>call</code> will invoke</p></dd><dt class="param">inputMappings</dt><dd class="cmt"><p>A map of task-local input names and corresponding expression for the
-                     value of those inputs</p></dd></dl><dl class="attributes block"> <dt>To do</dt><dd><span class="cmt"><p>Validate that the keys in inputMappings correspond to actual parameters in the task
-</p></span></dd></dl><div class="toggleContainer block">
+                     value of those inputs</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -84,7 +85,6 @@ of the <code>call</code> block are called unsatisfiedInputs
               <li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -97,7 +97,7 @@ of the <code>call</code> block are called unsatisfiedInputs
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="cromwell.binding.Call#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(alias:Option[String],task:cromwell.binding.Task,inputMappings:Map[String,cromwell.binding.WdlExpression]):cromwell.binding.Call"></a>
+      <a id="&lt;init&gt;(alias:Option[String],taskFqn:cromwell.binding.FullyQualifiedName,task:cromwell.binding.Task,inputMappings:Map[String,cromwell.binding.WdlExpression]):cromwell.binding.Call"></a>
       <a id="&lt;init&gt;:Call"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -105,11 +105,11 @@ of the <code>call</code> block are called unsatisfiedInputs
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Call</span><span class="params">(<span name="alias">alias: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="task">task: <a href="Task.html" class="extype" name="cromwell.binding.Task">Task</a></span>, <span name="inputMappings">inputMappings: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="WdlExpression.html" class="extype" name="cromwell.binding.WdlExpression">WdlExpression</a>]</span>)</span>
+        <span class="name">Call</span><span class="params">(<span name="alias">alias: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="taskFqn">taskFqn: <a href="package.html#FullyQualifiedName=String" class="extmbr" name="cromwell.binding.FullyQualifiedName">FullyQualifiedName</a></span>, <span name="task">task: <a href="Task.html" class="extype" name="cromwell.binding.Task">Task</a></span>, <span name="inputMappings">inputMappings: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="WdlExpression.html" class="extype" name="cromwell.binding.WdlExpression">WdlExpression</a>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.Call@&lt;init&gt;(alias:Option[String],task:cromwell.binding.Task,inputMappings:Map[String,cromwell.binding.WdlExpression]):cromwell.binding.Call" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#cromwell.binding.Call@&lt;init&gt;(alias:Option[String],taskFqn:cromwell.binding.FullyQualifiedName,task:cromwell.binding.Task,inputMappings:Map[String,cromwell.binding.WdlExpression]):cromwell.binding.Call" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">alias</dt><dd class="cmt"><p>The alias for this call.  If two calls in a workflow use the same task
@@ -137,7 +137,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -154,7 +154,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -171,7 +171,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -188,7 +188,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@alias:Option[String]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The alias for this call.</p><div class="fullcomment"><div class="comment cmt"><p>The alias for this call.  If two calls in a workflow use the same task
@@ -206,7 +206,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -223,7 +223,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -233,6 +233,23 @@ of the <code>call</code> block are called unsatisfiedInputs
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="cromwell.binding.Call#docker" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="docker:Option[String]"></a>
+      <a id="docker:Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">docker</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Call@docker:Option[String]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return the docker configuration value associated with this <code>Call</code>, if any.</p>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -246,10 +263,27 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="cromwell.binding.Call#failOnStderr" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="failOnStderr:Boolean"></a>
+      <a id="failOnStderr:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">failOnStderr</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Call@failOnStderr:Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Whether the call should be considered to have failed if any stderr is generated.</p>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -263,7 +297,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -286,7 +320,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@fullyQualifiedName:String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a></dd></dl></div>
@@ -303,7 +337,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -320,11 +354,28 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@inputMappings:Map[String,cromwell.binding.WdlExpression]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">A map of task-local input names and corresponding expression for the
                      value of those inputs</p>
+    </li><li name="cromwell.binding.Call#instantiateCommandLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="instantiateCommandLine(inputs:cromwell.binding.CallInputs):scala.util.Try[String]"></a>
+      <a id="instantiateCommandLine(CallInputs):Try[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">instantiateCommandLine</span><span class="params">(<span name="inputs">inputs: <a href="package.html#CallInputs=Map[String,cromwell.binding.values.WdlValue]" class="extmbr" name="cromwell.binding.CallInputs">CallInputs</a></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Call@instantiateCommandLine(inputs:cromwell.binding.CallInputs):scala.util.Try[String]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Instantiate the abstract command line corresponding to this call using the specified inputs.</p>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -338,7 +389,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -355,7 +406,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@name:String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.Call">Call</a> → <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a></dd></dl></div>
@@ -372,7 +423,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -389,7 +440,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -406,7 +457,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -423,10 +474,34 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@parent:Option[cromwell.binding.Scope]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.Call">Call</a> → <a href="Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a></dd></dl></div>
+    </li><li name="cromwell.binding.Call#prerequisiteCalls" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="prerequisiteCalls(namespace:cromwell.binding.NamespaceWithWorkflow):Iterable[cromwell.binding.Call]"></a>
+      <a id="prerequisiteCalls(NamespaceWithWorkflow):Iterable[Call]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">prerequisiteCalls</span><span class="params">(<span name="namespace">namespace: <a href="NamespaceWithWorkflow.html" class="extype" name="cromwell.binding.NamespaceWithWorkflow">NamespaceWithWorkflow</a></span>)</span><span class="result">: <span class="extype" name="scala.Iterable">Iterable</span>[<a href="" class="extype" name="cromwell.binding.Call">Call</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Call@prerequisiteCalls(namespace:cromwell.binding.NamespaceWithWorkflow):Iterable[cromwell.binding.Call]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Find all calls upon which this call immediately depends, i.e.</p><div class="fullcomment"><div class="comment cmt"><p>Find all calls upon which this call immediately depends, i.e. the result of this
+does not include transitive dependencies.  Currently this only works for member
+access expressions with a literal LHS, e.g.:</p><pre>call cgrep {
+  input: in_file=ps.procs
+}</pre><p>Here <code>ps</code> would be the prerequisite call for <code>cgrep</code>.</p><p>Calls are de-duplicated into a returned <code>Set</code>, so if one call expresses dependencies on
+a prerequisite call multiple times (i.e. has multiple inputs depending on multiple outputs
+of a prerequisite call), that prerequisite call will appear only once in the output.
+</p></div></div>
     </li><li name="cromwell.binding.Call#setParent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="setParent(parent:cromwell.binding.Scope):Unit"></a>
       <a id="setParent(Scope):Unit"></a>
@@ -440,7 +515,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@setParent(parent:cromwell.binding.Scope):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -457,7 +532,7 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -474,10 +549,27 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@task:cromwell.binding.Task" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">The task that this <code>call</code> will invoke</p>
+    </li><li name="cromwell.binding.Call#taskFqn" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="taskFqn:cromwell.binding.FullyQualifiedName"></a>
+      <a id="taskFqn:FullyQualifiedName"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">taskFqn</span><span class="result">: <a href="package.html#FullyQualifiedName=String" class="extmbr" name="cromwell.binding.FullyQualifiedName">FullyQualifiedName</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.binding.Call@taskFqn:cromwell.binding.FullyQualifiedName" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="cromwell.binding.Call#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -491,32 +583,31 @@ of the <code>call</code> block are called unsatisfiedInputs
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.Call">Call</a> → AnyRef → Any</dd></dl></div>
     </li><li name="cromwell.binding.Call#unsatisfiedInputs" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="unsatisfiedInputs:Map[String,cromwell.binding.types.WdlType]"></a>
-      <a id="unsatisfiedInputs:Map[String,WdlType]"></a>
+      <a id="unsatisfiedInputs:Seq[cromwell.binding.WorkflowInput]"></a>
+      <a id="unsatisfiedInputs:Seq[WorkflowInput]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">unsatisfiedInputs</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a>]</span>
+        <span class="name">unsatisfiedInputs</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="WorkflowInput.html" class="extype" name="cromwell.binding.WorkflowInput">WorkflowInput</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../index.html#cromwell.binding.Call@unsatisfiedInputs:Map[String,cromwell.binding.types.WdlType]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+      <a href="../../index.html#cromwell.binding.Call@unsatisfiedInputs:Seq[cromwell.binding.WorkflowInput]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Map of task-local input names to type for every input that this
-Call needs to execute the task
-</p><div class="fullcomment"><div class="comment cmt"><p>Map of task-local input names to type for every input that this
-Call needs to execute the task
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Map[String, WdlType] representing each task-local input
-</p></dd></dl></div>
+      <p class="shortcomment cmt">Returns a Seq[WorkflowInput] representing the inputs to the call that are
+needed before its command can be constructed.</p><div class="fullcomment"><div class="comment cmt"><p>Returns a Seq[WorkflowInput] representing the inputs to the call that are
+needed before its command can be constructed. This excludes inputs that
+are satisfied via the 'input' section of the Call definition.
+</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -530,7 +621,7 @@ Call needs to execute the task
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -553,7 +644,7 @@ Call needs to execute the task
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -576,7 +667,7 @@ Call needs to execute the task
       </span>
       </h4><span class="permalink">
       <a href="../../index.html#cromwell.binding.Call@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" />
+        <img src="../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>

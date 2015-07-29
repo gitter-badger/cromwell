@@ -28,13 +28,15 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../../lib/class_big.png" />
+        <a href="ParameterCommandPart$.html" title="See companion object"><img alt="Class/Object" src="../../../lib/class_to_object_big.png" /></a>
         <p id="owner"><a href="../../package.html" class="extype" name="cromwell">cromwell</a>.<a href="../package.html" class="extype" name="cromwell.binding">binding</a>.<a href="package.html" class="extype" name="cromwell.binding.command">command</a></p>
-        <h1>ParameterCommandPart</h1><h3><span class="morelinks"><div>Related Doc:
-            <a href="package.html" class="extype" name="cromwell.binding.command">package command</a>
+        <h1><a href="ParameterCommandPart$.html" title="See companion object">ParameterCommandPart</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="ParameterCommandPart$.html" title="See companion object">object ParameterCommandPart</a>
+            | <a href="package.html" class="extype" name="cromwell.binding.command">package command</a>
           </div></span></h3><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -45,11 +47,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ParameterCommandPart</span><span class="params">(<span name="wdlType">wdlType: <a href="../types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="CommandPart.html" class="extype" name="cromwell.binding.command.CommandPart">CommandPart</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ParameterCommandPart</span><span class="params">(<span name="wdlType">wdlType: <a href="../types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prefix">prefix: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="attributes">attributes: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="postfixQuantifier">postfixQuantifier: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="CommandPart.html" class="extype" name="cromwell.binding.command.CommandPart">CommandPart</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a parameter within a command, e.g. <code>${default=&quot;/etc/foo.conf&quot; &quot;--conf=&quot; File conf?}</code>
+</p></div><dl class="paramcmts block"><dt class="param">wdlType</dt><dd class="cmt"><p>- The type that the input is required to be (<code>File</code>)</p></dd><dt class="param">name</dt><dd class="cmt"><p>- The name of the parameter (<code>conf</code>)</p></dd><dt class="param">prefix</dt><dd class="cmt"><p>- Optional prefix for when the parameter is specified.  This will be prepended to the parameter (<code>--conf=</code>)</p></dd><dt class="param">attributes</dt><dd class="cmt"><p>- A set of key (String) -&gt; value (String) pairs from x=&quot;y&quot; pairs within the parameter (default -&gt; /etc/foo.conf)
+                    There are only a subset of these attributes that have any meaning.  <code>default</code> is interpreted to be
+                    the default value of the variable <code>conf</code> if no value is specified (since it's optional)</p></dd><dt class="param">postfixQuantifier</dt><dd class="cmt"><p>- The <code>?</code>, <code>*</code>, or <code>+</code> after the variable name.  This means &quot;optional&quot;, &quot;0-or-more&quot;, and &quot;1-or-more&quot;, respectively</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="CommandPart.html" class="extype" name="cromwell.binding.command.CommandPart">CommandPart</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -77,7 +82,6 @@
               <li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -89,8 +93,8 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="cromwell.binding.command.ParameterCommandPart#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(wdlType:cromwell.binding.types.WdlType,name:String):cromwell.binding.command.ParameterCommandPart"></a>
+              <ol><li name="cromwell.binding.command.ParameterCommandPart#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(wdlType:cromwell.binding.types.WdlType,name:String,prefix:Option[String],attributes:Map[String,String],postfixQuantifier:Option[String]):cromwell.binding.command.ParameterCommandPart"></a>
       <a id="&lt;init&gt;:ParameterCommandPart"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -98,14 +102,16 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ParameterCommandPart</span><span class="params">(<span name="wdlType">wdlType: <a href="../types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ParameterCommandPart</span><span class="params">(<span name="wdlType">wdlType: <a href="../types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prefix">prefix: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="attributes">attributes: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="postfixQuantifier">postfixQuantifier: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@&lt;init&gt;(wdlType:cromwell.binding.types.WdlType,name:String):cromwell.binding.command.ParameterCommandPart" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+      <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@&lt;init&gt;(wdlType:cromwell.binding.types.WdlType,name:String,prefix:Option[String],attributes:Map[String,String],postfixQuantifier:Option[String]):cromwell.binding.command.ParameterCommandPart" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">wdlType</dt><dd class="cmt"><p>- The type that the input is required to be (<code>File</code>)</p></dd><dt class="param">name</dt><dd class="cmt"><p>- The name of the parameter (<code>conf</code>)</p></dd><dt class="param">prefix</dt><dd class="cmt"><p>- Optional prefix for when the parameter is specified.  This will be prepended to the parameter (<code>--conf=</code>)</p></dd><dt class="param">attributes</dt><dd class="cmt"><p>- A set of key (String) -&gt; value (String) pairs from x=&quot;y&quot; pairs within the parameter (default -&gt; /etc/foo.conf)
+                    There are only a subset of these attributes that have any meaning.  <code>default</code> is interpreted to be
+                    the default value of the variable <code>conf</code> if no value is specified (since it's optional)</p></dd><dt class="param">postfixQuantifier</dt><dd class="cmt"><p>- The <code>?</code>, <code>*</code>, or <code>+</code> after the variable name.  This means &quot;optional&quot;, &quot;0-or-more&quot;, and &quot;1-or-more&quot;, respectively</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -128,7 +134,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -145,7 +151,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@##():Int" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -162,7 +168,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -179,10 +185,30 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="cromwell.binding.command.ParameterCommandPart#attributes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="attributes:Map[String,String]"></a>
+      <a id="attributes:Map[String,String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">attributes</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@attributes:Map[String,String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">- A set of key (String) -&gt; value (String) pairs from x=&quot;y&quot; pairs within the parameter (default -&gt; /etc/foo.conf)
+                    There are only a subset of these attributes that have any meaning.</p><div class="fullcomment"><div class="comment cmt"><p>- A set of key (String) -&gt; value (String) pairs from x=&quot;y&quot; pairs within the parameter (default -&gt; /etc/foo.conf)
+                    There are only a subset of these attributes that have any meaning.  <code>default</code> is interpreted to be
+                    the default value of the variable <code>conf</code> if no value is specified (since it's optional)</p></div></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -196,7 +222,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@clone():Object" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -219,7 +245,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -236,7 +262,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -259,12 +285,12 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="cromwell.binding.command.ParameterCommandPart#instantiate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="instantiate(parameters:Map[String,cromwell.binding.WdlValue]):String"></a>
+      <a id="instantiate(parameters:Map[String,cromwell.binding.values.WdlValue]):String"></a>
       <a id="instantiate(Map[String,WdlValue]):String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -272,11 +298,11 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">instantiate</span><span class="params">(<span name="parameters">parameters: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../WdlValue.html" class="extype" name="cromwell.binding.WdlValue">WdlValue</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">instantiate</span><span class="params">(<span name="parameters">parameters: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@instantiate(parameters:Map[String,cromwell.binding.WdlValue]):String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+      <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@instantiate(parameters:Map[String,cromwell.binding.values.WdlValue]):String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.command.ParameterCommandPart">ParameterCommandPart</a> → <a href="CommandPart.html" class="extype" name="cromwell.binding.command.CommandPart">CommandPart</a></dd></dl></div>
@@ -293,7 +319,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -310,10 +336,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@name:String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">- The name of the parameter (<code>conf</code>)</p>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -327,7 +353,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -344,7 +370,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@notify():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -361,10 +387,44 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="cromwell.binding.command.ParameterCommandPart#postfixQuantifier" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="postfixQuantifier:Option[String]"></a>
+      <a id="postfixQuantifier:Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">postfixQuantifier</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@postfixQuantifier:Option[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">- The <code>?</code>, <code>*</code>, or <code>+</code> after the variable name.</p><div class="fullcomment"><div class="comment cmt"><p>- The <code>?</code>, <code>*</code>, or <code>+</code> after the variable name.  This means &quot;optional&quot;, &quot;0-or-more&quot;, and &quot;1-or-more&quot;, respectively</p></div></div>
+    </li><li name="cromwell.binding.command.ParameterCommandPart#prefix" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="prefix:Option[String]"></a>
+      <a id="prefix:Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">prefix</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@prefix:Option[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">- Optional prefix for when the parameter is specified.</p><div class="fullcomment"><div class="comment cmt"><p>- Optional prefix for when the parameter is specified.  This will be prepended to the parameter (<code>--conf=</code>)</p></div></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -378,7 +438,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -395,7 +455,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@toString():String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.binding.command.ParameterCommandPart">ParameterCommandPart</a> → AnyRef → Any</dd></dl></div>
@@ -412,7 +472,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@wait():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -435,7 +495,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -458,7 +518,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -481,10 +541,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.command.ParameterCommandPart@wdlType:cromwell.binding.types.WdlType" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">- The type that the input is required to be (<code>File</code>)</p>
     </li></ol>
             </div>
 

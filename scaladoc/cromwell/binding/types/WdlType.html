@@ -28,13 +28,15 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img src="../../../lib/trait_big.png" />
+        <a href="WdlType$.html" title="See companion object"><img alt="Trait/Object" src="../../../lib/trait_to_object_big.png" /></a>
         <p id="owner"><a href="../../package.html" class="extype" name="cromwell">cromwell</a>.<a href="../package.html" class="extype" name="cromwell.binding">binding</a>.<a href="package.html" class="extype" name="cromwell.binding.types">types</a></p>
-        <h1>WdlType</h1><h3><span class="morelinks"><div>Related Doc:
-            <a href="package.html" class="extype" name="cromwell.binding.types">package types</a>
+        <h1><a href="WdlType$.html" title="See companion object">WdlType</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="WdlType$.html" title="See companion object">object WdlType</a>
+            | <a href="package.html" class="extype" name="cromwell.binding.types">package types</a>
           </div></span></h3><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       </div>
@@ -54,7 +56,7 @@
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">Known Subclasses</span>
-            <div class="subClasses hiddenContent"><a href="WdlFileType$.html" class="extype" name="cromwell.binding.types.WdlFileType">WdlFileType</a>, <a href="WdlFloatType$.html" class="extype" name="cromwell.binding.types.WdlFloatType">WdlFloatType</a>, <a href="WdlIntegerType$.html" class="extype" name="cromwell.binding.types.WdlIntegerType">WdlIntegerType</a>, <a href="WdlObjectType$.html" class="extype" name="cromwell.binding.types.WdlObjectType">WdlObjectType</a>, <a href="WdlStringType$.html" class="extype" name="cromwell.binding.types.WdlStringType">WdlStringType</a></div>
+            <div class="subClasses hiddenContent"><a href="WdlArrayType.html" class="extype" name="cromwell.binding.types.WdlArrayType">WdlArrayType</a>, <a href="WdlBooleanType$.html" class="extype" name="cromwell.binding.types.WdlBooleanType">WdlBooleanType</a>, <a href="WdlExpressionType$.html" class="extype" name="cromwell.binding.types.WdlExpressionType">WdlExpressionType</a>, <a href="WdlFileType$.html" class="extype" name="cromwell.binding.types.WdlFileType">WdlFileType</a>, <a href="WdlFloatType$.html" class="extype" name="cromwell.binding.types.WdlFloatType">WdlFloatType</a>, <a href="WdlIntegerType$.html" class="extype" name="cromwell.binding.types.WdlIntegerType">WdlIntegerType</a>, <a href="WdlNamespaceType$.html" class="extype" name="cromwell.binding.types.WdlNamespaceType">WdlNamespaceType</a>, <a href="WdlObjectType$.html" class="extype" name="cromwell.binding.types.WdlObjectType">WdlObjectType</a>, <a href="WdlPrimitiveType.html" class="extype" name="cromwell.binding.types.WdlPrimitiveType">WdlPrimitiveType</a>, <a href="WdlStringType$.html" class="extype" name="cromwell.binding.types.WdlStringType">WdlStringType</a></div>
           </div></div>
         
 
@@ -80,7 +82,6 @@
               <li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -96,20 +97,43 @@
 
         <div id="values" class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="cromwell.binding.types.WdlType#isCompatible" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="isCompatible(value:Any):Boolean"></a>
-      <a id="isCompatible(Any):Boolean"></a>
+              <ol><li name="cromwell.binding.types.WdlType#coercion" visbl="prt" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="coercion:PartialFunction[Any,cromwell.binding.values.WdlValue]"></a>
+      <a id="coercion:PartialFunction[Any,WdlValue]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isCompatible</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">coercion</span><span class="result">: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<span class="extype" name="scala.Any">Any</span>, <a href="../values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#cromwell.binding.types.WdlType@isCompatible(value:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+      <a href="../../../index.html#cromwell.binding.types.WdlType@coercion:PartialFunction[Any,cromwell.binding.values.WdlValue]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Method to be overridden by implementation classes defining a partial function
+for the conversion of raw input values to specific implementation class value types.</p><div class="fullcomment"><div class="comment cmt"><p>Method to be overridden by implementation classes defining a partial function
+for the conversion of raw input values to specific implementation class value types.
+i.e.  <code>WdlBooleanType</code> should define a partial function that knows how to
+construct <code>WdlBoolean</code>s for inputs of supported types and contents.  Values for which
+the partial function is not defined are assumed to not be convertible to the target type.
+</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="cromwell.binding.types.WdlType#toWdlString" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="toWdlString:String"></a>
+      <a id="toWdlString:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toWdlString</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.types.WdlType@toWdlString:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
@@ -131,7 +155,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -148,7 +172,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@##():Int" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -165,7 +189,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -182,27 +206,10 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="cromwell.binding.types.WdlType#checkCompatible" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="checkCompatible(value:Any):Unit"></a>
-      <a id="checkCompatible(Any):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">checkCompatible</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#cromwell.binding.types.WdlType@checkCompatible(value:Any):Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -216,7 +223,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@clone():Object" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -226,6 +233,24 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="cromwell.binding.types.WdlType#coerceRawValue" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="coerceRawValue(any:Any):scala.util.Try[cromwell.binding.values.WdlValue]"></a>
+      <a id="coerceRawValue(Any):Try[WdlValue]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">coerceRawValue</span><span class="params">(<span name="any">any: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<a href="../values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.types.WdlType@coerceRawValue(any:Any):scala.util.Try[cromwell.binding.values.WdlValue]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Public interface for a <code>Try</code>-wrapped conversion of an input of type <code>Any</code> to
+a <code>WdlValue</code>.</p>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -239,7 +264,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -256,7 +281,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -273,7 +298,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -283,6 +308,24 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="cromwell.binding.types.WdlType#fromWdlString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fromWdlString(wdlSource:cromwell.binding.WdlSource):cromwell.binding.values.WdlValue"></a>
+      <a id="fromWdlString(WdlSource):WdlValue"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fromWdlString</span><span class="params">(<span name="wdlSource">wdlSource: <a href="../package.html#WdlSource=String" class="extmbr" name="cromwell.binding.WdlSource">WdlSource</a></span>)</span><span class="result">: <a href="../values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.binding.types.WdlType@fromWdlString(wdlSource:cromwell.binding.WdlSource):cromwell.binding.values.WdlValue" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converts WDL source into a WdlValue of this type, if possible.</p><div class="fullcomment"><div class="comment cmt"><p>Converts WDL source into a WdlValue of this type, if possible.
+</p></div><dl class="paramcmts block"><dt class="param">wdlSource</dt><dd class="cmt"><p>source code representing the WdlValue</p></dd><dt>returns</dt><dd class="cmt"><p>The WdlValue</p></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -296,7 +339,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -313,7 +356,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -330,7 +373,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
@@ -347,7 +390,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -364,7 +407,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@notify():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -381,7 +424,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -398,7 +441,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
@@ -415,7 +458,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@toString():String" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -432,7 +475,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@wait():Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -455,7 +498,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
@@ -478,7 +521,7 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#cromwell.binding.types.WdlType@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
+        <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
