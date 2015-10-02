@@ -11,6 +11,7 @@ Workflow engine using [WDL](https://github.com/broadinstitute/wdl/blob/wdl2/SPEC
 * [Mailing List](#mailing-list)
 * [Requirements](#requirements)
 * [Building](#building)
+* [Contributing](#contributing)
 * [API Documentation](#api-documentation)
 * [Scala API Usage](#scala-api-usage)
 * [Command Line Usage](#command-line-usage)
@@ -84,6 +85,10 @@ The following is the toolchain used for development of Cromwell.  Other versions
 `sbt assembly` will build a runnable JAR in `target/scala-2.11/`
 
 Tests are run via `sbt test`.  Note that the tests do require Docker to be running.  To test this out while downloading the Ubuntu image that is required for tests, run `docker pull ubuntu:latest` prior to running `sbt test`
+
+# Contributing
+
+Code contributions from the community are welcome. Please have a look at our [style guide](https://github.com/broadinstitute/cromwell/blob/contributions/styleGuide.md) before submitting a pull request.
 
 # API Documentation
 
