@@ -3,6 +3,7 @@ package cromwell.binding
 import java.io.File
 
 import cromwell.binding.AstTools.{AstNodeName, EnhancedAstNode, EnhancedAstSeq}
+import cromwell.binding.WdlExpression.ScopedLookupFunction
 import cromwell.binding.expression.WdlStandardLibraryFunctions
 import cromwell.binding.types._
 import cromwell.binding.values._
@@ -11,6 +12,7 @@ import cromwell.parser.{BackendType, WdlParser}
 import cromwell.util.FileUtil.EnhancedFile
 
 import scala.collection.JavaConverters._
+import scala.concurrent.Future
 import scala.language.postfixOps
 import scala.util.{Failure, Success, Try}
 
@@ -86,8 +88,8 @@ case class NamespaceWithWorkflow(importedAs: Option[String],
     }
   }
 
-  private def declarationLookupFunction(decl: Declaration, inputs: Map[FullyQualifiedName, WdlValue]): String => WdlValue ={
-    def identifierLookup(string: String): WdlValue = {
+  private def declarationLookupFunction(decl: Declaration, inputs: Map[FullyQualifiedName, WdlValue]): ScopedLookupFunction = {
+    def identifierLookup(string: String): Future[WdlValue] = {
 
       /* This is a scope hierarchy to search for the variable `string`.  If `decl.scopeFqn` == "a.b.c"
        * then `hierarchy` should be Seq("a.b.c", "a.b", "a")
@@ -95,9 +97,10 @@ case class NamespaceWithWorkflow(importedAs: Option[String],
       val hierarchy = decl.scopeFqn.split("\\.").reverse.tails.toSeq.map {_.reverse.mkString(".")}
 
       /* Attempt to resolve the string in each scope */
-      val attemptedValues = hierarchy.map {scope => inputs.get(s"$scope.$string")}
-      attemptedValues.flatten.headOption.getOrElse {
-        throw new WdlExpressionException(s"Could not find a value for $string")
+      val attemptedValues = hierarchy.map { scope => inputs.get(s"$scope.$string")}
+      attemptedValues.flatten.headOption match {
+        case Some(s) => Future.successful(s)
+        case None => Future.failed(new WdlExpressionException(s"Could not find a value for $string"))
       }
     }
     identifierLookup
@@ -107,28 +110,20 @@ case class NamespaceWithWorkflow(importedAs: Option[String],
    * For the declarations that have an expression attached to it already, evaluate the expression
    * and return the value for storage in the symbol store
    */
-  def staticDeclarationsRecursive(userInputs: WorkflowCoercedInputs, wdlFunctions: WdlStandardLibraryFunctions): Try[WorkflowCoercedInputs] = {
+  def staticDeclarationsRecursive(userInputs: WorkflowCoercedInputs, wdlFunctions: WdlStandardLibraryFunctions): Future[WorkflowCoercedInputs] = {
     import scala.collection.mutable
     val collected = mutable.Map[String, WdlValue]()
-    val allDeclarations = workflow.declarations ++ workflow.calls.flatMap {_.task.declarations}
+    val allDeclarations = workflow.declarations ++ workflow.calls.flatMap { _.task.declarations }
 
-    val evaluatedDeclarations = allDeclarations.filter {_.expression.isDefined}.map {decl =>
-      val value = decl.expression.get.evaluate(declarationLookupFunction(decl, collected.toMap ++ userInputs), wdlFunctions)
-      collected += (decl.fullyQualifiedName -> value.get)
-      val coercedValue = value match {
-        case Success(s) => decl.wdlType.coerceRawValue(s)
-        case f => f
-      }
-      decl.fullyQualifiedName -> coercedValue
-    }.toMap
+    val futureSeq = allDeclarations.collect { case decl if decl.expression.isDefined =>
+      for {
+        value <- decl.expression.get.evaluate(declarationLookupFunction(decl, collected.toMap ++ userInputs), wdlFunctions)
+        // TODO Mutating an unsynchronized structure from a Future forcomp. :O
+        _ = collected += (decl.fullyQualifiedName -> value)
+        coercedValue <- Future.fromTry(decl.wdlType.coerceRawValue(value))
+      } yield decl.fullyQualifiedName -> coercedValue }
 
-    val (successes, failures) = evaluatedDeclarations.partition {case (_, tryValue) => tryValue.isSuccess}
-    if (failures.isEmpty) {
-      Success(successes.map {case (k,v) => k -> v.get})
-    } else {
-      val message = failures.values.collect {case f: Failure[_] => f.exception.getMessage}.mkString("\n")
-      Failure(new UnsatisfiedInputsException(s"Could not evaluate some declaration expressions:\n\n$message"))
-    }
+    Future.sequence(futureSeq) map { _.toMap }
   }
 
   /**

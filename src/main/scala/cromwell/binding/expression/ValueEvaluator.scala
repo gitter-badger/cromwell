@@ -7,19 +7,19 @@ import cromwell.binding.values.{WdlValue, _}
 import cromwell.binding.{WdlExpressionException, WdlNamespace}
 import cromwell.parser.WdlParser.{Ast, AstNode, Terminal}
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
 
 case class ValueEvaluator(override val lookup: ScopedLookupFunction, override val functions: WdlFunctions[WdlValue]) extends Evaluator {
   override type T = Future[WdlValue]
 
-  private def replaceInterpolationTag(string: String, tag: String): Future[String] = {
+  private def replaceInterpolationTag(string: String, tag: String)(implicit ec: ExecutionContext): Future[String] = {
     lookup(tag.substring(2, tag.length - 1)) map { lookupValue => string.replace(tag, lookupValue.valueString) }
   }
 
   private def interpolate(str: String): Future[String] = {
 
-    def doInterpolate(currentString: String, matches: Seq[String]): Future[String] = {
+    def doInterpolate(currentString: String, matches: Seq[String])(implicit ec: ExecutionContext): Future[String] = {
       matches match {
         case m :: ms => replaceInterpolationTag(currentString, m) flatMap { newString => doInterpolate(newString, ms) }
         case Nil => Future.successful(currentString)
@@ -30,7 +30,7 @@ case class ValueEvaluator(override val lookup: ScopedLookupFunction, override va
     doInterpolate(str, allMatches)
   }
 
-  override def evaluate(ast: AstNode): Future[WdlValue] = {
+  override def evaluate(ast: AstNode)(implicit ec: ExecutionContext): Future[WdlValue] = {
     ast match {
       case t: Terminal if t.getTerminalStr == "identifier" => lookup(t.getSourceString)
       case t: Terminal if t.getTerminalStr == "integer" => Future.successful(WdlInteger(t.getSourceString.toInt))
@@ -68,15 +68,15 @@ case class ValueEvaluator(override val lookup: ScopedLookupFunction, override va
         val evaluatedElements = a.getAttribute("values").astListAsVector map evaluate
         for {
           elements <- Future.sequence(evaluatedElements)
-          subtype <- WdlType.homogeneousTypeFromValues(elements)
+          subtype <- Future.fromTry(WdlType.homogeneousTypeFromValues(elements))
         } yield WdlArray(WdlArrayType(subtype), elements)
       case a: Ast if a.isMapLiteral =>
         // TODO This may need some rework to get the same Validation-like accumulation of Failures as the
         // TODO synchronous original if that's important.
         val seqOfFutureWdlValuePairs = a.getAttribute("map").astListAsVector map { kv =>
           for {
-            key <- evaluate(kv.asInstanceOf[Ast].getAttribute("key")) recover { case t => throw new WdlExpressionException(s"Could not evaluate expression:\n$t") }
-            value <- evaluate(kv.asInstanceOf[Ast].getAttribute("value")) recover { case t => throw new WdlExpressionException(s"Could not evaluate expression:\n$t") }
+            key <- evaluate(kv.asInstanceOf[Ast].getAttribute("key")) recover { case t => throw new WdlExpressionException("Could not evaluate expression", t) }
+            value <- evaluate(kv.asInstanceOf[Ast].getAttribute("value")) recover { case t => throw new WdlExpressionException("Could not evaluate expression", t) }
           } yield key -> value
         }
         for {

@@ -6,10 +6,11 @@ import cromwell.binding.types.WdlType
 import cromwell.parser.WdlParser.{Ast, SyntaxError, Terminal}
 import com.typesafe.scalalogging.LazyLogging
 
+import scala.concurrent.ExecutionContext
 import scala.util.{Failure, Success}
 
 object TaskOutput extends LazyLogging {
-  def apply(ast: Ast, declarations: Seq[Declaration], syntaxErrorFormatter: WdlSyntaxErrorFormatter): TaskOutput = {
+  def apply(ast: Ast, declarations: Seq[Declaration], syntaxErrorFormatter: WdlSyntaxErrorFormatter)(implicit ec: ExecutionContext): TaskOutput = {
     val wdlType = ast.getAttribute("type").wdlType(syntaxErrorFormatter)
     val name = ast.getAttribute("var").sourceString
     val expression = WdlExpression(ast.getAttribute("expression"))
@@ -28,9 +29,9 @@ object TaskOutput extends LazyLogging {
     expression.evaluateType(lookup, new WdlStandardLibraryFunctionsType) match {
       case Success(expressionWdlType) if !wdlType.isCoerceableFrom(expressionWdlType) => badCoercionException(expressionWdlType)
       case Success(expressionWdlType) =>
-        val expressionValue = expression.evaluate((s: String) => throw new Throwable("not implemented"), new NoFunctions)
-        expressionValue match {
-          case Success(value) if wdlType.coerceRawValue(value).isFailure => badCoercionException(expressionWdlType)
+        val futureValue = expression.evaluate((s: String) => throw new Throwable("not implemented"), new NoFunctions)
+        futureValue foreach {
+          case value if wdlType.coerceRawValue(value).isFailure => badCoercionException(expressionWdlType)
           case _ =>
         }
       case Failure(ex) => logger.error(s"Could not determine type of expression: ${expression.toWdlString}")

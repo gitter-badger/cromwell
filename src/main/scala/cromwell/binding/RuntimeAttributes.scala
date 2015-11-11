@@ -10,6 +10,7 @@ import cromwell.parser.{BackendType, MemorySize, RuntimeKey}
 import org.slf4j.LoggerFactory
 
 import scala.collection.JavaConverters._
+import scala.concurrent.{ExecutionContext, Future}
 import scala.language.postfixOps
 import scalaz.Scalaz._
 import scalaz._
@@ -26,24 +27,27 @@ case class RuntimeAttributes(docker: Option[String],
 object RuntimeAttributes {
   private val log = LoggerFactory.getLogger("RuntimeAttributes")
 
-  def apply(ast: Ast, backendType: BackendType): RuntimeAttributes = {
-    val attributeMap = ast.toAttributes
+  def build(ast: Ast, backendType: BackendType)(implicit ec: ExecutionContext): Future[RuntimeAttributes] = {
+
+    val futureAttributeMap = ast.toAttributes
 
     /**
      *  Warn if keys are found that are unsupported on this backend.  This is not necessarily an error, at this point
      *  the keys are known to be supported on at least one backend other than this.
      */
-    attributeMap.unsupportedKeys(backendType) foreach log.warn
+    futureAttributeMap map { attributeMap =>
+      attributeMap.unsupportedKeys(backendType) foreach log.warn
 
-    val attributeMapNel = validateAttributeMap(attributeMap, backendType)
-    val runtimeAttributeNel = validateRuntimeAttributes(attributeMap)
-    val validatedRuntimeAttributes = (attributeMapNel |@| runtimeAttributeNel) { (_, r) => r }
+      val attributeMapNel = validateAttributeMap(attributeMap, backendType)
+      val runtimeAttributeNel = validateRuntimeAttributes(attributeMap)
+      val validatedRuntimeAttributes = (attributeMapNel |@| runtimeAttributeNel) { (_, r) => r }
 
-    validatedRuntimeAttributes match {
-      case Success(r) => r
-      case Failure(f) =>
-        val errorMessages = f.list.mkString(", ")
-        throw new IllegalArgumentException(s"RuntimeAttribute is not valid: Errors: $errorMessages")
+      validatedRuntimeAttributes match {
+        case Success(r) => r
+        case Failure(f) =>
+          val errorMessages = f.list.mkString(", ")
+          throw new IllegalArgumentException(s"RuntimeAttribute is not valid: Errors: $errorMessages")
+      }
     }
   }
 
@@ -223,26 +227,23 @@ object RuntimeAttributes {
     }
   }
 
-  private def processRuntimeAttribute(ast: Ast): (String, Seq[String]) = {
+  private def processRuntimeAttribute(ast: Ast)(implicit ec: ExecutionContext): Future[(String, Seq[String])] = {
     val key = ast.getAttribute("key").sourceString
     val seq = Option(ast.getAttribute("value")) map { valAttr =>
       // TODO: NoFunctions should be converted to a case object or a constant
-      WdlExpression.evaluate(valAttr, NoLookup, new NoFunctions) match {
-        case scala.util.Success(wdlPrimitive: WdlPrimitive) => Seq(wdlPrimitive.valueString)
-        case scala.util.Success(wdlArray: WdlArray) => wdlArray.value.map(_.valueString)
-        case scala.util.Success(wdlValue: WdlValue) =>
-          throw new IllegalArgumentException(
+      WdlExpression.evaluate(valAttr, NoLookup, new NoFunctions) map {
+        case wdlPrimitive: WdlPrimitive => Seq(wdlPrimitive.valueString)
+        case wdlArray: WdlArray => wdlArray.value.map(_.valueString)
+        case wdlValue: WdlValue => throw new IllegalArgumentException(
             s"WdlType not supported for $key, ${wdlValue.wdlType}: ${wdlValue.valueString}")
-        case null =>
-          throw new IllegalArgumentException(s"value was null: $key}")
-        case scala.util.Failure(f) => throw f
+        case null => throw new IllegalArgumentException(s"value was null: $key}")
       }
-    } getOrElse Seq.empty
-    (key, seq)
+    } getOrElse { Future.successful(Seq.empty) }
+    seq map { key -> _ }
   }
 
-  private def processRuntimeAttributes(astList: AstList): Map[String, Seq[String]] = {
-    astList.asScala.toVector map { a => processRuntimeAttribute(a.asInstanceOf[Ast]) } toMap
+  private def processRuntimeAttributes(astList: AstList)(implicit ec: ExecutionContext): Future[Map[String, Seq[String]]] = {
+    Future.sequence(astList.asScala.toVector map { a => processRuntimeAttribute(a.asInstanceOf[Ast]) }) map { _.toMap }
   }
 
   private case class LocalDisk(name: String, diskType: DiskType, sizeGbOption: Option[Long] = None) {
@@ -255,11 +256,12 @@ object RuntimeAttributes {
   }
 
   implicit class EnhancedAst(val ast: Ast) extends AnyVal {
-    def toAttributes: AttributeMap = {
+    def toAttributes(implicit ec: ExecutionContext): Future[AttributeMap] = {
       val asts = ast.findAsts(AstNodeName.Runtime)
       if (asts.size > 1) throw new UnsupportedOperationException("Only one runtime block may be defined per task")
       val astList = asts.headOption map { _.getAttribute("map").asInstanceOf[AstList] }
-      AttributeMap(astList map processRuntimeAttributes getOrElse Map.empty[String, Seq[String]])
+      val futureAttributes = astList map processRuntimeAttributes getOrElse Future.successful(Map.empty[String, Seq[String]])
+      futureAttributes map { AttributeMap(_) }
     }
   }
 

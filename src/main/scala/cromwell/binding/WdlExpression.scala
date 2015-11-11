@@ -10,7 +10,7 @@ import cromwell.parser.WdlParser
 import cromwell.parser.WdlParser.{Ast, AstList, AstNode, Terminal}
 
 import scala.collection.JavaConverters._
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 import scala.language.postfixOps
 import scala.util.Try
 
@@ -74,10 +74,10 @@ object WdlExpression {
     "read_object"
   )
 
-  def evaluate(ast: AstNode, lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue]): Future[WdlValue] =
+  def evaluate(ast: AstNode, lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue])(implicit ec: ExecutionContext): Future[WdlValue] =
     ValueEvaluator(lookup, functions).evaluate(ast)
 
-  def evaluateFiles(ast: AstNode, lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue], coerceTo: WdlType = WdlAnyType) =
+  def evaluateFiles(ast: AstNode, lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue], coerceTo: WdlType = WdlAnyType)(implicit ec: ExecutionContext) =
     FileEvaluator(ValueEvaluator(lookup, functions), coerceTo).evaluate(ast)
 
   def evaluateType(ast: AstNode, lookup: (String) => WdlType, functions: WdlFunctions[WdlType]) =
@@ -106,7 +106,7 @@ object WdlExpression {
    *
    * This will allow the expression `y + "z"` to evaluate to the string "xyz"
    */
-  def standardLookupFunction(parameters: Map[String, WdlValue], declarations: Seq[Declaration], functions: WdlFunctions[WdlValue]): ScopedLookupFunction = {
+  def standardLookupFunction(parameters: Map[String, WdlValue], declarations: Seq[Declaration], functions: WdlFunctions[WdlValue])(implicit ec: ExecutionContext): ScopedLookupFunction = {
     def resolveParameter(name: String): Future[WdlValue] = parameters.get(name) match {
       case Some(value) => Future.successful(value)
       case None => Future.failed(new WdlExpressionException(s"Could not resolve variable '$name' as an input parameter"))
@@ -192,10 +192,10 @@ object WdlExpression {
 case class WdlExpression(ast: AstNode) extends WdlValue {
   override val wdlType = WdlExpressionType
 
-  def evaluate(lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue]): Future[WdlValue] =
+  def evaluate(lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue])(implicit ec: ExecutionContext): Future[WdlValue] =
     WdlExpression.evaluate(ast, lookup, functions)
 
-  def evaluateFiles(lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue], coerceTo: WdlType): Try[Seq[WdlFile]] =
+  def evaluateFiles(lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue], coerceTo: WdlType)(implicit ec: ExecutionContext): Future[Seq[WdlFile]] =
     WdlExpression.evaluateFiles(ast, lookup, functions, coerceTo)
 
   def evaluateType(lookup: (String) => WdlType, functions: WdlFunctions[WdlType]): Try[WdlType] =

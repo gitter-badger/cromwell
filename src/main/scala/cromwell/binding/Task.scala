@@ -11,12 +11,13 @@ import cromwell.parser.WdlParser._
 
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._
+import scala.concurrent.ExecutionContext
 import scala.language.postfixOps
 import scala.util.Try
 
 object Task {
   val Ws = Pattern.compile("[\\ \\t]+")
-  def apply(ast: Ast, backendType: BackendType, wdlSyntaxErrorFormatter: WdlSyntaxErrorFormatter): Task = {
+  def apply(ast: Ast, backendType: BackendType, wdlSyntaxErrorFormatter: WdlSyntaxErrorFormatter, runtimeAttributes: RuntimeAttributes): Task = {
     val name = ast.getAttribute("name").asInstanceOf[Terminal].getSourceString
     val declarations = ast.findAsts(AstNodeName.Declaration).map(Declaration(_, "name", wdlSyntaxErrorFormatter))
     val commandAsts = ast.findAsts(AstNodeName.Command)
@@ -27,7 +28,7 @@ object Task {
     }
 
     val outputs = ast.findAsts(AstNodeName.Output) map { TaskOutput(_, declarations, wdlSyntaxErrorFormatter) }
-    Task(name, declarations, commandTemplate, outputs, ast, backendType)
+    Task(name, declarations, commandTemplate, outputs, ast, backendType, runtimeAttributes)
   }
 }
 
@@ -46,12 +47,9 @@ case class Task(name: String,
                 commandTemplate: Seq[CommandPart],
                 outputs: Seq[TaskOutput],
                 ast: Ast,
-                backendType: BackendType) extends Executable {
+                backendType: BackendType,
+                runtimeAttributes: RuntimeAttributes) extends Executable {
   import Task._
-  /**
-   * Attributes defined in the runtime {...} section of a WDL task
-   */
-  val runtimeAttributes = RuntimeAttributes(ast, backendType)
 
   /**
    * Inputs to this task, as locally qualified names
