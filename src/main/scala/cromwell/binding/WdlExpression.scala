@@ -10,8 +10,9 @@ import cromwell.parser.WdlParser
 import cromwell.parser.WdlParser.{Ast, AstList, AstNode, Terminal}
 
 import scala.collection.JavaConverters._
+import scala.concurrent.Future
 import scala.language.postfixOps
-import scala.util.{Failure, Success, Try}
+import scala.util.Try
 
 class WdlExpressionException(message: String = null, cause: Throwable = null) extends RuntimeException(message, cause)
 case class VariableNotFoundException(variable: String, cause: Throwable = null) extends Exception(s"Variable '$variable' not found", cause)
@@ -52,8 +53,8 @@ object WdlExpression {
 
   val parser = new WdlParser()
 
-  /** Maps from a locally qualified name to a WdlValue. */
-  type ScopedLookupFunction = String => WdlValue
+  /** Maps from a locally qualified name to a Future[WdlValue]. */
+  type ScopedLookupFunction = String => Future[WdlValue]
 
   val BinaryOperators = Set(
     "Add", "Subtract", "Multiply", "Divide", "Remainder",
@@ -73,7 +74,7 @@ object WdlExpression {
     "read_object"
   )
 
-  def evaluate(ast: AstNode, lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue]): Try[WdlValue] =
+  def evaluate(ast: AstNode, lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue]): Future[WdlValue] =
     ValueEvaluator(lookup, functions).evaluate(ast)
 
   def evaluateFiles(ast: AstNode, lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue], coerceTo: WdlType = WdlAnyType) =
@@ -101,22 +102,28 @@ object WdlExpression {
    *
    * when evaluating the expression `y + "z"`, lookup("y") will be called which first tries resolveParameter("y") and fails
    * Then tries resolveDeclaration("y") which find declaration for String y and evaluate the expression `x + "y"`.  In
-   * the process of evaluating that it needs to call lookup("x") which gets it's value from resolveDeclaration("x") = WdlString("x")
+   * the process of evaluating that it needs to call lookup("x") which gets its value from resolveDeclaration("x") = WdlString("x")
    *
    * This will allow the expression `y + "z"` to evaluate to the string "xyz"
    */
-  def standardLookupFunction(parameters: Map[String, WdlValue], declarations: Seq[Declaration], functions: WdlFunctions[WdlValue]): String => WdlValue = {
-    def resolveParameter(name: String): Try[WdlValue] = parameters.get(name) match {
-      case Some(value) => Success(value)
-      case None => Failure(new WdlExpressionException(s"Could not resolve variable '$name' as an input parameter"))
+  def standardLookupFunction(parameters: Map[String, WdlValue], declarations: Seq[Declaration], functions: WdlFunctions[WdlValue]): ScopedLookupFunction = {
+    def resolveParameter(name: String): Future[WdlValue] = parameters.get(name) match {
+      case Some(value) => Future.successful(value)
+      case None => Future.failed(new WdlExpressionException(s"Could not resolve variable '$name' as an input parameter"))
     }
-    def resolveDeclaration(lookup: ScopedLookupFunction)(name: String) = declarations.find(_.name == name) match {
-      case Some(d) => d.expression.map(_.evaluate(lookup, functions)).getOrElse(Failure(new WdlExpressionException(s"Could not evaluate declaration: $d")))
-      case None => Failure(new WdlExpressionException(s"Could not resolve variable '$name' as a declaration"))
+    def resolveDeclaration(lookup: ScopedLookupFunction)(name: String): Future[WdlValue] = declarations.find(_.name == name) match {
+      case Some(d) => d.expression.map(_.evaluate(lookup, functions)).getOrElse(Future.failed(new WdlExpressionException(s"Could not evaluate declaration: $d")))
+      case None => Future.failed(new WdlExpressionException(s"Could not resolve variable '$name' as a declaration"))
     }
-    def lookup(key: String): WdlValue = {
-      val attemptedResolution = Stream(resolveParameter _, resolveDeclaration(lookup) _) map { _(key) } find { _.isSuccess }
-      attemptedResolution.getOrElse(throw new VariableNotFoundException(key)).get
+    def lookup(key: String): Future[WdlValue] = {
+      val allResolvers = Seq(resolveParameter _, resolveDeclaration(lookup) _)
+      def doLookup(resolvers: Seq[ScopedLookupFunction]): Future[WdlValue] = {
+        resolvers match {
+          case r :: rs => r(key) recoverWith { case _ => doLookup(rs) }
+          case Nil => throw new VariableNotFoundException(key)
+        }
+      }
+      doLookup(allResolvers)
     }
     lookup
   }
@@ -185,7 +192,7 @@ object WdlExpression {
 case class WdlExpression(ast: AstNode) extends WdlValue {
   override val wdlType = WdlExpressionType
 
-  def evaluate(lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue]): Try[WdlValue] =
+  def evaluate(lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue]): Future[WdlValue] =
     WdlExpression.evaluate(ast, lookup, functions)
 
   def evaluateFiles(lookup: ScopedLookupFunction, functions: WdlFunctions[WdlValue], coerceTo: WdlType): Try[Seq[WdlFile]] =

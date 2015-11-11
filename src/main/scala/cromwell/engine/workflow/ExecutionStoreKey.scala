@@ -2,6 +2,7 @@ package cromwell.engine.workflow
 
 import cromwell.binding._
 import cromwell.engine.ExecutionStatus
+import cromwell.engine.db.ExecutionDatabaseKey
 import cromwell.engine.workflow.WorkflowActor.ExecutionStore
 
 import scala.language.postfixOps
@@ -13,6 +14,7 @@ sealed trait ExecutionStoreKey {
     val shard = index.map(x => s":$x").getOrElse("")
     s"${scope.name}$shard"
   }
+  def toDatabaseKey: ExecutionDatabaseKey = ExecutionDatabaseKey(scope.fullyQualifiedName, index)
 }
 
 trait OutputKey extends ExecutionStoreKey
