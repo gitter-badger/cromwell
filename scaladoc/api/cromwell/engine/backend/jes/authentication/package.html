@@ -1,0 +1,311 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>authentication - cromwell.engine.backend.jes.authentication</title>
+          <meta name="description" content="authentication - cromwell.engine.backend.jes.authentication" />
+          <meta name="keywords" content="authentication cromwell.engine.backend.jes.authentication" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'cromwell.engine.backend.jes.authentication.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="cromwell">cromwell</a>.<a href="../../../package.html" class="extype" name="cromwell.engine">engine</a>.<a href="../../package.html" class="extype" name="cromwell.engine.backend">backend</a>.<a href="../package.html" class="extype" name="cromwell.engine.backend.jes">jes</a></p>
+        <h1>authentication</h1><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">authentication</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="cromwell.engine.backend.jes.authentication.GcsLocalizing" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GcsLocalizingextendsJesAuthInformationwithProductwithSerializable"></a>
+      <a id="GcsLocalizing:GcsLocalizing"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="GcsLocalizing.html"><span class="name">GcsLocalizing</span></a><span class="params">(<span name="clientSecrets">clientSecrets: <a href="../../../../util/google/ClientSecrets.html" class="extype" name="cromwell.util.google.ClientSecrets">ClientSecrets</a></span>, <span name="token">token: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="JesAuthInformation.html" class="extype" name="cromwell.engine.backend.jes.authentication.JesAuthInformation">JesAuthInformation</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@GcsLocalizingextendsJesAuthInformationwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Authentication information for data (de)localization as the user.</p>
+    </li><li name="cromwell.engine.backend.jes.authentication.JesAuthInformation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="JesAuthInformationextendsAnyRef"></a>
+      <a id="JesAuthInformation:JesAuthInformation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="JesAuthInformation.html"><span class="name">JesAuthInformation</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@JesAuthInformationextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface for Authentication information that can be included in the json file uploaded to GCS
+upon workflow creation and used in the VM.</p>
+    </li><li name="cromwell.engine.backend.jes.authentication.JesAuthMode" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="JesAuthModeextendsAnyRef"></a>
+      <a id="JesAuthMode:JesAuthMode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="JesAuthMode.html"><span class="name">JesAuthMode</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@JesAuthModeextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.authentication.JesAuthentication" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="JesAuthenticationextendsAnyRef"></a>
+      <a id="JesAuthentication:JesAuthentication"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="JesAuthentication.html"><span class="name">JesAuthentication</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@JesAuthenticationextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait for JesAuthentication
+</p>
+    </li><li name="cromwell.engine.backend.jes.authentication.JesConnection" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="JesConnectionextendsAnyRef"></a>
+      <a id="JesConnection:JesConnection"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="JesConnection.html"><span class="name">JesConnection</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@JesConnectionextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait for JesConnection
+</p>
+    </li><li name="cromwell.engine.backend.jes.authentication.JesDockerCredentials" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesDockerCredentialsextendsDockerCredentialswithJesAuthInformation"></a>
+      <a id="JesDockerCredentials:JesDockerCredentials"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="JesDockerCredentials.html"><span class="name">JesDockerCredentials</span></a><span class="result"> extends <a href="../../../../util/DockerCredentials.html" class="extype" name="cromwell.util.DockerCredentials">DockerCredentials</a> with <a href="JesAuthInformation.html" class="extype" name="cromwell.engine.backend.jes.authentication.JesAuthInformation">JesAuthInformation</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@JesDockerCredentialsextendsDockerCredentialswithJesAuthInformation" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Authentication information to pull docker images as the user.</p>
+    </li><li name="cromwell.engine.backend.jes.authentication.ProductionJesAuthentication" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ProductionJesAuthenticationextendsJesAuthenticationwithJesConnection"></a>
+      <a id="ProductionJesAuthentication:ProductionJesAuthentication"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ProductionJesAuthentication.html"><span class="name">ProductionJesAuthentication</span></a><span class="result"> extends <a href="JesAuthentication.html" class="extype" name="cromwell.engine.backend.jes.authentication.JesAuthentication">JesAuthentication</a> with <a href="JesConnection.html" class="extype" name="cromwell.engine.backend.jes.authentication.JesConnection">JesConnection</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@ProductionJesAuthenticationextendsJesAuthenticationwithJesConnection" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="cromwell.engine.backend.jes.authentication.JesAuthMode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesAuthMode"></a>
+      <a id="JesAuthMode:JesAuthMode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="JesAuthMode$.html"><span class="name">JesAuthMode</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@JesAuthMode" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.authentication.JesDockerCredentials" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JesDockerCredentials"></a>
+      <a id="JesDockerCredentials:JesDockerCredentials"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="JesDockerCredentials$.html"><span class="name">JesDockerCredentials</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@JesDockerCredentials" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.authentication.ProductionJesConnection" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ProductionJesConnection"></a>
+      <a id="ProductionJesConnection:ProductionJesConnection"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ProductionJesConnection$.html"><span class="name">ProductionJesConnection</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@ProductionJesConnection" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.authentication.ServiceAccountMode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ServiceAccountMode"></a>
+      <a id="ServiceAccountMode:ServiceAccountMode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ServiceAccountMode$.html"><span class="name">ServiceAccountMode</span></a><span class="result"> extends <a href="JesAuthMode.html" class="extype" name="cromwell.engine.backend.jes.authentication.JesAuthMode">JesAuthMode</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@ServiceAccountMode" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend.jes.authentication.UserMode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UserMode"></a>
+      <a id="UserMode:UserMode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="UserMode$.html"><span class="name">UserMode</span></a><span class="result"> extends <a href="JesAuthMode.html" class="extype" name="cromwell.engine.backend.jes.authentication.JesAuthMode">JesAuthMode</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#cromwell.engine.backend.jes.authentication.package@UserMode" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

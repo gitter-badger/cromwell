@@ -1,0 +1,1021 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>DataAccess - cromwell.engine.db.DataAccess</title>
+          <meta name="description" content="DataAccess - cromwell.engine.db.DataAccess" />
+          <meta name="keywords" content="DataAccess cromwell.engine.db.DataAccess" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'cromwell.engine.db.DataAccess';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <a href="DataAccess$.html" title="See companion object"><img alt="Trait/Object" src="../../../lib/trait_to_object_big.png" /></a>
+        <p id="owner"><a href="../../package.html" class="extype" name="cromwell">cromwell</a>.<a href="../package.html" class="extype" name="cromwell.engine">engine</a>.<a href="package.html" class="extype" name="cromwell.engine.db">db</a></p>
+        <h1><a href="DataAccess$.html" title="See companion object">DataAccess</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="DataAccess$.html" title="See companion object">object DataAccess</a>
+            | <a href="package.html" class="extype" name="cromwell.engine.db">package db</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DataAccess</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div><div class="toggleContainer block">
+            <span class="toggle">Known Subclasses</span>
+            <div class="subClasses hiddenContent"><a href="slick/SlickDataAccess.html" class="extype" name="cromwell.engine.db.slick.SlickDataAccess">SlickDataAccess</a></div>
+          </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="cromwell.engine.db.DataAccess"><span>DataAccess</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="cromwell.engine.db.DataAccess#createWorkflow" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="createWorkflow(workflowDescriptor:cromwell.engine.WorkflowDescriptor,workflowInputs:Traversable[cromwell.engine.SymbolStoreEntry],calls:Traversable[cromwell.binding.Scope],backend:cromwell.engine.backend.Backend):scala.concurrent.Future[Unit]"></a>
+      <a id="createWorkflow(WorkflowDescriptor,Traversable[SymbolStoreEntry],Traversable[Scope],Backend):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">createWorkflow</span><span class="params">(<span name="workflowDescriptor">workflowDescriptor: <a href="../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a></span>, <span name="workflowInputs">workflowInputs: <span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$SymbolStoreEntry.html" class="extype" name="cromwell.engine.SymbolStoreEntry">SymbolStoreEntry</a>]</span>, <span name="calls">calls: <span class="extype" name="scala.Traversable">Traversable</span>[<a href="../../binding/Scope.html" class="extype" name="cromwell.binding.Scope">Scope</a>]</span>, <span name="backend">backend: <a href="../backend/Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@createWorkflow(workflowDescriptor:cromwell.engine.WorkflowDescriptor,workflowInputs:Traversable[cromwell.engine.SymbolStoreEntry],calls:Traversable[cromwell.binding.Scope],backend:cromwell.engine.backend.Backend):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates a row in each of the backend-info specific tables for each call in <code>calls</code> corresponding to the backend
+<code>backend</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a row in each of the backend-info specific tables for each call in <code>calls</code> corresponding to the backend
+<code>backend</code>.  Or perhaps defer this?
+</p></div></div>
+    </li><li name="cromwell.engine.db.DataAccess#findResumableJesExecutions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="findResumableJesExecutions(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.backend.JobKey]]"></a>
+      <a id="findResumableJesExecutions(WorkflowId):Future[Map[ExecutionDatabaseKey,JobKey]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">findResumableJesExecutions</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>, <a href="../backend/JobKey.html" class="extype" name="cromwell.engine.backend.JobKey">JobKey</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@findResumableJesExecutions(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.backend.JobKey]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getAllInputs" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getAllInputs(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]"></a>
+      <a id="getAllInputs(WorkflowId):Future[Traversable[SymbolStoreEntry]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAllInputs</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$SymbolStoreEntry.html" class="extype" name="cromwell.engine.SymbolStoreEntry">SymbolStoreEntry</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getAllInputs(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getAllOutputs" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getAllOutputs(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]"></a>
+      <a id="getAllOutputs(WorkflowId):Future[Traversable[SymbolStoreEntry]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAllOutputs</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$SymbolStoreEntry.html" class="extype" name="cromwell.engine.SymbolStoreEntry">SymbolStoreEntry</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getAllOutputs(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getAllSymbolStoreEntries" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getAllSymbolStoreEntries(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]"></a>
+      <a id="getAllSymbolStoreEntries(WorkflowId):Future[Traversable[SymbolStoreEntry]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAllSymbolStoreEntries</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$SymbolStoreEntry.html" class="extype" name="cromwell.engine.SymbolStoreEntry">SymbolStoreEntry</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getAllSymbolStoreEntries(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getExecutionBackendInfo" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getExecutionBackendInfo(workflowId:cromwell.engine.WorkflowId,call:cromwell.binding.Call):scala.concurrent.Future[cromwell.engine.db.CallBackendInfo]"></a>
+      <a id="getExecutionBackendInfo(WorkflowId,Call):Future[CallBackendInfo]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getExecutionBackendInfo</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="call">call: <a href="../../binding/Call.html" class="extype" name="cromwell.binding.Call">Call</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="CallBackendInfo.html" class="extype" name="cromwell.engine.db.CallBackendInfo">CallBackendInfo</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getExecutionBackendInfo(workflowId:cromwell.engine.WorkflowId,call:cromwell.binding.Call):scala.concurrent.Future[cromwell.engine.db.CallBackendInfo]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getExecutionStatus" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getExecutionStatus(workflowId:cromwell.engine.WorkflowId,key:cromwell.engine.db.ExecutionDatabaseKey):scala.concurrent.Future[Option[cromwell.engine.db.CallStatus]]"></a>
+      <a id="getExecutionStatus(WorkflowId,ExecutionDatabaseKey):Future[Option[CallStatus]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getExecutionStatus</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="key">key: <a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Option">Option</span>[<a href="package$$CallStatus.html" class="extype" name="cromwell.engine.db.CallStatus">CallStatus</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getExecutionStatus(workflowId:cromwell.engine.WorkflowId,key:cromwell.engine.db.ExecutionDatabaseKey):scala.concurrent.Future[Option[cromwell.engine.db.CallStatus]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getExecutionStatuses" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getExecutionStatuses(workflowId:cromwell.engine.WorkflowId,fqn:cromwell.binding.FullyQualifiedName):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.CallStatus]]"></a>
+      <a id="getExecutionStatuses(WorkflowId,FullyQualifiedName):Future[Map[ExecutionDatabaseKey,CallStatus]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getExecutionStatuses</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="fqn">fqn: <a href="../../binding/package.html#FullyQualifiedName=String" class="extmbr" name="cromwell.binding.FullyQualifiedName">FullyQualifiedName</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>, <a href="package$$CallStatus.html" class="extype" name="cromwell.engine.db.CallStatus">CallStatus</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getExecutionStatuses(workflowId:cromwell.engine.WorkflowId,fqn:cromwell.binding.FullyQualifiedName):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.CallStatus]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return all execution entries for the FQN, including collector and shards if any</p>
+    </li><li name="cromwell.engine.db.DataAccess#getExecutionStatuses" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getExecutionStatuses(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.CallStatus]]"></a>
+      <a id="getExecutionStatuses(WorkflowId):Future[Map[ExecutionDatabaseKey,CallStatus]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getExecutionStatuses</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>, <a href="package$$CallStatus.html" class="extype" name="cromwell.engine.db.CallStatus">CallStatus</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getExecutionStatuses(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.CallStatus]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getExecutions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getExecutions(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.db.slick.Execution]]"></a>
+      <a id="getExecutions(WorkflowId):Future[Traversable[Execution]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getExecutions</span><span class="params">(<span name="id">id: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="slick/Execution.html" class="extype" name="cromwell.engine.db.slick.Execution">Execution</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getExecutions(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.db.slick.Execution]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getExecutionsForRestart" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getExecutionsForRestart(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.db.slick.Execution]]"></a>
+      <a id="getExecutionsForRestart(WorkflowId):Future[Traversable[Execution]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getExecutionsForRestart</span><span class="params">(<span name="id">id: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="slick/Execution.html" class="extype" name="cromwell.engine.db.slick.Execution">Execution</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getExecutionsForRestart(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.db.slick.Execution]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getInputs" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getInputs(id:cromwell.engine.WorkflowId,call:cromwell.binding.Call):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]"></a>
+      <a id="getInputs(WorkflowId,Call):Future[Traversable[SymbolStoreEntry]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getInputs</span><span class="params">(<span name="id">id: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="call">call: <a href="../../binding/Call.html" class="extype" name="cromwell.binding.Call">Call</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$SymbolStoreEntry.html" class="extype" name="cromwell.engine.SymbolStoreEntry">SymbolStoreEntry</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getInputs(id:cromwell.engine.WorkflowId,call:cromwell.binding.Call):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Get all inputs for the scope of this call.</p>
+    </li><li name="cromwell.engine.db.DataAccess#getOutputs" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getOutputs(workflowId:cromwell.engine.WorkflowId,key:cromwell.engine.db.ExecutionDatabaseKey):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]"></a>
+      <a id="getOutputs(WorkflowId,ExecutionDatabaseKey):Future[Traversable[SymbolStoreEntry]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getOutputs</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="key">key: <a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$SymbolStoreEntry.html" class="extype" name="cromwell.engine.SymbolStoreEntry">SymbolStoreEntry</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getOutputs(workflowId:cromwell.engine.WorkflowId,key:cromwell.engine.db.ExecutionDatabaseKey):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Get all outputs for the scope of this call.</p>
+    </li><li name="cromwell.engine.db.DataAccess#getOutputs" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getOutputs(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]"></a>
+      <a id="getOutputs(WorkflowId):Future[Traversable[SymbolStoreEntry]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getOutputs</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$SymbolStoreEntry.html" class="extype" name="cromwell.engine.SymbolStoreEntry">SymbolStoreEntry</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getOutputs(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Traversable[cromwell.engine.SymbolStoreEntry]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Returns all outputs for this workflowId</p>
+    </li><li name="cromwell.engine.db.DataAccess#getWorkflow" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getWorkflow(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[cromwell.engine.WorkflowDescriptor]"></a>
+      <a id="getWorkflow(WorkflowId):Future[WorkflowDescriptor]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getWorkflow</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getWorkflow(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[cromwell.engine.WorkflowDescriptor]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getWorkflowExecution" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getWorkflowExecution(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[cromwell.engine.db.slick.WorkflowExecution]"></a>
+      <a id="getWorkflowExecution(WorkflowId):Future[WorkflowExecution]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getWorkflowExecution</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="slick/WorkflowExecution.html" class="extype" name="cromwell.engine.db.slick.WorkflowExecution">WorkflowExecution</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getWorkflowExecution(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[cromwell.engine.db.slick.WorkflowExecution]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Fetch the workflow having the specified <code>WorkflowId</code>.</p>
+    </li><li name="cromwell.engine.db.DataAccess#getWorkflowExecutionAux" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getWorkflowExecutionAux(id:cromwell.engine.WorkflowId):scala.concurrent.Future[cromwell.engine.db.slick.WorkflowExecutionAux]"></a>
+      <a id="getWorkflowExecutionAux(WorkflowId):Future[WorkflowExecutionAux]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getWorkflowExecutionAux</span><span class="params">(<span name="id">id: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="slick/WorkflowExecutionAux.html" class="extype" name="cromwell.engine.db.slick.WorkflowExecutionAux">WorkflowExecutionAux</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getWorkflowExecutionAux(id:cromwell.engine.WorkflowId):scala.concurrent.Future[cromwell.engine.db.slick.WorkflowExecutionAux]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getWorkflowState" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getWorkflowState(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Option[cromwell.engine.WorkflowState]]"></a>
+      <a id="getWorkflowState(WorkflowId):Future[Option[WorkflowState]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getWorkflowState</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Option">Option</span>[<a href="../package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getWorkflowState(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Option[cromwell.engine.WorkflowState]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#getWorkflowsByState" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="getWorkflowsByState(states:Traversable[cromwell.engine.WorkflowState]):scala.concurrent.Future[Traversable[cromwell.engine.WorkflowDescriptor]]"></a>
+      <a id="getWorkflowsByState(Traversable[WorkflowState]):Future[Traversable[WorkflowDescriptor]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getWorkflowsByState</span><span class="params">(<span name="states">states: <span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a>]</span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Traversable">Traversable</span>[<a href="../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getWorkflowsByState(states:Traversable[cromwell.engine.WorkflowState]):scala.concurrent.Future[Traversable[cromwell.engine.WorkflowDescriptor]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#insertCalls" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="insertCalls(workflowId:cromwell.engine.WorkflowId,keys:Traversable[cromwell.engine.workflow.ExecutionStoreKey],backend:cromwell.engine.backend.Backend):scala.concurrent.Future[Unit]"></a>
+      <a id="insertCalls(WorkflowId,Traversable[ExecutionStoreKey],Backend):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">insertCalls</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="keys">keys: <span class="extype" name="scala.Traversable">Traversable</span>[<a href="../workflow/ExecutionStoreKey.html" class="extype" name="cromwell.engine.workflow.ExecutionStoreKey">ExecutionStoreKey</a>]</span>, <span name="backend">backend: <a href="../backend/Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@insertCalls(workflowId:cromwell.engine.WorkflowId,keys:Traversable[cromwell.engine.workflow.ExecutionStoreKey],backend:cromwell.engine.backend.Backend):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#jesJobInfo" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="jesJobInfo(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.slick.JesJob]]"></a>
+      <a id="jesJobInfo(WorkflowId):Future[Map[ExecutionDatabaseKey,JesJob]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">jesJobInfo</span><span class="params">(<span name="id">id: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>, <a href="slick/JesJob.html" class="extype" name="cromwell.engine.db.slick.JesJob">JesJob</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@jesJobInfo(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.slick.JesJob]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#localJobInfo" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="localJobInfo(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.slick.LocalJob]]"></a>
+      <a id="localJobInfo(WorkflowId):Future[Map[ExecutionDatabaseKey,LocalJob]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">localJobInfo</span><span class="params">(<span name="id">id: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>, <a href="slick/LocalJob.html" class="extype" name="cromwell.engine.db.slick.LocalJob">LocalJob</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@localJobInfo(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.slick.LocalJob]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#resetNonResumableJesExecutions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="resetNonResumableJesExecutions(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Unit]"></a>
+      <a id="resetNonResumableJesExecutions(WorkflowId):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">resetNonResumableJesExecutions</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@resetNonResumableJesExecutions(workflowId:cromwell.engine.WorkflowId):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#setOutputs" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="setOutputs(workflowId:cromwell.engine.WorkflowId,key:cromwell.engine.workflow.OutputKey,callOutputs:Map[String,cromwell.binding.values.WdlValue]):scala.concurrent.Future[Unit]"></a>
+      <a id="setOutputs(WorkflowId,OutputKey,Map[String,WdlValue]):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setOutputs</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="key">key: <a href="../workflow/OutputKey.html" class="extype" name="cromwell.engine.workflow.OutputKey">OutputKey</a></span>, <span name="callOutputs">callOutputs: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="../../binding/values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@setOutputs(workflowId:cromwell.engine.WorkflowId,key:cromwell.engine.workflow.OutputKey,callOutputs:Map[String,cromwell.binding.values.WdlValue]):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Should fail if a value is already set.</p><div class="fullcomment"><div class="comment cmt"><p>Should fail if a value is already set.  The keys in the Map are locally qualified names.</p></div></div>
+    </li><li name="cromwell.engine.db.DataAccess#setStatus" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="setStatus(workflowId:cromwell.engine.WorkflowId,keys:Traversable[cromwell.engine.db.ExecutionDatabaseKey],callStatus:cromwell.engine.db.CallStatus):scala.concurrent.Future[Unit]"></a>
+      <a id="setStatus(WorkflowId,Traversable[ExecutionDatabaseKey],CallStatus):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setStatus</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="keys">keys: <span class="extype" name="scala.Traversable">Traversable</span>[<a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>]</span>, <span name="callStatus">callStatus: <a href="package$$CallStatus.html" class="extype" name="cromwell.engine.db.CallStatus">CallStatus</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@setStatus(workflowId:cromwell.engine.WorkflowId,keys:Traversable[cromwell.engine.db.ExecutionDatabaseKey],callStatus:cromwell.engine.db.CallStatus):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#sgeJobInfo" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="sgeJobInfo(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.slick.SgeJob]]"></a>
+      <a id="sgeJobInfo(WorkflowId):Future[Map[ExecutionDatabaseKey,SgeJob]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sgeJobInfo</span><span class="params">(<span name="id">id: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>, <a href="slick/SgeJob.html" class="extype" name="cromwell.engine.db.slick.SgeJob">SgeJob</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@sgeJobInfo(id:cromwell.engine.WorkflowId):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.db.slick.SgeJob]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#shutdown" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="shutdown():scala.concurrent.Future[Unit]"></a>
+      <a id="shutdown():Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shutdown</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@shutdown():scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Shutdown.</p><div class="fullcomment"><div class="comment cmt"><p>Shutdown. NOTE: Should (internally or explicitly) use AsyncExecutor.shutdownExecutor.
+TODO this is only called from a test.</p></div></div>
+    </li><li name="cromwell.engine.db.DataAccess#updateExecutionBackendInfo" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="updateExecutionBackendInfo(workflowId:cromwell.engine.WorkflowId,callKey:cromwell.engine.workflow.CallKey,backendInfo:cromwell.engine.db.CallBackendInfo):scala.concurrent.Future[Unit]"></a>
+      <a id="updateExecutionBackendInfo(WorkflowId,CallKey,CallBackendInfo):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">updateExecutionBackendInfo</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="callKey">callKey: <a href="../workflow/CallKey.html" class="extype" name="cromwell.engine.workflow.CallKey">CallKey</a></span>, <span name="backendInfo">backendInfo: <a href="CallBackendInfo.html" class="extype" name="cromwell.engine.db.CallBackendInfo">CallBackendInfo</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@updateExecutionBackendInfo(workflowId:cromwell.engine.WorkflowId,callKey:cromwell.engine.workflow.CallKey,backendInfo:cromwell.engine.db.CallBackendInfo):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#updateWorkflowOptions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="updateWorkflowOptions(workflowId:cromwell.engine.WorkflowId,workflowOptionsJson:String):scala.concurrent.Future[Unit]"></a>
+      <a id="updateWorkflowOptions(WorkflowId,String):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">updateWorkflowOptions</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="workflowOptionsJson">workflowOptionsJson: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@updateWorkflowOptions(workflowId:cromwell.engine.WorkflowId,workflowOptionsJson:String):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db.DataAccess#updateWorkflowState" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="updateWorkflowState(workflowId:cromwell.engine.WorkflowId,workflowState:cromwell.engine.WorkflowState):scala.concurrent.Future[Unit]"></a>
+      <a id="updateWorkflowState(WorkflowId,WorkflowState):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">updateWorkflowState</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="workflowState">workflowState: <a href="../package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@updateWorkflowState(workflowId:cromwell.engine.WorkflowId,workflowState:cromwell.engine.WorkflowState):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        <div id="values" class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@##():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@clone():Object" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="cromwell.engine.db.DataAccess#setStatus" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="setStatus(workflowId:cromwell.engine.WorkflowId,keys:Traversable[cromwell.engine.db.ExecutionDatabaseKey],executionStatus:cromwell.engine.ExecutionStatus.ExecutionStatus):scala.concurrent.Future[Unit]"></a>
+      <a id="setStatus(WorkflowId,Traversable[ExecutionDatabaseKey],ExecutionStatus):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setStatus</span><span class="params">(<span name="workflowId">workflowId: <a href="../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="keys">keys: <span class="extype" name="scala.Traversable">Traversable</span>[<a href="package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>]</span>, <span name="executionStatus">executionStatus: <a href="../package$$ExecutionStatus$.html#ExecutionStatus=cromwell.engine.ExecutionStatus.Value" class="extmbr" name="cromwell.engine.ExecutionStatus.ExecutionStatus">ExecutionStatus</a></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@setStatus(workflowId:cromwell.engine.WorkflowId,keys:Traversable[cromwell.engine.db.ExecutionDatabaseKey],executionStatus:cromwell.engine.ExecutionStatus.ExecutionStatus):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@toString():String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#cromwell.engine.db.DataAccess@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

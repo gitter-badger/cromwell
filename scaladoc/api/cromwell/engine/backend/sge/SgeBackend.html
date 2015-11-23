@@ -1,0 +1,849 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>SgeBackend - cromwell.engine.backend.sge.SgeBackend</title>
+          <meta name="description" content="SgeBackend - cromwell.engine.backend.sge.SgeBackend" />
+          <meta name="keywords" content="SgeBackend cromwell.engine.backend.sge.SgeBackend" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'cromwell.engine.backend.sge.SgeBackend';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+      <div id="definition">
+        <img alt="Class" src="../../../../lib/class_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="cromwell">cromwell</a>.<a href="../../package.html" class="extype" name="cromwell.engine">engine</a>.<a href="../package.html" class="extype" name="cromwell.engine.backend">backend</a>.<a href="package.html" class="extype" name="cromwell.engine.backend.sge">sge</a></p>
+        <h1>SgeBackend</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="cromwell.engine.backend.sge">package sge</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SgeBackend</span><span class="result"> extends <a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a> with <a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a>, <a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="cromwell.engine.backend.sge.SgeBackend"><span>SgeBackend</span></li><li class="in" name="cromwell.engine.backend.local.SharedFileSystem"><span>SharedFileSystem</span></li><li class="in" name="cromwell.engine.backend.Backend"><span>Backend</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="cromwell.engine.backend.sge.SgeBackend#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():cromwell.engine.backend.sge.SgeBackend"></a>
+      <a id="&lt;init&gt;:SgeBackend"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SgeBackend</span><span class="params">()</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@&lt;init&gt;():cromwell.engine.backend.sge.SgeBackend" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="cromwell.engine.backend.sge.SgeBackend.BackendCall" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="BackendCall=cromwell.engine.backend.sge.SgeBackendCall"></a>
+      <a id="BackendCall:BackendCall"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BackendCall</span><span class="result"> = <a href="SgeBackendCall.html" class="extype" name="cromwell.engine.backend.sge.SgeBackendCall">SgeBackendCall</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@BackendCall=cromwell.engine.backend.sge.SgeBackendCall" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.engine.backend.sge.SgeBackend">SgeBackend</a> → <a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem.IOInterface" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="IOInterface=cromwell.engine.backend.local.SharedFileSystemIOInterface"></a>
+      <a id="IOInterface:IOInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">IOInterface</span><span class="result"> = <a href="../local/SharedFileSystemIOInterface.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystemIOInterface">SharedFileSystemIOInterface</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@IOInterface=cromwell.engine.backend.local.SharedFileSystemIOInterface" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@##():Int" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem#adjustInputPaths" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="adjustInputPaths(callKey:cromwell.engine.workflow.CallKey,inputs:cromwell.binding.CallInputs,workflowDescriptor:cromwell.engine.WorkflowDescriptor):cromwell.binding.CallInputs"></a>
+      <a id="adjustInputPaths(CallKey,CallInputs,WorkflowDescriptor):CallInputs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">adjustInputPaths</span><span class="params">(<span name="callKey">callKey: <a href="../../workflow/CallKey.html" class="extype" name="cromwell.engine.workflow.CallKey">CallKey</a></span>, <span name="inputs">inputs: <a href="../../../binding/package.html#CallInputs=Map[String,cromwell.binding.values.WdlValue]" class="extmbr" name="cromwell.binding.CallInputs">CallInputs</a></span>, <span name="workflowDescriptor">workflowDescriptor: <a href="../../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a></span>)</span><span class="result">: <a href="../../../binding/package.html#CallInputs=Map[String,cromwell.binding.values.WdlValue]" class="extmbr" name="cromwell.binding.CallInputs">CallInputs</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@adjustInputPaths(callKey:cromwell.engine.workflow.CallKey,inputs:cromwell.binding.CallInputs,workflowDescriptor:cromwell.engine.WorkflowDescriptor):cromwell.binding.CallInputs" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Return a possibly altered copy of inputs reflecting any localization of input file paths that might have
+been performed for this <code>Backend</code> implementation.</p><div class="fullcomment"><div class="comment cmt"><p>Return a possibly altered copy of inputs reflecting any localization of input file paths that might have
+been performed for this <code>Backend</code> implementation.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem#adjustOutputPaths" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="adjustOutputPaths(call:cromwell.binding.Call,outputs:cromwell.binding.CallOutputs):cromwell.binding.CallOutputs"></a>
+      <a id="adjustOutputPaths(Call,CallOutputs):CallOutputs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">adjustOutputPaths</span><span class="params">(<span name="call">call: <a href="../../../binding/Call.html" class="extype" name="cromwell.binding.Call">Call</a></span>, <span name="outputs">outputs: <a href="../../../binding/package.html#CallOutputs=Map[cromwell.binding.package.LocallyQualifiedName,cromwell.binding.values.WdlValue]" class="extmbr" name="cromwell.binding.CallOutputs">CallOutputs</a></span>)</span><span class="result">: <a href="../../../binding/package.html#CallOutputs=Map[cromwell.binding.package.LocallyQualifiedName,cromwell.binding.values.WdlValue]" class="extmbr" name="cromwell.binding.CallOutputs">CallOutputs</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@adjustOutputPaths(call:cromwell.binding.Call,outputs:cromwell.binding.CallOutputs):cromwell.binding.CallOutputs" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="cromwell.engine.backend.Backend#assertWorkflowOptions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="assertWorkflowOptions(options:cromwell.engine.workflow.WorkflowOptions):Unit"></a>
+      <a id="assertWorkflowOptions(WorkflowOptions):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">assertWorkflowOptions</span><span class="params">(<span name="options">options: <a href="../../workflow/WorkflowOptions.html" class="extype" name="cromwell.engine.workflow.WorkflowOptions">WorkflowOptions</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@assertWorkflowOptions(options:cromwell.engine.workflow.WorkflowOptions):Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Validate that workflow options contain all required information.</p><div class="fullcomment"><div class="comment cmt"><p>Validate that workflow options contain all required information.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">&quot;if a value is missing / incorrect&quot;</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="cromwell.engine.backend.sge.SgeBackend#backendType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="backendType:cromwell.parser.BackendType"></a>
+      <a id="backendType:BackendType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">backendType</span><span class="result">: <a href="../../../parser/BackendType.html" class="extype" name="cromwell.parser.BackendType">BackendType</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@backendType:cromwell.parser.BackendType" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.engine.backend.sge.SgeBackend">SgeBackend</a> → <a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd></dl></div>
+    </li><li name="cromwell.engine.backend.sge.SgeBackend#bindCall" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bindCall(workflowDescriptor:cromwell.engine.WorkflowDescriptor,key:cromwell.engine.workflow.CallKey,locallyQualifiedInputs:cromwell.binding.CallInputs,abortRegistrationFunction:cromwell.engine.AbortRegistrationFunction):SgeBackend.this.BackendCall"></a>
+      <a id="bindCall(WorkflowDescriptor,CallKey,CallInputs,AbortRegistrationFunction):BackendCall"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bindCall</span><span class="params">(<span name="workflowDescriptor">workflowDescriptor: <a href="../../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a></span>, <span name="key">key: <a href="../../workflow/CallKey.html" class="extype" name="cromwell.engine.workflow.CallKey">CallKey</a></span>, <span name="locallyQualifiedInputs">locallyQualifiedInputs: <a href="../../../binding/package.html#CallInputs=Map[String,cromwell.binding.values.WdlValue]" class="extmbr" name="cromwell.binding.CallInputs">CallInputs</a></span>, <span name="abortRegistrationFunction">abortRegistrationFunction: <a href="../../package$$AbortRegistrationFunction.html" class="extype" name="cromwell.engine.AbortRegistrationFunction">AbortRegistrationFunction</a></span>)</span><span class="result">: <a href="#BackendCall=cromwell.engine.backend.sge.SgeBackendCall" class="extmbr" name="cromwell.engine.backend.sge.SgeBackend.BackendCall">BackendCall</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@bindCall(workflowDescriptor:cromwell.engine.WorkflowDescriptor,key:cromwell.engine.workflow.CallKey,locallyQualifiedInputs:cromwell.binding.CallInputs,abortRegistrationFunction:cromwell.engine.AbortRegistrationFunction):SgeBackend.this.BackendCall" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Essentially turns a Call object + CallInputs into a BackendCall
+</p><div class="fullcomment"><div class="comment cmt"><p>Essentially turns a Call object + CallInputs into a BackendCall
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.engine.backend.sge.SgeBackend">SgeBackend</a> → <a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd></dl></div>
+    </li><li name="cromwell.engine.backend.Backend#cleanUpForWorkflow" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="cleanUpForWorkflow(workflow:cromwell.engine.WorkflowDescriptor)(implicitec:scala.concurrent.ExecutionContext):scala.concurrent.Future[Any]"></a>
+      <a id="cleanUpForWorkflow(WorkflowDescriptor)(ExecutionContext):Future[Any]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">cleanUpForWorkflow</span><span class="params">(<span name="workflow">workflow: <a href="../../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ec">ec: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Any">Any</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@cleanUpForWorkflow(workflow:cromwell.engine.WorkflowDescriptor)(implicitec:scala.concurrent.ExecutionContext):scala.concurrent.Future[Any]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Do whatever cleaning up work is required when a workflow reaches a terminal state.</p><div class="fullcomment"><div class="comment cmt"><p>Do whatever cleaning up work is required when a workflow reaches a terminal state.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@clone():Object" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem#engineFunctions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="engineFunctions(interface:SharedFileSystem.this.IOInterface):cromwell.binding.expression.WdlStandardLibraryFunctions"></a>
+      <a id="engineFunctions(IOInterface):WdlStandardLibraryFunctions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">engineFunctions</span><span class="params">(<span name="interface">interface: <a href="#IOInterface=cromwell.engine.backend.local.SharedFileSystemIOInterface" class="extmbr" name="cromwell.engine.backend.sge.SgeBackend.IOInterface">IOInterface</a></span>)</span><span class="result">: <a href="../../../binding/expression/WdlStandardLibraryFunctions.html" class="extype" name="cromwell.binding.expression.WdlStandardLibraryFunctions">WdlStandardLibraryFunctions</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@engineFunctions(interface:SharedFileSystem.this.IOInterface):cromwell.binding.expression.WdlStandardLibraryFunctions" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="cromwell.engine.backend.sge.SgeBackend#execute" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="execute(backendCall:SgeBackend.this.BackendCall)(implicitec:scala.concurrent.ExecutionContext):scala.concurrent.Future[cromwell.engine.backend.ExecutionHandle]"></a>
+      <a id="execute(BackendCall)(ExecutionContext):Future[ExecutionHandle]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">execute</span><span class="params">(<span name="backendCall">backendCall: <a href="#BackendCall=cromwell.engine.backend.sge.SgeBackendCall" class="extmbr" name="cromwell.engine.backend.sge.SgeBackend.BackendCall">BackendCall</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ec">ec: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<a href="../ExecutionHandle.html" class="extype" name="cromwell.engine.backend.ExecutionHandle">ExecutionHandle</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@execute(backendCall:SgeBackend.this.BackendCall)(implicitec:scala.concurrent.ExecutionContext):scala.concurrent.Future[cromwell.engine.backend.ExecutionHandle]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="cromwell.engine.backend.Backend#findResumableExecutions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="findResumableExecutions(id:cromwell.engine.WorkflowId)(implicitec:scala.concurrent.ExecutionContext):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.backend.JobKey]]"></a>
+      <a id="findResumableExecutions(WorkflowId)(ExecutionContext):Future[Map[ExecutionDatabaseKey,JobKey]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">findResumableExecutions</span><span class="params">(<span name="id">id: <a href="../../package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ec">ec: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Predef.Map">Map</span>[<a href="../../db/package$$ExecutionDatabaseKey.html" class="extype" name="cromwell.engine.db.ExecutionDatabaseKey">ExecutionDatabaseKey</a>, <a href="../JobKey.html" class="extype" name="cromwell.engine.backend.JobKey">JobKey</a>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@findResumableExecutions(id:cromwell.engine.WorkflowId)(implicitec:scala.concurrent.ExecutionContext):scala.concurrent.Future[Map[cromwell.engine.db.ExecutionDatabaseKey,cromwell.engine.backend.JobKey]]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Default implementation assumes backends do not support resume, returns an empty Map.</p><div class="fullcomment"><div class="comment cmt"><p>Default implementation assumes backends do not support resume, returns an empty Map.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem#initializeForWorkflow" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="initializeForWorkflow(descriptor:cromwell.engine.WorkflowDescriptor):scala.util.Try[cromwell.binding.HostInputs]"></a>
+      <a id="initializeForWorkflow(WorkflowDescriptor):Try[HostInputs]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">initializeForWorkflow</span><span class="params">(<span name="descriptor">descriptor: <a href="../../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<a href="../../../binding/package.html#HostInputs=Map[String,cromwell.binding.values.WdlValue]" class="extmbr" name="cromwell.binding.HostInputs">HostInputs</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@initializeForWorkflow(descriptor:cromwell.engine.WorkflowDescriptor):scala.util.Try[cromwell.binding.HostInputs]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Creates host execution directory.</p><div class="fullcomment"><div class="comment cmt"><p>Creates host execution directory.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem#ioInterface" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ioInterface(workflowOptions:cromwell.engine.workflow.WorkflowOptions):SharedFileSystem.this.IOInterface"></a>
+      <a id="ioInterface(WorkflowOptions):IOInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ioInterface</span><span class="params">(<span name="workflowOptions">workflowOptions: <a href="../../workflow/WorkflowOptions.html" class="extype" name="cromwell.engine.workflow.WorkflowOptions">WorkflowOptions</a></span>)</span><span class="result">: <a href="#IOInterface=cromwell.engine.backend.local.SharedFileSystemIOInterface" class="extmbr" name="cromwell.engine.backend.sge.SgeBackend.IOInterface">IOInterface</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@ioInterface(workflowOptions:cromwell.engine.workflow.WorkflowOptions):SharedFileSystem.this.IOInterface" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem#localizeWdlValue" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="localizeWdlValue(toDestPath:java.nio.file.Path=&gt;java.nio.file.Path,strategies:Stream[cromwell.engine.backend.local.SharedFileSystem.LocalizationStrategy],postProcessor:Option[java.nio.file.Path=&gt;java.nio.file.Path])(wdlValue:cromwell.binding.values.WdlValue):scala.util.Try[cromwell.binding.values.WdlValue]"></a>
+      <a id="localizeWdlValue((Path)⇒Path,Stream[LocalizationStrategy],Option[(Path)⇒Path])(WdlValue):Try[WdlValue]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">localizeWdlValue</span><span class="params">(<span name="toDestPath">toDestPath: (<span class="extype" name="java.nio.file.Path">Path</span>) ⇒ <span class="extype" name="java.nio.file.Path">Path</span></span>, <span name="strategies">strategies: <span class="extype" name="scala.Stream">Stream</span>[<a href="../local/SharedFileSystem$.html#LocalizationStrategy=(java.nio.file.Path,java.nio.file.Path)=&gt;scala.util.Try[Unit]" class="extmbr" name="cromwell.engine.backend.local.SharedFileSystem.LocalizationStrategy">LocalizationStrategy</a>]</span>, <span name="postProcessor">postProcessor: <span class="extype" name="scala.Option">Option</span>[(<span class="extype" name="java.nio.file.Path">Path</span>) ⇒ <span class="extype" name="java.nio.file.Path">Path</span>] = <span class="symbol">None</span></span>)</span><span class="params">(<span name="wdlValue">wdlValue: <a href="../../../binding/values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<a href="../../../binding/values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@localizeWdlValue(toDestPath:java.nio.file.Path=&gt;java.nio.file.Path,strategies:Stream[cromwell.engine.backend.local.SharedFileSystem.LocalizationStrategy],postProcessor:Option[java.nio.file.Path=&gt;java.nio.file.Path])(wdlValue:cromwell.binding.values.WdlValue):scala.util.Try[cromwell.binding.values.WdlValue]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Try to localize a WdlValue if it is or contains a WdlFile.</p><div class="fullcomment"><div class="comment cmt"><p>Try to localize a WdlValue if it is or contains a WdlFile.</p></div><dl class="paramcmts block"><dt class="param">toDestPath</dt><dd class="cmt"><p>function specifying how to generate the destination path from the source path</p></dd><dt class="param">strategies</dt><dd class="cmt"><p>strategies to use for localization</p></dd><dt class="param">postProcessor</dt><dd class="cmt"><p>optional function to be applied to the path after the file it points to has been localized (defaults to noop)</p></dd><dt class="param">wdlValue</dt><dd class="cmt"><p>WdlValue to localize</p></dd><dt>returns</dt><dd class="cmt"><p>localized wdlValue</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem#postProcess" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="postProcess(backendCall:cromwell.engine.backend.LocalFileSystemBackendCall):scala.util.Try[cromwell.binding.CallOutputs]"></a>
+      <a id="postProcess(LocalFileSystemBackendCall):Try[CallOutputs]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">postProcess</span><span class="params">(<span name="backendCall">backendCall: <a href="../LocalFileSystemBackendCall.html" class="extype" name="cromwell.engine.backend.LocalFileSystemBackendCall">LocalFileSystemBackendCall</a></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<a href="../../../binding/package.html#CallOutputs=Map[cromwell.binding.package.LocallyQualifiedName,cromwell.binding.values.WdlValue]" class="extmbr" name="cromwell.binding.CallOutputs">CallOutputs</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@postProcess(backendCall:cromwell.engine.backend.LocalFileSystemBackendCall):scala.util.Try[cromwell.binding.CallOutputs]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li><li name="cromwell.engine.backend.sge.SgeBackend#prepareForRestart" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="prepareForRestart(restartableWorkflow:cromwell.engine.WorkflowDescriptor)(implicitec:scala.concurrent.ExecutionContext):scala.concurrent.Future[Unit]"></a>
+      <a id="prepareForRestart(WorkflowDescriptor)(ExecutionContext):Future[Unit]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">prepareForRestart</span><span class="params">(<span name="restartableWorkflow">restartableWorkflow: <a href="../../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ec">ec: <span class="extype" name="scala.concurrent.ExecutionContext">ExecutionContext</span></span>)</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Unit">Unit</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@prepareForRestart(restartableWorkflow:cromwell.engine.WorkflowDescriptor)(implicitec:scala.concurrent.ExecutionContext):scala.concurrent.Future[Unit]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">TODO restart isn't currently implemented for SGE, there is probably work that needs to be done here much like
+JES restart, which perhaps could be factored out into a common &quot;remote executor&quot; trait.</p><div class="fullcomment"><div class="comment cmt"><p>TODO restart isn't currently implemented for SGE, there is probably work that needs to be done here much like
+JES restart, which perhaps could be factored out into a common &quot;remote executor&quot; trait.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="cromwell.engine.backend.sge.SgeBackend">SgeBackend</a> → <a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd></dl></div>
+    </li><li name="cromwell.engine.backend.local.SharedFileSystem#stdoutStderr" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stdoutStderr(descriptor:cromwell.engine.WorkflowDescriptor,callName:String,index:cromwell.engine.ExecutionIndex.ExecutionIndex):cromwell.engine.backend.StdoutStderr"></a>
+      <a id="stdoutStderr(WorkflowDescriptor,String,ExecutionIndex):StdoutStderr"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stdoutStderr</span><span class="params">(<span name="descriptor">descriptor: <a href="../../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a></span>, <span name="callName">callName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="index">index: <a href="../../package$$ExecutionIndex$.html#ExecutionIndex=Option[Int]" class="extmbr" name="cromwell.engine.ExecutionIndex.ExecutionIndex">ExecutionIndex</a></span>)</span><span class="result">: <a href="../StdoutStderr.html" class="extype" name="cromwell.engine.backend.StdoutStderr">StdoutStderr</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@stdoutStderr(descriptor:cromwell.engine.WorkflowDescriptor,callName:String,index:cromwell.engine.ExecutionIndex.ExecutionIndex):cromwell.engine.backend.StdoutStderr" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@toString():String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="cromwell.engine.backend.Backend#workflowLogger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="workflowLogger(descriptor:cromwell.engine.WorkflowDescriptor):cromwell.logging.WorkflowLogger"></a>
+      <a id="workflowLogger(WorkflowDescriptor):WorkflowLogger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">workflowLogger</span><span class="params">(<span name="descriptor">descriptor: <a href="../../package$$WorkflowDescriptor.html" class="extype" name="cromwell.engine.WorkflowDescriptor">WorkflowDescriptor</a></span>)</span><span class="result">: <a href="../../../logging/WorkflowLogger.html" class="extype" name="cromwell.logging.WorkflowLogger">WorkflowLogger</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@workflowLogger(descriptor:cromwell.engine.WorkflowDescriptor):cromwell.logging.WorkflowLogger" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd></dl></div>
+    </li><li name="cromwell.engine.backend.Backend#workflowLoggerWithCall" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="workflowLoggerWithCall(backendCall:Backend.this.BackendCall):cromwell.logging.WorkflowLogger"></a>
+      <a id="workflowLoggerWithCall(BackendCall):WorkflowLogger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">workflowLoggerWithCall</span><span class="params">(<span name="backendCall">backendCall: <a href="#BackendCall=cromwell.engine.backend.sge.SgeBackendCall" class="extmbr" name="cromwell.engine.backend.sge.SgeBackend.BackendCall">BackendCall</a></span>)</span><span class="result">: <a href="../../../logging/WorkflowLogger.html" class="extype" name="cromwell.logging.WorkflowLogger">WorkflowLogger</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#cromwell.engine.backend.sge.SgeBackend@workflowLoggerWithCall(backendCall:Backend.this.BackendCall):cromwell.logging.WorkflowLogger" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="cromwell.engine.backend.local.SharedFileSystem">
+              <h3>Inherited from <a href="../local/SharedFileSystem.html" class="extype" name="cromwell.engine.backend.local.SharedFileSystem">SharedFileSystem</a></h3>
+            </div><div class="parent" name="cromwell.engine.backend.Backend">
+              <h3>Inherited from <a href="../Backend.html" class="extype" name="cromwell.engine.backend.Backend">Backend</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

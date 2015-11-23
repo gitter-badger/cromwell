@@ -1,0 +1,595 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>engine - cromwell.engine</title>
+          <meta name="description" content="engine - cromwell.engine" />
+          <meta name="keywords" content="engine cromwell.engine" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'cromwell.engine.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../lib/package_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="cromwell">cromwell</a></p>
+        <h1>engine</h1><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">engine</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>Cromwell Execution Engine</h4><p>Given a WDL file and a backend to execute on, this package provides an API to launch a workflow
+and query its progress.</p><p>Internally, this package is built on top of <a href="../binding/package.html" class="extype" name="cromwell.binding">cromwell.binding</a>.
+</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="cromwell.engine"><span>engine</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="cromwell.engine.AbortFunction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AbortFunctionextendsProductwithSerializable"></a>
+      <a id="AbortFunction:AbortFunction"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$AbortFunction.html"><span class="name">AbortFunction</span></a><span class="params">(<span name="function">function: () ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@AbortFunctionextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.AbortRegistrationFunction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AbortRegistrationFunctionextendsProductwithSerializable"></a>
+      <a id="AbortRegistrationFunction:AbortRegistrationFunction"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$AbortRegistrationFunction.html"><span class="name">AbortRegistrationFunction</span></a><span class="params">(<span name="register">register: (<a href="package$$AbortFunction.html" class="extype" name="cromwell.engine.AbortFunction">AbortFunction</a>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@AbortRegistrationFunctionextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.CallActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CallActorextendsLoggingFSM[cromwell.engine.CallActor.CallActorState,cromwell.engine.CallActor.CallActorData]withCromwellActor"></a>
+      <a id="CallActor:CallActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CallActor.html"><span class="name">CallActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.LoggingFSM">LoggingFSM</span>[<a href="CallActor$$CallActorState.html" class="extype" name="cromwell.engine.CallActor.CallActorState">CallActorState</a>, <a href="CallActor$$CallActorData.html" class="extype" name="cromwell.engine.CallActor.CallActorData">CallActorData</a>] with <a href="CromwellActor.html" class="extype" name="cromwell.engine.CromwellActor">CromwellActor</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@CallActorextendsLoggingFSM[cromwell.engine.CallActor.CallActorState,cromwell.engine.CallActor.CallActorData]withCromwellActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Actor to manage the execution of a single call.</p>
+    </li><li name="cromwell.engine.CallExecutionActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CallExecutionActorextendsActorwithCromwellActor"></a>
+      <a id="CallExecutionActor:CallExecutionActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CallExecutionActor.html"><span class="name">CallExecutionActor</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span> with <a href="CromwellActor.html" class="extype" name="cromwell.engine.CromwellActor">CromwellActor</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@CallExecutionActorextendsActorwithCromwellActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Actor to manage the execution of a single call.</p>
+    </li><li name="cromwell.engine.CromwellActor" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CromwellActorextendsAnyRef"></a>
+      <a id="CromwellActor:CromwellActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CromwellActor.html"><span class="name">CromwellActor</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@CromwellActorextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.SymbolStoreEntry" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SymbolStoreEntryextendsProductwithSerializable"></a>
+      <a id="SymbolStoreEntry:SymbolStoreEntry"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$SymbolStoreEntry.html"><span class="name">SymbolStoreEntry</span></a><span class="params">(<span name="key">key: <a href="package$$SymbolStoreKey.html" class="extype" name="cromwell.engine.SymbolStoreKey">SymbolStoreKey</a></span>, <span name="wdlType">wdlType: <a href="../binding/types/WdlType.html" class="extype" name="cromwell.binding.types.WdlType">WdlType</a></span>, <span name="wdlValue">wdlValue: <span class="extype" name="scala.Option">Option</span>[<a href="../binding/values/WdlValue.html" class="extype" name="cromwell.binding.values.WdlValue">WdlValue</a>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@SymbolStoreEntryextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.SymbolStoreKey" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SymbolStoreKeyextendsProductwithSerializable"></a>
+      <a id="SymbolStoreKey:SymbolStoreKey"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$SymbolStoreKey.html"><span class="name">SymbolStoreKey</span></a><span class="params">(<span name="scope">scope: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="index">index: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="input">input: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@SymbolStoreKeyextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowDescriptor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WorkflowDescriptorextendsProductwithSerializable"></a>
+      <a id="WorkflowDescriptor:WorkflowDescriptor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowDescriptor.html"><span class="name">WorkflowDescriptor</span></a><span class="params">(<span name="id">id: <a href="package$$WorkflowId.html" class="extype" name="cromwell.engine.WorkflowId">WorkflowId</a></span>, <span name="sourceFiles">sourceFiles: <a href="package$$WorkflowSourceFiles.html" class="extype" name="cromwell.engine.WorkflowSourceFiles">WorkflowSourceFiles</a></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowDescriptorextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Constructs a representation of a particular workflow invocation.</p><div class="fullcomment"><div class="comment cmt"><p>Constructs a representation of a particular workflow invocation.  As with other
+case classes and apply() methods, this will throw an exception if it cannot be
+created
+</p></div></div>
+    </li><li name="cromwell.engine.WorkflowId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowIdextendsProductwithSerializable"></a>
+      <a id="WorkflowId:WorkflowId"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowId.html"><span class="name">WorkflowId</span></a><span class="params">(<span name="id">id: <span class="extype" name="java.util.UUID">UUID</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowIdextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowSourceFiles" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowSourceFilesextendsProductwithSerializable"></a>
+      <a id="WorkflowSourceFiles:WorkflowSourceFiles"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowSourceFiles.html"><span class="name">WorkflowSourceFiles</span></a><span class="params">(<span name="wdlSource">wdlSource: <a href="../binding/package.html#WdlSource=String" class="extmbr" name="cromwell.binding.WdlSource">WdlSource</a></span>, <span name="inputsJson">inputsJson: <a href="../binding/package.html#WdlJson=String" class="extmbr" name="cromwell.binding.WdlJson">WdlJson</a></span>, <span name="workflowOptionsJson">workflowOptionsJson: <a href="../binding/package.html#WorkflowOptionsJson=String" class="extmbr" name="cromwell.binding.WorkflowOptionsJson">WorkflowOptionsJson</a></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowSourceFilesextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the collection of source files that a user submits to run a workflow
+</p>
+    </li><li name="cromwell.engine.WorkflowState" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WorkflowStateextendsAnyRef"></a>
+      <a id="WorkflowState:WorkflowState"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowState.html"><span class="name">WorkflowState</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowStateextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="cromwell.engine.CallActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CallActor"></a>
+      <a id="CallActor:CallActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CallActor$.html"><span class="name">CallActor</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@CallActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.CallExecutionActor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CallExecutionActor"></a>
+      <a id="CallExecutionActor:CallExecutionActor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CallExecutionActor$.html"><span class="name">CallExecutionActor</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@CallExecutionActor" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.ExecutionIndex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExecutionIndex"></a>
+      <a id="ExecutionIndex:ExecutionIndex"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$ExecutionIndex$.html"><span class="name">ExecutionIndex</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@ExecutionIndex" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.ExecutionStatus" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExecutionStatus"></a>
+      <a id="ExecutionStatus:ExecutionStatus"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$ExecutionStatus$.html"><span class="name">ExecutionStatus</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@ExecutionStatus" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.SymbolStoreEntry" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SymbolStoreEntry"></a>
+      <a id="SymbolStoreEntry:SymbolStoreEntry"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$SymbolStoreEntry$.html"><span class="name">SymbolStoreEntry</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@SymbolStoreEntry" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowAborted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowAborted"></a>
+      <a id="WorkflowAborted:WorkflowAborted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowAborted$.html"><span class="name">WorkflowAborted</span></a><span class="result"> extends <a href="package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowAborted" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowAborting" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowAborting"></a>
+      <a id="WorkflowAborting:WorkflowAborting"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowAborting$.html"><span class="name">WorkflowAborting</span></a><span class="result"> extends <a href="package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowAborting" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowFailed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowFailed"></a>
+      <a id="WorkflowFailed:WorkflowFailed"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowFailed$.html"><span class="name">WorkflowFailed</span></a><span class="result"> extends <a href="package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowFailed" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowId" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowId"></a>
+      <a id="WorkflowId:WorkflowId"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowId$.html"><span class="name">WorkflowId</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowId" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowRunning" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowRunning"></a>
+      <a id="WorkflowRunning:WorkflowRunning"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowRunning$.html"><span class="name">WorkflowRunning</span></a><span class="result"> extends <a href="package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowRunning" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowState" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowState"></a>
+      <a id="WorkflowState:WorkflowState"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowState$.html"><span class="name">WorkflowState</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowState" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowSubmitted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowSubmitted"></a>
+      <a id="WorkflowSubmitted:WorkflowSubmitted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowSubmitted$.html"><span class="name">WorkflowSubmitted</span></a><span class="result"> extends <a href="package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowSubmitted" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.WorkflowSucceeded" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkflowSucceeded"></a>
+      <a id="WorkflowSucceeded:WorkflowSucceeded"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="package$$WorkflowSucceeded$.html"><span class="name">WorkflowSucceeded</span></a><span class="result"> extends <a href="package$$WorkflowState.html" class="extype" name="cromwell.engine.WorkflowState">WorkflowState</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@WorkflowSucceeded" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.backend" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="backend"></a>
+      <a id="backend:backend"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="backend/package.html"><span class="name">backend</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@backend" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.db" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="db"></a>
+      <a id="db:db"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="db/package.html"><span class="name">db</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@db" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="cromwell.engine.workflow" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="workflow"></a>
+      <a id="workflow:workflow"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="workflow/package.html"><span class="name">workflow</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#cromwell.engine.package@workflow" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
