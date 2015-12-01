@@ -160,6 +160,8 @@ case class JesBackend(actorSystem: ActorSystem)
   type BackendCall = JesBackendCall
   type IOInterface = JesBackend.IOInterface
 
+  jesConf // Force configuration resolution to happen now for fail-fast behavior at construction time
+
   override def adjustInputPaths(callKey: CallKey, inputs: CallInputs, workflowDescriptor: WorkflowDescriptor): CallInputs = inputs mapValues gcsPathToLocal
   override def adjustOutputPaths(call: Call, outputs: CallOutputs): CallOutputs = outputs mapValues gcsPathToLocal
 

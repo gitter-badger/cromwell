@@ -20,16 +20,12 @@ import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try
 
 object Backend {
-//  lazy val LocalBackend = new LocalBackend
-//  lazy val JesBackend = new JesBackend { jesConf } // forces configuration resolution to fail now if something is missing
-//  lazy val SgeBackend = new SgeBackend
-
   class StdoutStderrException(message: String) extends RuntimeException(message)
 
   def from(backendConf: Config, actorSystem: ActorSystem): Backend = from(backendConf.getString("backend"), actorSystem)
   def from(name: String, actorSystem: ActorSystem) = name.toLowerCase match {
     case "local" => LocalBackend(actorSystem)
-    case "jes" => JesBackend(actorSystem) // FIXME: Note the jesConf above
+    case "jes" => JesBackend(actorSystem)
     case "sge" => SgeBackend(actorSystem)
     case doh => throw new IllegalArgumentException(s"$doh is not a recognized backend")
   }
