@@ -13,6 +13,7 @@ import cromwell.binding.types.WdlType
 import cromwell.binding.values.WdlValue
 import cromwell.engine.backend.Backend
 import cromwell.engine.workflow.WorkflowOptions
+import cromwell.server.CromwellServer
 import org.slf4j.helpers.NOPLogger
 import org.slf4j.{Logger, LoggerFactory}
 import spray.json._
@@ -51,7 +52,7 @@ package object engine {
       case Failure(ex) => throw ex
     }
 
-    val backend = Backend.from(workflowOptions.getOrElse("default_backend", ConfigFactory.load.getConfig("backend").getString("backend")))
+    val backend = CromwellServer.backend
     val namespace = NamespaceWithWorkflow.load(sourceFiles.wdlSource, backend.backendType)
     val name = namespace.workflow.name
     val shortId = id.toString.split("-")(0)

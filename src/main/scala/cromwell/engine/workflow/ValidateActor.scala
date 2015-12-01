@@ -3,6 +3,7 @@ package cromwell.engine.workflow
 import akka.actor.{Actor, ActorRef, Props}
 import com.typesafe.scalalogging.LazyLogging
 import cromwell.binding._
+import cromwell.parser.BackendType
 import cromwell.webservice.PerRequest.RequestComplete
 import cromwell.webservice.{WorkflowJsonSupport, WorkflowValidateResponse}
 import spray.http.StatusCodes
@@ -19,12 +20,12 @@ object ValidateActor {
   sealed trait ValidateActorMessage
   case object ValidateWorkflow extends ValidateActorMessage
 
-  def props(wdlSource: WdlSource, wdlJson: WdlJson): Props = {
-    Props(new ValidateActor(wdlSource, wdlJson))
+  def props(wdlSource: WdlSource, wdlJson: WdlJson, backendType: BackendType): Props = {
+    Props(new ValidateActor(wdlSource, wdlJson, backendType))
   }
 }
 
-class ValidateActor(wdlSource: WdlSource, wdlJson: WdlJson)
+class ValidateActor(wdlSource: WdlSource, wdlJson: WdlJson, backendType: BackendType)
   extends Actor with LazyLogging {
 
   import ValidateActor.{ValidateWorkflow, tag}
@@ -40,7 +41,7 @@ class ValidateActor(wdlSource: WdlSource, wdlJson: WdlJson)
   private def validateWorkflow(sentBy: ActorRef): Unit = {
     logger.info(s"$tag for $sentBy")
     val futureValidation: Future[Unit] = for {
-      namespaceWithWorkflow <- Future(NamespaceWithWorkflow.load(wdlSource, WorkflowManagerActor.BackendType))
+      namespaceWithWorkflow <- Future(NamespaceWithWorkflow.load(wdlSource, backendType))
       inputs <- Future(wdlJson.parseJson).map(_.asJsObject.fields)
       coercedInputs <- Future.fromTry(namespaceWithWorkflow.coerceRawInputs(inputs))
     } yield () // Validate that the future run and return `Success[Unit]` aka (), or `Failure[Exception]`

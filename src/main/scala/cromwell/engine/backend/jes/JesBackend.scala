@@ -4,6 +4,7 @@ import java.math.BigInteger
 import java.net.SocketTimeoutException
 import java.nio.file.{Path, Paths}
 
+import akka.actor.ActorSystem
 import com.google.api.services.genomics.model.Parameter
 import com.typesafe.scalalogging.LazyLogging
 import cromwell.binding._
@@ -61,7 +62,7 @@ object JesBackend {
   def authGcsCredentialsPath(gcsPath: String): JesInput = JesInput(ExtraConfigParamName, gcsPath, Paths.get(""), "LITERAL")
 
   // Decoration around WorkflowDescriptor to generate bucket names and the like
-  implicit class JesWorkflowDescriptor(val descriptor: WorkflowDescriptor) extends JesBackend {
+  implicit class JesWorkflowDescriptor(val descriptor: WorkflowDescriptor) extends JesBackend(descriptor.backend.actorSystem) {
     def callDir(key: CallKey) = callGcsPath(descriptor, key.scope.name, key.index)
   }
 
@@ -150,8 +151,11 @@ case class JesPendingExecutionHandle(backendCall: JesBackendCall,
   override def result = FailedExecution(new IllegalStateException)
 }
 
-
-class JesBackend extends Backend with LazyLogging with ProductionJesAuthentication with ProductionJesConfiguration {
+case class JesBackend(actorSystem: ActorSystem)
+  extends Backend
+  with LazyLogging
+  with ProductionJesAuthentication
+  with ProductionJesConfiguration {
 
   type BackendCall = JesBackendCall
   type IOInterface = JesBackend.IOInterface

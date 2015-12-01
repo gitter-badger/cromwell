@@ -74,7 +74,7 @@ class WorkflowManagerActorSpec extends CromwellTestkitSpec("WorkflowManagerActor
       val setupFuture = Future.sequence(
         workflows map { case (workflowId, workflowState) =>
           val status = if (workflowState == WorkflowSubmitted) NotStarted else Running
-          val workflowInfo = new WorkflowDescriptor(workflowId, SampleWdl.HelloWorld.asWorkflowSources())
+          val workflowInfo = WorkflowDescriptor(workflowId, SampleWdl.HelloWorld.asWorkflowSources())
           // FIXME? null AST
           val task = new Task("taskName", Seq.empty[Declaration], Seq.empty[CommandPart], Seq.empty, null, BackendType.LOCAL)
           val call = new Call(None, key.scope, task, Set.empty[FullyQualifiedName], Map.empty, None)

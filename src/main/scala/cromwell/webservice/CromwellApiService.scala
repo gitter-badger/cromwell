@@ -4,6 +4,7 @@ import akka.actor.{Actor, ActorRef, Props}
 import com.typesafe.config.Config
 import cromwell.engine.workflow.{ValidateActor, WorkflowOptions}
 import cromwell.engine.{WorkflowId, WorkflowSourceFiles}
+import cromwell.server.CromwellServer
 import cromwell.webservice.CromwellApiHandler.WorkflowQuery
 import lenthall.config.ScalaConfig._
 import lenthall.spray.SwaggerUiResourceHttpService
@@ -136,7 +137,7 @@ trait CromwellApiService extends HttpService with PerRequestCreator {
             requestContext =>
               perRequest(
                 requestContext,
-                ValidateActor.props(wdlSource, workflowInputs),
+                ValidateActor.props(wdlSource, workflowInputs, CromwellServer.backendType),
                 ValidateActor.ValidateWorkflow)
           }
         }

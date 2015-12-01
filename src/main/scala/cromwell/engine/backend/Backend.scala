@@ -1,5 +1,6 @@
 package cromwell.engine.backend
 
+import akka.actor.ActorSystem
 import com.typesafe.config.Config
 import cromwell.binding._
 import cromwell.binding.expression.WdlStandardLibraryFunctions
@@ -19,17 +20,17 @@ import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try
 
 object Backend {
-  lazy val LocalBackend = new LocalBackend
-  lazy val JesBackend = new JesBackend { jesConf } //forces configuration resolution to fail now if something is missing
-  lazy val SgeBackend = new SgeBackend
+//  lazy val LocalBackend = new LocalBackend
+//  lazy val JesBackend = new JesBackend { jesConf } // forces configuration resolution to fail now if something is missing
+//  lazy val SgeBackend = new SgeBackend
 
   class StdoutStderrException(message: String) extends RuntimeException(message)
 
-  def from(backendConf: Config): Backend = from(backendConf.getString("backend"))
-  def from(name: String) = name.toLowerCase match {
-    case "local" => LocalBackend
-    case "jes" => JesBackend
-    case "sge" => SgeBackend
+  def from(backendConf: Config, actorSystem: ActorSystem): Backend = from(backendConf.getString("backend"), actorSystem)
+  def from(name: String, actorSystem: ActorSystem) = name.toLowerCase match {
+    case "local" => LocalBackend(actorSystem)
+    case "jes" => JesBackend(actorSystem) // FIXME: Note the jesConf above
+    case "sge" => SgeBackend(actorSystem)
     case doh => throw new IllegalArgumentException(s"$doh is not a recognized backend")
   }
 
@@ -42,9 +43,10 @@ trait JobKey
  * Trait to be implemented by concrete backends.
  */
 trait Backend {
-
   type BackendCall <: backend.BackendCall
   type IOInterface <: cromwell.binding.IOInterface
+
+  def actorSystem: ActorSystem
 
   /**
    * Return a possibly altered copy of inputs reflecting any localization of input file paths that might have

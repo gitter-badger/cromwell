@@ -8,6 +8,7 @@ import cromwell.binding.formatter.{AnsiSyntaxHighlighter, HtmlSyntaxHighlighter,
 import cromwell.binding.{AstTools, _}
 import cromwell.engine.WorkflowSourceFiles
 import cromwell.engine.workflow.{SingleWorkflowRunnerActor, WorkflowManagerActor, WorkflowOptions}
+import cromwell.parser.BackendType
 import cromwell.server.{CromwellServer, WorkflowManagerSystem}
 import cromwell.util.FileUtil._
 import org.slf4j.LoggerFactory
@@ -15,6 +16,7 @@ import spray.json._
 
 import scala.util.{Failure, Success, Try}
 import cromwell.instrumentation.Instrumentation.Monitor
+import Main.BackendyString
 
 object Actions extends Enumeration {
   val Parse, Validate, Highlight, Run, Inputs, Server = Value
@@ -37,6 +39,16 @@ object Main extends App {
    * array becoming null in "new Main(args)" when used with: sbt 'run run ...'
    */
   new Main().runAction(args)
+
+  implicit final class BackendyString(val backendType: String) extends AnyVal {
+    def toBackendType: BackendType = {
+      try {
+        BackendType.valueOf(backendType.toUpperCase)
+      } catch {
+        case e: Exception => throw new IllegalArgumentException(s"$backendType is not a recognized backend")
+      }
+    }
+  }
 }
 
 class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => WorkflowManagerSystem) {
@@ -61,15 +73,15 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
   }
 
   def validate(args: Seq[String]): Int = {
-    continueIf(args.length == 1) {
+    continueIf(args.length == 2) {
       loadWdl(args) { _ => exit(0) }
     }
   }
 
   def highlight(args: Seq[String]): Int = {
-    continueIf(args.length == 2 && Seq("html", "console").contains(args(1))) {
+    continueIf(args.length == 3 && Seq("html", "console").contains(args(2))) {
       loadWdl(args) { namespace =>
-        val formatter = new SyntaxFormatter(if (args(1) == "html") HtmlSyntaxHighlighter else AnsiSyntaxHighlighter)
+        val formatter = new SyntaxFormatter(if (args(2) == "html") HtmlSyntaxHighlighter else AnsiSyntaxHighlighter)
         println(formatter.format(namespace))
         exit(0)
       }
@@ -77,7 +89,7 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
   }
 
   def inputs(args: Seq[String]): Int = {
-    continueIf(args.length == 1) {
+    continueIf(args.length == 2) {
       loadWdl(args) { namespace =>
         import cromwell.binding.types.WdlTypeJsonFormatter._
         namespace match {
@@ -103,7 +115,6 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
       val optionsPath = argPath(args, 2, Option(".options"), checkDefaultExists = true)
       val metadataPath = argPath(args, 3, None)
 
-      Log.info(s"Default backend: ${WorkflowManagerActor.BackendType}")
       Log.info(s"RUN sub-command")
       Log.info(s"  $WdlLabel: $wdlPath")
       inputsPath.foreach(path => Log.info(s"  $InputsLabel: $path"))
@@ -144,6 +155,8 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
 
   private[this] def runWorkflow(workflowSourceFiles: WorkflowSourceFiles, metadataPath: Option[Path]): Int = {
     val workflowManagerSystem = managerSystem()
+    Log.info(s"Default backend: ${workflowManagerSystem.backendType}")
+
     val singleWorkflowRunner = SingleWorkflowRunnerActor.props(workflowSourceFiles, metadataPath,
       workflowManagerSystem.workflowManagerActor)
     workflowManagerSystem.actorSystem.actorOf(singleWorkflowRunner, "SingleWorkflowRunnerActor")
@@ -243,18 +256,6 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
         |java -jar cromwell.jar <action> <parameters>
         |
         |Actions:
-        |
-        |validate <WDL file>
-        |
-        |  Performs full validation of the WDL file including syntax
-        |  and semantic checking
-        |
-        |inputs <WDL file>
-        |
-        |  Print a JSON skeleton file of the inputs needed for this
-        |  workflow.  Fill in the values in this JSON document and
-        |  pass it in to the 'run' subcommand.
-        |
         |run <WDL file> [<JSON inputs file> [<JSON workflow options>
         |  [<OUTPUT workflow metadata>]]]
         |
@@ -267,6 +268,11 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
         |  Use a single dash ("-") to skip optional files. Ex:
         |    run noinputs.wdl - - metadata.json
         |
+        |server
+        |
+        |  Starts a web server on port 8000.  See the web server
+        |  documentation for more details about the API endpoints.
+        |
         |parse <WDL file>
         |
         |  Compares a WDL file against the grammar and prints out an
@@ -275,17 +281,25 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
         |  via this sub-command and the 'validate' subcommand should
         |  be used for full validation
         |
-        |highlight <WDL file> <html|console>
+        |validate <WDL file> <backend type>
+        |
+        |  Performs full validation of the WDL file including syntax
+        |  and semantic checking
+        |
+        |inputs <WDL file> <backend type>
+        |
+        |  Print a JSON skeleton file of the inputs needed for this
+        |  workflow.  Fill in the values in this JSON document and
+        |  pass it in to the 'run' subcommand.
+        |
+        |highlight <WDL file> <backend type> <html|console>
         |
         |  Reformats and colorizes/tags a WDL file. The second
         |  parameter is the output type.  "html" will output the WDL
         |  file with <span> tags around elements.  "console" mode
         |  will output colorized text to the terminal
         |
-        |server
-        |
-        |  Starts a web server on port 8000.  See the web server
-        |  documentation for more details about the API endpoints.
+        |Supported backend types: local, sge, jes
       """.stripMargin)
     exit(-1)
   }
@@ -315,17 +329,23 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
     a <- Actions.values find (_.toString == argCapitalized)
   } yield a
 
-  private[this] def loadWdl(path: String)(f: WdlNamespace => Int): Int = {
-    Try(WdlNamespace.load(new JFile(path), WorkflowManagerActor.BackendType)) match {
-      case Success(namespace) => f(namespace)
-      case Failure(t) =>
-        println(t.getMessage)
-        exit(1)
+  private[this] def loadWdl(args: Seq[String])(f: WdlNamespace => Int): Int = {
+    /*
+      As of this writing all functions which call this have >= 2 args and are such that args(0) is the path
+      and args(1) is the backend type. It is possible that this changes in the future, so caveat emptor
+     */
+    continueIf(args.length >= 2) {
+      val path = args.head
+      val backendType = args(1).toBackendType
+
+      Try(WdlNamespace.load(new JFile(path), backendType)) match {
+        case Success(namespace) => f(namespace)
+        case Failure(t) =>
+          println(t.getMessage)
+          exit(1)
+      }
     }
   }
-
-  // shortcut
-  private[this] def loadWdl(args: Seq[String])(f: WdlNamespace => Int): Int = loadWdl(args.head)(f)
 
   private[this] def exit(returnCode: Int): Int = {
     if (enableSysExit) {
