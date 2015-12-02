@@ -27,7 +27,7 @@ import org.scalatest.{FlatSpec, Matchers}
 import scala.concurrent.{ExecutionContext, Future}
 
 object SlickDataAccessSpec {
-  val SlickDataAccessSystem = CromwellTestkitSpec.testActorSystem("Slicker than oil")
+  val SlickDataAccessSystem = CromwellTestkitSpec.testActorSystem("SlickDataAccessSpec")
 }
 
 class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {

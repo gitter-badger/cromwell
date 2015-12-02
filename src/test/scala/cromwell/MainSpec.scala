@@ -38,7 +38,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "validate" in {
     testWdl(ThreeStep) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceMain(_.validate(Array(wdl)))
+      val result = traceMain(_.validate(Array(wdl, "local")))
       result.out should be(empty)
       result.returnCode should be(0)
     }
@@ -47,7 +47,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "validate using args" in {
     testWdl(ThreeStep) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceAction("validate", wdl)
+      val result = traceAction("validate", wdl, "local")
       result.out should be(empty)
       result.returnCode should be(0)
     }
@@ -56,7 +56,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "not validate invalid wdl" in {
     testWdl(EmptyInvalid) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceMain(_.validate(Array(wdl)))
+      val result = traceMain(_.validate(Array(wdl, "local")))
       result.out should include("Finished parsing without consuming all tokens.")
       result.returnCode should be(1)
     }
@@ -83,7 +83,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "highlight" in {
     testWdl(ThreeStep) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceMain(_.highlight(Array(wdl, "html")))
+      val result = traceMain(_.highlight(Array(wdl, "local", "html")))
       result.out.stripLineEnd should be(HighlightedWdlHtml)
       result.returnCode should be(0)
     }
@@ -92,7 +92,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "highlight using args" in {
     testWdl(ThreeStep) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceAction("highlight", wdl, "html")
+      val result = traceAction("highlight", wdl, "local",  "html")
       result.out.stripLineEnd should be(HighlightedWdlHtml)
       result.returnCode should be(0)
     }
@@ -101,7 +101,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "highlight using console highlighting" in {
     testWdl(EmptyWorkflow) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceMain(_.highlight(Array(wdl, "console")))
+      val result = traceMain(_.highlight(Array(wdl, "local",  "console")))
       result.out.stripLineEnd should include("empty_workflow")
       result.returnCode should be(0)
     }
@@ -110,7 +110,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "return inputs" in {
     testWdl(ThreeStep) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceMain(_.inputs(Array(wdl)))
+      val result = traceMain(_.inputs(Array(wdl, "local")))
       assert(result.out.contains("\"three_step.cgrep.pattern\""))
       result.returnCode should be(0)
     }
@@ -119,7 +119,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "return inputs using args" in {
     testWdl(ThreeStep) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceAction("inputs", wdl)
+      val result = traceAction("inputs", wdl, "local")
       assert(result.out.contains("\"three_step.cgrep.pattern\""))
       result.returnCode should be(0)
     }
@@ -128,7 +128,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   it should "not return inputs when there is no workflow" in {
     testWdl(EmptyTask) { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
-      val result = traceMain(_.inputs(Array(wdl)))
+      val result = traceMain(_.inputs(Array(wdl, "local")))
       assert(result.out.contains("WDL does not have a local workflow"))
       result.returnCode should be(0)
     }
