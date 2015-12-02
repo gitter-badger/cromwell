@@ -171,7 +171,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   }
 
   it should "run reading options" in {
-    testWdl(ThreeStep, optionsJson = """{ "default_backend": "BAD_BACKEND" }""") { wdlAndInputs =>
+    testWdl(ThreeStep, optionsJson = """{ "jes_gcs_root": "gs://my-bucket/workflows" }""") { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
       val inputs = wdlAndInputs.inputs
       val options = wdlAndInputs.options
