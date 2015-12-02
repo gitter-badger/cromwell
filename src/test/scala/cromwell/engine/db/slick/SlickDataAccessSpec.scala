@@ -3,6 +3,8 @@ package cromwell.engine.db.slick
 import java.sql.SQLException
 import java.util.UUID
 
+import akka.actor.ActorSystem
+import cromwell.CromwellTestkitSpec
 import cromwell.binding._
 import cromwell.binding.expression.WdlStandardLibraryFunctions
 import cromwell.binding.types.{WdlArrayType, WdlStringType}
@@ -24,6 +26,10 @@ import org.scalatest.{FlatSpec, Matchers}
 
 import scala.concurrent.{ExecutionContext, Future}
 
+object SlickDataAccessSpec {
+  val SlickDataAccessSystem = CromwellTestkitSpec.testActorSystem("Slicker than oil")
+}
+
 class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {
 
   import TableDrivenPropertyChecks._
@@ -32,7 +38,7 @@ class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {
 
   implicit val defaultPatience = PatienceConfig(timeout = Span(5, Seconds), interval = Span(100, Millis))
 
-  lazy val localBackend = new LocalBackend
+  lazy val localBackend = LocalBackend(SlickDataAccessSpec.SlickDataAccessSystem)
 
   val testSources = WorkflowSourceFiles("workflow test {}", "{}", "{}")
 
@@ -40,6 +46,8 @@ class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {
 
   object UnknownBackend extends Backend {
     type BackendCall = LocalBackendCall
+
+    override val actorSystem = SlickDataAccessSpec.SlickDataAccessSystem
 
     override def adjustInputPaths(callKey: CallKey, inputs: CallInputs, workflowDescriptor: WorkflowDescriptor) =
       throw new NotImplementedError

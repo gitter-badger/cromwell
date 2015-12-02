@@ -12,7 +12,7 @@ import spray.testkit.ScalatestRouteTest
 
 class CromwellApiServiceIntegrationSpec extends FlatSpec with CromwellApiService with ScalatestRouteTest with Matchers {
   def actorRefFactory = system
-  val workflowManager = TestActorRef(new WorkflowManagerActor(new LocalBackend))
+  val workflowManager = TestActorRef(new WorkflowManagerActor(new LocalBackend(system)))
   val version = "v1"
 
   it should "return 400 for a malformed WDL " in {

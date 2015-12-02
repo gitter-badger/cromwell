@@ -49,6 +49,8 @@ object CromwellTestkitSpec {
 
   val timeoutDuration = 10 seconds
 
+  def testActorSystem(name: String) = ActorSystem(name, ConfigFactory.parseString(ConfigText))
+
   /**
    * Wait for exactly one occurrence of the specified info pattern in the specified block.  The block is in its own
    * parameter list for usage syntax reasons.
@@ -97,7 +99,7 @@ object CromwellTestkitSpec {
   }
 }
 
-abstract class CromwellTestkitSpec(name: String) extends TestKit(ActorSystem(name, ConfigFactory.parseString(ConfigText)))
+abstract class CromwellTestkitSpec(name: String) extends TestKit(CromwellTestkitSpec.testActorSystem(name))
 with DefaultTimeout with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll with ScalaFutures with OneInstancePerTest {
 
   def startingCallsFilter[T](callNames: String*)(block: => T): T =
@@ -155,7 +157,7 @@ with DefaultTimeout with ImplicitSender with WordSpecLike with Matchers with Bef
   }
 
   private def buildWorkflowManagerActor(sampleWdl: SampleWdl, runtime: String) = {
-    TestActorRef(new WorkflowManagerActor(new LocalBackend))
+    TestActorRef(new WorkflowManagerActor(new LocalBackend(system)))
   }
 
   // Not great, but this is so we can test matching data structures that have WdlFiles in them more easily

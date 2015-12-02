@@ -332,7 +332,7 @@ object MainSpec {
   case class TraceResult(returnCode: Int, out: String, err: String)
 
   class TestWorkflowManagerSystem extends WorkflowManagerSystem {
-    override lazy val backend = new LocalBackend
+    override lazy val backend = LocalBackend(actorSystem)
 
     override protected def systemName: String = "mainspec-system"
 
