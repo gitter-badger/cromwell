@@ -1,25 +1,10 @@
 package cromwell
 
-import java.nio.file.{Path, Paths}
 import java.util.UUID
-
-import ch.qos.logback.classic.encoder.PatternLayoutEncoder
-import ch.qos.logback.classic.spi.ILoggingEvent
-import ch.qos.logback.classic.{Level, LoggerContext}
-import ch.qos.logback.core.FileAppender
-import com.typesafe.config.ConfigFactory
 import cromwell.binding._
 import cromwell.binding.types.WdlType
 import cromwell.binding.values.WdlValue
-import cromwell.engine.backend.Backend
-import cromwell.engine.workflow.WorkflowOptions
-import cromwell.server.CromwellServer
-import org.slf4j.helpers.NOPLogger
-import org.slf4j.{Logger, LoggerFactory}
-import spray.json._
-
 import scala.language.implicitConversions
-import scala.util.{Failure, Success, Try}
 
 /**
  * ==Cromwell Execution Engine==
@@ -38,70 +23,6 @@ package object engine {
   object WorkflowId {
     def fromString(id: String): WorkflowId = new WorkflowId(UUID.fromString(id))
     def randomId() = WorkflowId(UUID.randomUUID())
-  }
-
-  /**
-   * Constructs a representation of a particular workflow invocation.  As with other
-   * case classes and apply() methods, this will throw an exception if it cannot be
-   * created
-   */
-  case class WorkflowDescriptor(id: WorkflowId, sourceFiles: WorkflowSourceFiles) {
-    val workflowOptions = Try(sourceFiles.workflowOptionsJson.parseJson) match {
-      case Success(options: JsObject) => WorkflowOptions.fromJsonObject(options).get // .get here to purposefully throw the exception
-      case Success(other) => throw new Throwable(s"Expecting workflow options to be a JSON object, got $other")
-      case Failure(ex) => throw ex
-    }
-
-    val backend = CromwellServer.backend
-    val namespace = NamespaceWithWorkflow.load(sourceFiles.wdlSource, backend.backendType)
-    val name = namespace.workflow.name
-    val shortId = id.toString.split("-")(0)
-
-    backend.assertWorkflowOptions(workflowOptions)
-
-    val rawInputs = Try(sourceFiles.inputsJson.parseJson) match {
-      case Success(JsObject(inputs)) => inputs
-      case _ => throw new Throwable(s"Workflow ${id.toString} contains bad inputs JSON: ${sourceFiles.inputsJson}")
-    }
-
-    val IOInterface = backend.ioInterface(workflowOptions)
-
-    // Currently we are throwing an exception if construction of the workflow descriptor fails, hence .get on the Trys
-    val coercedInputs = namespace.coerceRawInputs(rawInputs).get
-    val declarations = namespace.staticDeclarationsRecursive(coercedInputs, backend.engineFunctions(IOInterface)).get
-    val actualInputs: WorkflowCoercedInputs = coercedInputs ++ declarations
-
-    val props = sys.props
-    val workflowLogger = props.get("LOG_MODE") match {
-      case Some(x) if x.toUpperCase.contains("SERVER") => makeFileLogger(
-        Paths.get(props.getOrElse("LOG_ROOT", ".")),
-        s"workflow.$id.log",
-        Level.toLevel(props.getOrElse("LOG_LEVEL", "debug"))
-      )
-      case _ => NOPLogger.NOP_LOGGER
-    }
-
-    private def makeFileLogger(root: Path, name: String, level: Level): Logger = {
-      val ctx = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
-      val encoder = new PatternLayoutEncoder()
-      encoder.setPattern("%date %-5level - %msg%n")
-      encoder.setContext(ctx)
-      encoder.start()
-
-      val path = root.resolve(name).toAbsolutePath.toString
-      val appender = new FileAppender[ILoggingEvent]()
-      appender.setFile(path)
-      appender.setEncoder(encoder)
-      appender.setName(name)
-      appender.setContext(ctx)
-      appender.start()
-
-      val fileLogger = ctx.getLogger(name)
-      fileLogger.addAppender(appender)
-      fileLogger.setAdditive(false)
-      fileLogger.setLevel(level)
-      fileLogger
-    }
   }
 
   /**

@@ -171,7 +171,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   }
 
   it should "run reading options" in {
-    testWdl(ThreeStep, optionsJson = """{ "jes_gcs_root": "gs://my-bucket/workflows" }""") { wdlAndInputs =>
+    testWdl(ThreeStep, optionsJson = """{ "default_backend": "JES" }""") { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
       val inputs = wdlAndInputs.inputs
       val options = wdlAndInputs.options
@@ -193,7 +193,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
        *
        *   [akka://cromwell-system/user/WorkflowManagerActor] WorkflowManagerActor Found no workflows to restart.
        *
-       * For now, defaulting to making sure at least the WorkflowManagerActor pics up the error, as it doesn't really
+       * For now, defaulting to making sure at least the WorkflowManagerActor picks up the error, as it doesn't really
        * matter. The known effects are:
        * - Instead of _both_ the WorkflowManagerActor and the SingleWorkflowRunnerActor logging the exception, we only
        *   get the stack trace once in the output.

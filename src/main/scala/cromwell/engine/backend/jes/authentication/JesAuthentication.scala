@@ -63,5 +63,5 @@ trait ProductionJesAuthentication extends JesAuthentication with JesConnection {
    * We can then re-use for all Backend Call the IOInterface from the WorkflowDescriptor.
    * If per-call backend is implemented this assumption might not hold anymore which may require changes here.
    */
-  override def jesUserConnection(backendCall: JesBackendCall) = backendCall.workflowDescriptor.IOInterface.asInstanceOf[JesBackend.IOInterface]
+  override def jesUserConnection(backendCall: JesBackendCall) = backendCall.workflowDescriptor.ioInterface.asInstanceOf[JesBackend.IOInterface]
 }
