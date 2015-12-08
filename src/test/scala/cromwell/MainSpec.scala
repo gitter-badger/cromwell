@@ -241,9 +241,12 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
       wdlAndInputs.inputsPath write "[]"
       val wdl = wdlAndInputs.wdl
       val inputs = wdlAndInputs.inputs
-      val result = traceMain(_.run(Array(wdl, inputs)))
-      assert(result.err.contains("contains bad inputs JSON"))
-      result.returnCode should be(1)
+      println("EWEE")
+      traceErrorWithExceptionRun(wdl, inputs)("contains bad inputs JSON") should be(0)
+      //      val result = traceMain(_.run(Array(wdl, inputs)))
+//      println("FOOOOO: |" + result.err + "|")
+//      assert(result.err.contains("contains bad inputs JSON"))
+ //     result.returnCode should be(1)
     }
   }
 
