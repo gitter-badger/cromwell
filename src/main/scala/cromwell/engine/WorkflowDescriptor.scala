@@ -67,9 +67,7 @@ object WorkflowDescriptor {
   def apply(id: WorkflowId, sourceFiles: WorkflowSourceFiles): WorkflowDescriptor = {
     validateWorkflowDescriptor(id, sourceFiles, CromwellServer.backend) match {
       case scalaz.Success(w) => w
-      case scalaz.Failure(f) =>
-        val errorMessages = f.list.mkString("")
-        throw new IllegalArgumentException(s"WorkflowDescriptor is not valid: Errors: $errorMessages")
+      case scalaz.Failure(f) => throw new IllegalArgumentException(f.list.mkString(""))
     }
   }
 
@@ -81,9 +79,11 @@ object WorkflowDescriptor {
     val options = validateWorkflowOptions(id, sourceFiles.workflowOptionsJson, backend)
     (namespace |@| rawInputs |@| options) { (_, _, _) } match {
       case scalaz.Success((n, r, o)) =>
-        val coercedInputs = validateCoercedInputs(id, r, n)
-        val declarations = coercedInputs.fold(e => e.failure, validateDeclarations(id, n, o, _, backend))
-        (coercedInputs |@| declarations) { (c, d) => WorkflowDescriptor(id, sourceFiles, o, r, n, c, d, backend) }
+        val validatedDescriptor = for {
+          c <- validateCoercedInputs(id, r, n).disjunction
+          d <- validateDeclarations(id, n, o, c, backend).disjunction
+        } yield WorkflowDescriptor(id, sourceFiles, o, r, n, c, d, backend)
+        validatedDescriptor.validation
       case scalaz.Failure(f) => f.list.mkString("").failureNel
     }
   }
