@@ -94,8 +94,7 @@ class CromwellApiHandler(workflowManager: ActorRef) extends Actor {
 
         case Failure(ex) =>
           ex match {
-            case s: SyntaxError | e: IllegalArgumentException =>  
-              context.parent ! RequestComplete(StatusCodes.BadRequest, ex.getMessage)
+            case e: IllegalArgumentException => context.parent ! RequestComplete(StatusCodes.BadRequest, ex.getMessage)
             case _ => context.parent ! RequestComplete(StatusCodes.InternalServerError, ex.getMessage)
           }
       }

@@ -319,12 +319,8 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
     Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> CromwellApiServiceSpec.MalformedInputsJson))) ~>
       submitRoute ~>
       check {
-        assertResult(StatusCodes.BadRequest) {
-          status
-        }
-        assertResult("Expecting JSON object for workflowInputs and workflowOptions fields") {
-          responseAs[String]
-        }
+        assertResult(StatusCodes.BadRequest) { status }
+        assertResult("Expecting JSON object for workflowInputs and workflowOptions fields") {responseAs[String] }
       }
   }
 
@@ -332,12 +328,8 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
     Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> HelloWorld.rawInputs.toJson.toString(), "workflowOptions" -> CromwellApiServiceSpec.MalformedInputsJson))) ~>
       submitRoute ~>
       check {
-        assertResult(StatusCodes.BadRequest) {
-          status
-        }
-        assertResult("Expecting JSON object for workflowInputs and workflowOptions fields") {
-          responseAs[String]
-        }
+        assertResult(StatusCodes.BadRequest) { status }
+        assertResult("Expecting JSON object for workflowInputs and workflowOptions fields") { responseAs[String] }
       }
   }
 
