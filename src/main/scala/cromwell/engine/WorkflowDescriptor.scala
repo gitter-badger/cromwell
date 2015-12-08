@@ -68,7 +68,7 @@ object WorkflowDescriptor {
     validateWorkflowDescriptor(id, sourceFiles, CromwellServer.backend) match {
       case scalaz.Success(w) => w
       case scalaz.Failure(f) =>
-        val errorMessages = f.list.mkString("\n")
+        val errorMessages = f.list.mkString("")
         throw new IllegalArgumentException(s"WorkflowDescriptor is not valid: Errors: $errorMessages")
     }
   }
@@ -84,7 +84,7 @@ object WorkflowDescriptor {
         val coercedInputs = validateCoercedInputs(id, r, n)
         val declarations = coercedInputs.fold(e => e.failure, validateDeclarations(id, n, o, _, backend))
         (coercedInputs |@| declarations) { (c, d) => WorkflowDescriptor(id, sourceFiles, o, r, n, c, d, backend) }
-      case scalaz.Failure(f) => f.list.mkString("\n").failureNel
+      case scalaz.Failure(f) => f.list.mkString("").failureNel
     }
   }
 
@@ -99,18 +99,18 @@ object WorkflowDescriptor {
   private def validateWorkflowOptions(id: WorkflowId,
                                       optionsJson: WorkflowOptionsJson,
                                       backend: Backend): ValidationNel[String, WorkflowOptions] = {
-    val options = WorkflowOptions.fromJsonString(optionsJson) match {
-      case Success(o) => o.successNel
+    WorkflowOptions.fromJsonString(optionsJson) match {
+      case Success(o) =>
+        // FIXME: Function-ify me
+        val validatedOptions = o.successNel[String]
+        val backendOptionsDisjunction = for {
+          o <- validatedOptions.disjunction
+          b <- validateBackendOptions(id, o, backend).disjunction
+        } yield b
+        val backendOptions = backendOptionsDisjunction.validation
+        (validatedOptions |@| backendOptions) { (o, b) => o }
       case Failure(e) => s"Workflow ${id.toString} unable to process options: ${e.getLocalizedMessage}".failureNel
     }
-
-    val backendOptionsDisjunction = for {
-      o <- options.disjunction
-      b <- validateBackendOptions(id, o, backend).disjunction
-    } yield b
-    val backendOptions = backendOptionsDisjunction.validation
-
-    (options |@| backendOptions) { (o, b) => o }
   }
 
   private def validateRawInputs(id: WorkflowId, json: WdlJson): ValidationNel[String, Map[String, JsValue]] = {

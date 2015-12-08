@@ -171,7 +171,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
   }
 
   it should "run reading options" in {
-    testWdl(ThreeStep, optionsJson = """{ "default_backend": "JES" }""") { wdlAndInputs =>
+    testWdl(ThreeStep, optionsJson = """{ "thisIsNot": "validJson", }""") { wdlAndInputs =>
       val wdl = wdlAndInputs.wdl
       val inputs = wdlAndInputs.inputs
       val options = wdlAndInputs.options
@@ -202,7 +202,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
        *   terminate on a failure in the SingleWorkflowRunnerActor anyway. Something else is just doing it before us?
        */
       traceErrorWithExceptionRun(wdl, inputs, options)(
-        "WorkflowManagerActor: Workflow failed submission: bad_backend is not a recognized backend") should be(0)
+        "WorkflowManagerActor: Workflow failed submission: WorkflowDescriptor is not valid") should be(0)
     }
   }
 

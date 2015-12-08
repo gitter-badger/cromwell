@@ -45,7 +45,7 @@ case class SingleWorkflowRunnerActor(source: WorkflowSourceFiles,
     case currentState: CurrentState[_] => log.debug(s"$tag: ignoring current state message: $currentState")
     case Transition(_, _, state: WorkflowState) if state.isTerminal => handleTermination(state)
     case Transition(_, _, state: WorkflowState) => log.info(s"$tag: transitioning to $state")
-    case Status.Failure(t) => handleFailure(t) // .pipeTo() transforms util.Failure() to Status.Failure()
+    case Status.Failure(t) => terminate() // .pipeTo() transforms util.Failure() to Status.Failure()
     case m => log.warning(s"$tag: received unexpected message: $m")
   }
 
@@ -63,15 +63,6 @@ case class SingleWorkflowRunnerActor(source: WorkflowSourceFiles,
     } else {
       sendMetadataMessage()
     }
-  }
-
-  /**
-   * Logs the errors and shuts down.
-   * @param t The error.
-   */
-  private def handleFailure(t: Throwable): Unit = {
-    log.error(t, s"$tag: ${t.getMessage}")
-    terminate()
   }
 
   /**
@@ -116,9 +107,9 @@ case class SingleWorkflowRunnerActor(source: WorkflowSourceFiles,
       path.createIfNotExists().write(metadata.toJson.prettyPrint)
       terminate()
     } catch {
-      case e: Exception =>
-        handleFailure(e)
+      case e: Exception => log.error(e, s"$tag: ${e.getMessage}")
     }
+    terminate()
   }
 
   /**

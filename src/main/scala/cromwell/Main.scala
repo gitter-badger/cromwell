@@ -209,8 +209,6 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
     * Run sanity checks on each of the argument paths.
     *
     * Check if we can read the wdl, inputs, and options Path => String.
-    * Then test if we can parse the json files, especially passing the options json to
-    * WorkflowOptions.fromJsonObject for special handling.
     * Lastly, ensure we can write to the metadata file.
     *
     * If all is ok, return a Success(WorkflowSourceFiles), otherwise a Failure describing the error.
@@ -226,10 +224,8 @@ class Main private[cromwell](enableSysExit: Boolean, managerSystem: () => Workfl
       wdlSource <- Trying.to(readContent _, wdlPath, ShouldProcess, WdlLabel)
       inputsJson <- Trying.to(readJson _, inputsPath, ShouldProcess, InputsLabel)
       workflowOptions <- Trying.to(readJson _, optionsPath, ShouldProcess, OptionsLabel)
-      _ <- Trying.to(parseInputs _, inputsJson, ShouldParse, InputsLabel)
-      parsedOptions <- Trying.to(parseOptions _, workflowOptions, ShouldParse, OptionsLabel)
       _ <- Trying.to(writeTo _, metadataPath, ShouldAccess, MetadataLabel)
-    } yield WorkflowSourceFiles(wdlSource, inputsJson, parsedOptions)
+    } yield WorkflowSourceFiles(wdlSource, inputsJson, workflowOptions)
   }
 
   /* End .run() method and utilities */
