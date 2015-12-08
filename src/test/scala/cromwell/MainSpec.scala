@@ -165,7 +165,7 @@ class MainSpec extends FlatSpec with Matchers with BeforeAndAfterAll with TimeLi
        * NOTE: Failed runs still exit with status 0, for now. Also due to system killing, mentioned in the NOTE in
        * SingleWorkflowRunnerActor, sometimes setTimer blows up and we never get "transitioning from Running to Failed."
        */
-      traceInfoRun(wdl, "-", "-", "-")("SingleWorkflowRunnerActor: workflow finished with status 'Failed'.") should
+      traceErrorWithExceptionRun(wdl, "-", "-", "-")("Required workflow input 'hello.hello.addressee' not specified") should
         be(0)
     }
   }
