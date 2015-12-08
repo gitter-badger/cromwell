@@ -21,7 +21,7 @@ import scala.util.Success
 
 object JesBackendSpec {
   // FIXME: extend cromwell testkit
-  val ActorSystem = CromwellTestkitSpec.testActorSystem("Jessica Biel")
+  val ActorSystem = CromwellTestkitSpec.testActorSystem("JessicaBiel")
 }
 
 class JesBackendSpec extends FlatSpec with Matchers with Mockito {

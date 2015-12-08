@@ -40,10 +40,12 @@ object MockWorkflowManagerActor {
 }
 
 class MockWorkflowManagerActor extends Actor  {
-
   def receive = {
     case SubmitWorkflow(sources) =>
-      sender ! MockWorkflowManagerActor.submittedWorkflowId
+      Future {
+        val id = MockWorkflowManagerActor.submittedWorkflowId
+        val descriptor = WorkflowDescriptor(id, sources)
+      } pipeTo sender
 
     case WorkflowStatus(id) =>
       val msg = id match {
@@ -211,451 +213,451 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
   val workflowManager = system.actorOf(Props(new MockWorkflowManagerActor()))
   val version = "v1"
 
-//  s"CromwellApiService $version" should "return 404 for get of unknown workflow" in {
-//    Get(s"/workflows/$version/${MockWorkflowManagerActor.unknownId}") ~>
-//      sealRoute(statusRoute) ~>
-//      check {
-//        assertResult(StatusCodes.NotFound) {
-//          status
-//        }
-//      }
-//  }
-//
-//  it should "return 400 for get of a malformed workflow id" in {
-//    Get(s"/workflows/$version/foobar/status") ~>
-//      statusRoute ~>
-//      check {
-//        assertResult(StatusCodes.BadRequest) {
-//          status
-//        }
-//      }
-//  }
-//
-//  it should "return 200 for get of a known workflow id" in {
-//    Get(s"/workflows/$version/${MockWorkflowManagerActor.runningWorkflowId}/status") ~>
-//      statusRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//
-//        assertResult(
-//          s"""{
-//             |  "id": "${MockWorkflowManagerActor.runningWorkflowId.toString}",
-//             |  "status": "Running"
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  "CromwellApiService" should "return 404 for abort of unknown workflow" in {
-//    Post(s"/workflows/$version/${MockWorkflowManagerActor.unknownId}/abort") ~>
-//      abortRoute ~>
-//      check {
-//        assertResult(StatusCodes.NotFound) {
-//          status
-//        }
-//      }
-//  }
-//
-//  it should "return 400 for abort of a malformed workflow id" in {
-//    Post(s"/workflows/$version/foobar/abort") ~>
-//      abortRoute ~>
-//      check {
-//        assertResult(StatusCodes.BadRequest) {
-//          status
-//        }
-//      }
-//  }
-//
-//  it should "return 403 for abort of a workflow in a terminal state" in {
-//    Post(s"/workflows/$version/${MockWorkflowManagerActor.abortedWorkflowId}/abort") ~>
-//    abortRoute ~>
-//    check {
-//      assertResult(StatusCodes.Forbidden) {
-//        status
-//      }
-//    }
-//  }
-//
-//  it should "return 200 for abort of a known workflow id" in {
-//    Post(s"/workflows/$version/${MockWorkflowManagerActor.runningWorkflowId}/abort") ~>
-//      abortRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//
-//        assertResult(
-//          s"""{
-//             |  "id": "${MockWorkflowManagerActor.runningWorkflowId.toString}",
-//             |  "status": "Aborted"
-//             |}"""
-//            .stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  s"Cromwell submit workflow API $version" should "return 201 for a successful workflow submission " in {
-//    Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> HelloWorld.rawInputs.toJson.toString()))) ~>
-//      submitRoute ~>
-//      check {
-//        assertResult(StatusCodes.Created) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "id": "${MockWorkflowManagerActor.submittedWorkflowId.toString}",
-//             |  "status": "Submitted"
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
+  s"CromwellApiService $version" should "return 404 for get of unknown workflow" in {
+    Get(s"/workflows/$version/${MockWorkflowManagerActor.unknownId}") ~>
+      sealRoute(statusRoute) ~>
+      check {
+        assertResult(StatusCodes.NotFound) {
+          status
+        }
+      }
+  }
+
+  it should "return 400 for get of a malformed workflow id" in {
+    Get(s"/workflows/$version/foobar/status") ~>
+      statusRoute ~>
+      check {
+        assertResult(StatusCodes.BadRequest) {
+          status
+        }
+      }
+  }
+
+  it should "return 200 for get of a known workflow id" in {
+    Get(s"/workflows/$version/${MockWorkflowManagerActor.runningWorkflowId}/status") ~>
+      statusRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+
+        assertResult(
+          s"""{
+             |  "id": "${MockWorkflowManagerActor.runningWorkflowId.toString}",
+             |  "status": "Running"
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  "CromwellApiService" should "return 404 for abort of unknown workflow" in {
+    Post(s"/workflows/$version/${MockWorkflowManagerActor.unknownId}/abort") ~>
+      abortRoute ~>
+      check {
+        assertResult(StatusCodes.NotFound) {
+          status
+        }
+      }
+  }
+
+  it should "return 400 for abort of a malformed workflow id" in {
+    Post(s"/workflows/$version/foobar/abort") ~>
+      abortRoute ~>
+      check {
+        assertResult(StatusCodes.BadRequest) {
+          status
+        }
+      }
+  }
+
+  it should "return 403 for abort of a workflow in a terminal state" in {
+    Post(s"/workflows/$version/${MockWorkflowManagerActor.abortedWorkflowId}/abort") ~>
+    abortRoute ~>
+    check {
+      assertResult(StatusCodes.Forbidden) {
+        status
+      }
+    }
+  }
+
+  it should "return 200 for abort of a known workflow id" in {
+    Post(s"/workflows/$version/${MockWorkflowManagerActor.runningWorkflowId}/abort") ~>
+      abortRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+
+        assertResult(
+          s"""{
+             |  "id": "${MockWorkflowManagerActor.runningWorkflowId.toString}",
+             |  "status": "Aborted"
+             |}"""
+            .stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  s"Cromwell submit workflow API $version" should "return 201 for a successful workflow submission " in {
+    Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> HelloWorld.rawInputs.toJson.toString()))) ~>
+      submitRoute ~>
+      check {
+        assertResult(StatusCodes.Created) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "id": "${MockWorkflowManagerActor.submittedWorkflowId.toString}",
+             |  "status": "Submitted"
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
 
   it should "return 400 for a malformed workflow inputs JSON " in {
     Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> CromwellApiServiceSpec.MalformedInputsJson))) ~>
       submitRoute ~>
       check {
         assertResult(StatusCodes.BadRequest) { status }
-        assertResult("Expecting JSON object for workflowInputs and workflowOptions fields") {responseAs[String] }
+        assertResult(true) { responseAs[String].contains("contains bad inputs JSON") }
       }
   }
 
-//  it should "return 400 for a malformed workflow options JSON " in {
-//    Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> HelloWorld.rawInputs.toJson.toString(), "workflowOptions" -> CromwellApiServiceSpec.MalformedInputsJson))) ~>
-//      submitRoute ~>
-//      check {
-//        assertResult(StatusCodes.BadRequest) { status }
-//        assertResult("Expecting JSON object for workflowInputs and workflowOptions fields") { responseAs[String] }
-//      }
-//  }
-//
-//  s"Cromwell validate workflow API $version" should "return 200 for a successful workflow submission" in {
-//    Post("/workflows/$version/validate", FormData(Seq(
-//      "wdlSource" -> HelloWorld.wdlSource(),
-//      "workflowInputs" -> HelloWorld.rawInputs.toJson.toString()))
-//    ) ~>
-//      validateRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "valid": true
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  it should "return 400 for a missing input" in {
-//    Post("/workflows/$version/validate", FormData(Seq(
-//      "wdlSource" -> HelloWorld.wdlSource(),
-//      "workflowInputs" -> CromwellApiServiceSpec.MissingInputsJson))
-//    ) ~>
-//      validateRoute ~>
-//      check {
-//        assertResult(StatusCodes.BadRequest) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "valid": false,
-//             |  "error": "The following errors occurred while processing your inputs:\\n\\nRequired workflow input 'hello.hello.addressee' not specified."
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  it should "return 400 for a malformed WDL" in {
-//    Post(s"/workflows/$version/validate", FormData(Seq(
-//      "wdlSource" -> CromwellApiServiceSpec.MalformedWdl,
-//      "workflowInputs" -> HelloWorld.rawInputs.toJson.toString()))
-//    ) ~>
-//      validateRoute ~>
-//      check {
-//        assertResult(StatusCodes.BadRequest) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "valid": false,
-//             |  "error": "ERROR: Finished parsing without consuming all tokens.\\n\\nfoobar bad wdl!\\n^\\n     "
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  it should "return 400 for a malformed JSON" in {
-//    Post("/workflows/$version/validate", FormData(Seq(
-//      "wdlSource" -> HelloWorld.wdlSource(),
-//      "workflowInputs" -> CromwellApiServiceSpec.MalformedInputsJson))
-//    ) ~>
-//      validateRoute ~>
-//      check {
-//        assertResult(StatusCodes.BadRequest) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "valid": false,
-//             |  "error": "Unexpected character 'o' at input index 0 (line 1, position 1), expected JSON Value:\\nfoobar bad json!\\n^\\n"
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  s"Cromwell workflow outputs API $version" should "return 200 with GET of outputs on successful execution of workflow" in {
-//    Get(s"/workflows/$version/${MockWorkflowManagerActor.submittedWorkflowId.toString}/outputs") ~>
-//      workflowOutputsRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "id": "${MockWorkflowManagerActor.submittedWorkflowId.toString}",
-//             |  "outputs": {
-//             |    "three_step.cgrep.count": 8,
-//             |    "three_step.ps.procs": "/tmp/ps.stdout.tmp",
-//             |    "three_step.wc.count": 8
-//             |  }
-//             |}""".stripMargin) {
-//            responseAs[String]
-//          }
-//      }
-//  }
-//
-//  it should "return 404 with outputs on unknown workflow" in {
-//    Get(s"/workflows/$version/$unknownId/outputs") ~>
-//    workflowOutputsRoute ~>
-//    check {
-//      assertResult(StatusCodes.NotFound) {
-//        status
-//      }
-//    }
-//  }
-//
-//  "Cromwell call outputs API" should "return 200 with outputs on successful execution of workflow" in {
-//    Get(s"/workflows/$version/$submittedWorkflowId/outputs/three_step.wc") ~>
-//    callOutputsRoute ~>
-//    check {
-//      assertResult(StatusCodes.OK) {
-//        status
-//      }
-//      assertResult(
-//        s"""{
-//           |  "id": "$submittedWorkflowId",
-//           |  "callFqn": "three_step.wc",
-//           |  "outputs": {
-//           |    "count": 8
-//           |  }
-//           |}""".stripMargin) {
-//        responseAs[String]
-//      }
-//    }
-//  }
-//
-//  it should "return 404 for unknown workflow" in {
-//    Get(s"/workflows/$version/$unknownId/outputs/three_step.wc") ~>
-//      callOutputsRoute ~>
-//      check {
-//        assertResult(StatusCodes.NotFound) {
-//          status
-//        }
-//      }
-//  }
-//
-//  it should "return 404 for unknown call ID" in {
-//    Get(s"/workflows/$version/$submittedWorkflowId/outputs/bogus_workflow.bogus_call") ~>
-//      callOutputsRoute ~>
-//      check {
-//        assertResult(StatusCodes.NotFound) {
-//          status
-//        }
-//      }
-//  }
-//
-//  it should "return 400 for malformed workflow ID" in {
-//    Get(s"/workflows/$version/foobar/outputs/three_step.wc") ~>
-//      callOutputsRoute ~>
-//      check {
-//        assertResult(StatusCodes.BadRequest) {
-//          status
-//        }
-//      }
-//  }
-//  it should "return 405 with POST of outputs on successful execution of workflow" in {
-//    Post(s"/workflows/$version/${MockWorkflowManagerActor.submittedWorkflowId.toString}/outputs") ~>
-//      sealRoute(workflowOutputsRoute) ~>
-//      check {
-//        assertResult(StatusCodes.MethodNotAllowed) {
-//          status
-//        }
-//      }
-//  }
-//
-//  "Cromwell call stdout/stderr API" should "return 200 with paths to stdout/stderr" in {
-//    Get(s"/workflows/$version/$submittedWorkflowId/logs/three_step.wc") ~>
-//      callStdoutStderrRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "id": "$submittedWorkflowId",
-//             |  "logs": {
-//             |    "three_step.wc": [{
-//             |      "stdout": "/path/to/wc-stdout",
-//             |      "stderr": "/path/to/wc-stderr"
-//             |    }]
-//             |  }
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  "Cromwell call stdout/stderr API" should "return 200 with paths to stdout/stderr for calls inside a scatter" in {
-//    Get(s"/workflows/$version/$submittedWorkflowId/logs/scatterwf.inside-scatter") ~>
-//      callStdoutStderrRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "id": "$submittedWorkflowId",
-//             |  "logs": {
-//             |    "scatterwf.inside-scatter": [{
-//             |      "stdout": "/path/to/inside-scatter/shard0-stdout",
-//             |      "stderr": "/path/to/inside-scatter/shard0-stderr"
-//             |    }, {
-//             |      "stdout": "/path/to/inside-scatter/shard1-stdout",
-//             |      "stderr": "/path/to/inside-scatter/shard1-stderr"
-//             |    }]
-//             |  }
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  it should "return 404 if the workflow ID is not found" in {
-//    Get(s"/workflows/$version/${UUID.randomUUID().toString}/logs/three_step.wc") ~>
-//      callStdoutStderrRoute ~>
-//      check {
-//        assertResult(StatusCodes.NotFound) {
-//          status
-//        }
-//      }
-//  }
-//
-//  it should "return 404 if the Call FQN is not found" in {
-//    Get(s"/workflows/$version/$submittedWorkflowId/logs/three_step.wcBADBAD") ~>
-//      callStdoutStderrRoute ~>
-//      check {
-//        assertResult(StatusCodes.NotFound) {
-//          status
-//        }
-//      }
-//  }
-//
-//  it should "return 400 for get of a malformed workflow id" in {
-//    Get(s"/workflows/$version/foobar/logs/three_step.wc") ~>
-//      callStdoutStderrRoute ~>
-//      check {
-//        assertResult(StatusCodes.BadRequest) {
-//          status
-//        }
-//      }
-//  }
-//
-//  "Cromwell workflow stdout/stderr API" should "return 200 with paths to stdout/stderr" in {
-//    Get(s"/workflows/$version/$submittedWorkflowId/logs") ~>
-//      workflowStdoutStderrRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "id": "$submittedWorkflowId",
-//             |  "logs": {
-//             |    "three_step.ps": [{
-//             |      "stdout": "/path/to/ps-stdout",
-//             |      "stderr": "/path/to/ps-stderr"
-//             |    }]
-//             |  }
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//  "Cromwell workflow stdout/stderr API" should "return 200 with paths to stdout/stderr with scattered calls" in {
-//    Get(s"/workflows/$version/${MockWorkflowManagerActor.submittedScatterWorkflowId}/logs") ~>
-//      workflowStdoutStderrRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//        assertResult(
-//          s"""{
-//             |  "id": "${MockWorkflowManagerActor.submittedScatterWorkflowId}",
-//             |  "logs": {
-//             |    "scatterwf.inside-scatter": [{
-//             |      "stdout": "/path/to/inside-scatter/shard0-stdout",
-//             |      "stderr": "/path/to/inside-scatter/shard0-stderr"
-//             |    }, {
-//             |      "stdout": "/path/to/inside-scatter/shard1-stdout",
-//             |      "stderr": "/path/to/inside-scatter/shard1-stderr"
-//             |    }]
-//             |  }
-//             |}""".stripMargin) {
-//          responseAs[String]
-//        }
-//      }
-//  }
-//
-//  "Cromwell timings API" should "return 200 with an HTML document for the timings route"in {
-//    Get(s"/workflows/$version/${MockWorkflowManagerActor.submittedScatterWorkflowId}/timing") ~>
-//      timingRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) { status }
-//        assertResult("<html>") {
-//          responseAs[String].substring(0, 6)
-//        }
-//      }
-//  }
-//
-//  "Cromwell query API" should "return 400 for a bad query" in {
-//    Get(s"/workflows/$version/query?BadKey=foo") ~>
-//    queryRoute ~>
-//    check {
-//      assertResult(StatusCodes.BadRequest) {
-//        status
-//      }
-//    }
-//  }
-//
-//  "Cromwell query API" should "return good results for a good query" in {
-//    Get(s"/workflows/$version/query?status=Succeeded") ~>
-//      queryRoute ~>
-//      check {
-//        assertResult(StatusCodes.OK) {
-//          status
-//        }
-//        assertResult(true) {
-//          body.asString.contains("\"status\": \"Succeeded\",")
-//        }
-//      }
-//  }
+  it should "return 400 for a malformed workflow options JSON " in {
+    Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> HelloWorld.rawInputs.toJson.toString(), "workflowOptions" -> CromwellApiServiceSpec.MalformedInputsJson))) ~>
+      submitRoute ~>
+      check {
+        assertResult(StatusCodes.BadRequest) { status }
+        assertResult(true) { responseAs[String].contains("unable to process options") }
+      }
+  }
+
+  s"Cromwell validate workflow API $version" should "return 200 for a successful workflow submission" in {
+    Post("/workflows/$version/validate", FormData(Seq(
+      "wdlSource" -> HelloWorld.wdlSource(),
+      "workflowInputs" -> HelloWorld.rawInputs.toJson.toString()))
+    ) ~>
+      validateRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "valid": true
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  it should "return 400 for a missing input" in {
+    Post("/workflows/$version/validate", FormData(Seq(
+      "wdlSource" -> HelloWorld.wdlSource(),
+      "workflowInputs" -> CromwellApiServiceSpec.MissingInputsJson))
+    ) ~>
+      validateRoute ~>
+      check {
+        assertResult(StatusCodes.BadRequest) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "valid": false,
+             |  "error": "The following errors occurred while processing your inputs:\\n\\nRequired workflow input 'hello.hello.addressee' not specified."
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  it should "return 400 for a malformed WDL" in {
+    Post(s"/workflows/$version/validate", FormData(Seq(
+      "wdlSource" -> CromwellApiServiceSpec.MalformedWdl,
+      "workflowInputs" -> HelloWorld.rawInputs.toJson.toString()))
+    ) ~>
+      validateRoute ~>
+      check {
+        assertResult(StatusCodes.BadRequest) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "valid": false,
+             |  "error": "ERROR: Finished parsing without consuming all tokens.\\n\\nfoobar bad wdl!\\n^\\n     "
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  it should "return 400 for a malformed JSON" in {
+    Post("/workflows/$version/validate", FormData(Seq(
+      "wdlSource" -> HelloWorld.wdlSource(),
+      "workflowInputs" -> CromwellApiServiceSpec.MalformedInputsJson))
+    ) ~>
+      validateRoute ~>
+      check {
+        assertResult(StatusCodes.BadRequest) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "valid": false,
+             |  "error": "Unexpected character 'o' at input index 0 (line 1, position 1), expected JSON Value:\\nfoobar bad json!\\n^\\n"
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  s"Cromwell workflow outputs API $version" should "return 200 with GET of outputs on successful execution of workflow" in {
+    Get(s"/workflows/$version/${MockWorkflowManagerActor.submittedWorkflowId.toString}/outputs") ~>
+      workflowOutputsRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "id": "${MockWorkflowManagerActor.submittedWorkflowId.toString}",
+             |  "outputs": {
+             |    "three_step.cgrep.count": 8,
+             |    "three_step.ps.procs": "/tmp/ps.stdout.tmp",
+             |    "three_step.wc.count": 8
+             |  }
+             |}""".stripMargin) {
+            responseAs[String]
+          }
+      }
+  }
+
+  it should "return 404 with outputs on unknown workflow" in {
+    Get(s"/workflows/$version/$unknownId/outputs") ~>
+    workflowOutputsRoute ~>
+    check {
+      assertResult(StatusCodes.NotFound) {
+        status
+      }
+    }
+  }
+
+  "Cromwell call outputs API" should "return 200 with outputs on successful execution of workflow" in {
+    Get(s"/workflows/$version/$submittedWorkflowId/outputs/three_step.wc") ~>
+    callOutputsRoute ~>
+    check {
+      assertResult(StatusCodes.OK) {
+        status
+      }
+      assertResult(
+        s"""{
+           |  "id": "$submittedWorkflowId",
+           |  "callFqn": "three_step.wc",
+           |  "outputs": {
+           |    "count": 8
+           |  }
+           |}""".stripMargin) {
+        responseAs[String]
+      }
+    }
+  }
+
+  it should "return 404 for unknown workflow" in {
+    Get(s"/workflows/$version/$unknownId/outputs/three_step.wc") ~>
+      callOutputsRoute ~>
+      check {
+        assertResult(StatusCodes.NotFound) {
+          status
+        }
+      }
+  }
+
+  it should "return 404 for unknown call ID" in {
+    Get(s"/workflows/$version/$submittedWorkflowId/outputs/bogus_workflow.bogus_call") ~>
+      callOutputsRoute ~>
+      check {
+        assertResult(StatusCodes.NotFound) {
+          status
+        }
+      }
+  }
+
+  it should "return 400 for malformed workflow ID" in {
+    Get(s"/workflows/$version/foobar/outputs/three_step.wc") ~>
+      callOutputsRoute ~>
+      check {
+        assertResult(StatusCodes.BadRequest) {
+          status
+        }
+      }
+  }
+  it should "return 405 with POST of outputs on successful execution of workflow" in {
+    Post(s"/workflows/$version/${MockWorkflowManagerActor.submittedWorkflowId.toString}/outputs") ~>
+      sealRoute(workflowOutputsRoute) ~>
+      check {
+        assertResult(StatusCodes.MethodNotAllowed) {
+          status
+        }
+      }
+  }
+
+  "Cromwell call stdout/stderr API" should "return 200 with paths to stdout/stderr" in {
+    Get(s"/workflows/$version/$submittedWorkflowId/logs/three_step.wc") ~>
+      callStdoutStderrRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "id": "$submittedWorkflowId",
+             |  "logs": {
+             |    "three_step.wc": [{
+             |      "stdout": "/path/to/wc-stdout",
+             |      "stderr": "/path/to/wc-stderr"
+             |    }]
+             |  }
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  "Cromwell call stdout/stderr API" should "return 200 with paths to stdout/stderr for calls inside a scatter" in {
+    Get(s"/workflows/$version/$submittedWorkflowId/logs/scatterwf.inside-scatter") ~>
+      callStdoutStderrRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "id": "$submittedWorkflowId",
+             |  "logs": {
+             |    "scatterwf.inside-scatter": [{
+             |      "stdout": "/path/to/inside-scatter/shard0-stdout",
+             |      "stderr": "/path/to/inside-scatter/shard0-stderr"
+             |    }, {
+             |      "stdout": "/path/to/inside-scatter/shard1-stdout",
+             |      "stderr": "/path/to/inside-scatter/shard1-stderr"
+             |    }]
+             |  }
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  it should "return 404 if the workflow ID is not found" in {
+    Get(s"/workflows/$version/${UUID.randomUUID().toString}/logs/three_step.wc") ~>
+      callStdoutStderrRoute ~>
+      check {
+        assertResult(StatusCodes.NotFound) {
+          status
+        }
+      }
+  }
+
+  it should "return 404 if the Call FQN is not found" in {
+    Get(s"/workflows/$version/$submittedWorkflowId/logs/three_step.wcBADBAD") ~>
+      callStdoutStderrRoute ~>
+      check {
+        assertResult(StatusCodes.NotFound) {
+          status
+        }
+      }
+  }
+
+  it should "return 400 for get of a malformed workflow id" in {
+    Get(s"/workflows/$version/foobar/logs/three_step.wc") ~>
+      callStdoutStderrRoute ~>
+      check {
+        assertResult(StatusCodes.BadRequest) {
+          status
+        }
+      }
+  }
+
+  "Cromwell workflow stdout/stderr API" should "return 200 with paths to stdout/stderr" in {
+    Get(s"/workflows/$version/$submittedWorkflowId/logs") ~>
+      workflowStdoutStderrRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "id": "$submittedWorkflowId",
+             |  "logs": {
+             |    "three_step.ps": [{
+             |      "stdout": "/path/to/ps-stdout",
+             |      "stderr": "/path/to/ps-stderr"
+             |    }]
+             |  }
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+  "Cromwell workflow stdout/stderr API" should "return 200 with paths to stdout/stderr with scattered calls" in {
+    Get(s"/workflows/$version/${MockWorkflowManagerActor.submittedScatterWorkflowId}/logs") ~>
+      workflowStdoutStderrRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+        assertResult(
+          s"""{
+             |  "id": "${MockWorkflowManagerActor.submittedScatterWorkflowId}",
+             |  "logs": {
+             |    "scatterwf.inside-scatter": [{
+             |      "stdout": "/path/to/inside-scatter/shard0-stdout",
+             |      "stderr": "/path/to/inside-scatter/shard0-stderr"
+             |    }, {
+             |      "stdout": "/path/to/inside-scatter/shard1-stdout",
+             |      "stderr": "/path/to/inside-scatter/shard1-stderr"
+             |    }]
+             |  }
+             |}""".stripMargin) {
+          responseAs[String]
+        }
+      }
+  }
+
+  "Cromwell timings API" should "return 200 with an HTML document for the timings route"in {
+    Get(s"/workflows/$version/${MockWorkflowManagerActor.submittedScatterWorkflowId}/timing") ~>
+      timingRoute ~>
+      check {
+        assertResult(StatusCodes.OK) { status }
+        assertResult("<html>") {
+          responseAs[String].substring(0, 6)
+        }
+      }
+  }
+
+  "Cromwell query API" should "return 400 for a bad query" in {
+    Get(s"/workflows/$version/query?BadKey=foo") ~>
+    queryRoute ~>
+    check {
+      assertResult(StatusCodes.BadRequest) {
+        status
+      }
+    }
+  }
+
+  "Cromwell query API" should "return good results for a good query" in {
+    Get(s"/workflows/$version/query?status=Succeeded") ~>
+      queryRoute ~>
+      check {
+        assertResult(StatusCodes.OK) {
+          status
+        }
+        assertResult(true) {
+          body.asString.contains("\"status\": \"Succeeded\",")
+        }
+      }
+  }
 }
