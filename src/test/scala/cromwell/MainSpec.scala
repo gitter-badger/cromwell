@@ -336,15 +336,11 @@ object MainSpec {
 
   class TestWorkflowManagerSystem extends WorkflowManagerSystem {
     override lazy val backend = LocalBackend(actorSystem)
-
     override protected def systemName: String = "mainspec-system"
-
-    override protected def newActorSystem() =
-      ActorSystem(systemName, ConfigFactory.parseString(CromwellTestkitSpec.ConfigText))
+    override protected def newActorSystem() = ActorSystem(systemName, ConfigFactory.parseString(CromwellTestkitSpec.ConfigText))
   }
 
   private val dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss.SSS")
-
   private def now = dateFormat.format(new Date)
 
   /**
