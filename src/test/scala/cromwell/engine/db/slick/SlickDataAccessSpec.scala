@@ -16,6 +16,7 @@ import cromwell.engine.db.{CallStatus, ExecutionDatabaseKey, LocalCallBackendInf
 import cromwell.engine.workflow.{CallKey, ScatterKey, WorkflowOptions}
 import cromwell.parser.BackendType
 import cromwell.util.SampleWdl
+import cromwell.util.docker.DockerRegistryApiClient
 import cromwell.webservice
 import cromwell.webservice.{CallCachingParameters, WorkflowQueryKey, WorkflowQueryParameters}
 import org.scalactic.StringNormalizations._
@@ -71,7 +72,8 @@ class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {
     override def bindCall(workflowDescriptor: WorkflowDescriptor,
                           key: CallKey,
                           locallyQualifiedInputs: CallInputs,
-                          abortRegistrationFunction: AbortRegistrationFunction): BackendCall =
+                          abortRegistrationFunction: AbortRegistrationFunction,
+                          dockerRegistryApiClient: DockerRegistryApiClient): BackendCall =
       throw new NotImplementedError
 
     override def engineFunctions(interface: IOInterface): WdlStandardLibraryFunctions =

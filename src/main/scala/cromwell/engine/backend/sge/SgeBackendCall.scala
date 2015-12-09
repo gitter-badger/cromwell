@@ -5,6 +5,7 @@ import cromwell.engine.backend.local.LocalBackend
 import cromwell.engine.backend.{BackendCall, LocalFileSystemBackendCall, _}
 import cromwell.engine.workflow.CallKey
 import cromwell.engine.{AbortRegistrationFunction, WorkflowDescriptor}
+import cromwell.util.docker.DockerRegistryApiClient
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -12,7 +13,9 @@ case class SgeBackendCall(backend: SgeBackend,
                           workflowDescriptor: WorkflowDescriptor,
                           key: CallKey,
                           locallyQualifiedInputs: CallInputs,
-                          callAbortRegistrationFunction: AbortRegistrationFunction) extends BackendCall with LocalFileSystemBackendCall {
+                          callAbortRegistrationFunction: AbortRegistrationFunction,
+                          dockerRegistryApiClient: DockerRegistryApiClient)
+  extends BackendCall with LocalFileSystemBackendCall {
   val workflowRootPath = LocalBackend.hostExecutionPath(workflowDescriptor)
   val callRootPath = LocalBackend.hostCallPath(workflowDescriptor, call.unqualifiedName, key.index)
   val stdout = callRootPath.resolve("stdout")

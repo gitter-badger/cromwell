@@ -12,6 +12,7 @@ import cromwell.engine.db.ExecutionDatabaseKey
 import cromwell.engine.workflow.{CallKey, WorkflowOptions}
 import cromwell.logging.WorkflowLogger
 import cromwell.parser.BackendType
+import cromwell.util.docker.DockerRegistryApiClient
 import org.slf4j.LoggerFactory
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -72,7 +73,8 @@ trait Backend {
   def bindCall(workflowDescriptor: WorkflowDescriptor,
                key: CallKey,
                locallyQualifiedInputs: CallInputs,
-               abortRegistrationFunction: AbortRegistrationFunction): BackendCall
+               abortRegistrationFunction: AbortRegistrationFunction,
+               dockerRegistryApiClient: DockerRegistryApiClient): BackendCall
 
   /**
    * Engine functions that don't need a Call context (e.g. read_lines(), read_float(), etc)

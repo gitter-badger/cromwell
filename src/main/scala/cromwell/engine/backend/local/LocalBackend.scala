@@ -13,6 +13,7 @@ import cromwell.engine.db.{CallStatus, ExecutionDatabaseKey}
 import cromwell.engine.workflow.CallKey
 import cromwell.parser.BackendType
 import cromwell.util.FileUtil._
+import cromwell.util.docker.DockerRegistryApiClient
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.language.postfixOps
@@ -85,8 +86,10 @@ class LocalBackend extends Backend with SharedFileSystem {
   override def bindCall(workflowDescriptor: WorkflowDescriptor,
                         key: CallKey,
                         locallyQualifiedInputs: CallInputs,
-                        abortRegistrationFunction: AbortRegistrationFunction): BackendCall = {
-    LocalBackendCall(this, workflowDescriptor, key, locallyQualifiedInputs, abortRegistrationFunction)
+                        abortRegistrationFunction: AbortRegistrationFunction,
+                        dockerRegistryApiClient: DockerRegistryApiClient): BackendCall = {
+    LocalBackendCall(this, workflowDescriptor, key, locallyQualifiedInputs, abortRegistrationFunction,
+      dockerRegistryApiClient)
   }
 
   def execute(backendCall: BackendCall)(implicit ec: ExecutionContext): Future[ExecutionHandle] = Future {

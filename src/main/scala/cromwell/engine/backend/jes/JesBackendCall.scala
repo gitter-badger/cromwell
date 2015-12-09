@@ -12,6 +12,7 @@ import cromwell.engine.backend.{BackendCall, CallLogs, JobKey, _}
 import cromwell.engine.workflow.CallKey
 import cromwell.engine.{AbortRegistrationFunction, WorkflowDescriptor}
 import cromwell.util.StringUtil._
+import cromwell.util.docker.DockerRegistryApiClient
 import cromwell.util.google.GcsPath
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -47,7 +48,8 @@ class JesBackendCall(val backend: JesBackend,
                      val workflowDescriptor: WorkflowDescriptor,
                      val key: CallKey,
                      val locallyQualifiedInputs: CallInputs,
-                     val callAbortRegistrationFunction: AbortRegistrationFunction)
+                     val callAbortRegistrationFunction: AbortRegistrationFunction,
+                     val dockerRegistryApiClient: DockerRegistryApiClient)
   extends BackendCall with ProductionJesAuthentication with LazyLogging {
 
   import JesBackend._

@@ -16,6 +16,7 @@ import cromwell.engine.db.ExecutionDatabaseKey
 import cromwell.engine.db.slick._
 import cromwell.engine.workflow.WorkflowActor.{Restart, Start}
 import cromwell.util.WriteOnceStore
+import cromwell.util.docker.{SprayDockerRegistryApiClient, DockerRegistryApiClient}
 import cromwell.webservice._
 import org.joda.time.DateTime
 import spray.json._
@@ -69,6 +70,7 @@ class WorkflowManagerActor(backend: Backend) extends Actor with CromwellActor {
   type WorkflowActorRef = ActorRef
 
   private val workflowStore = new WriteOnceStore[WorkflowId, WorkflowActorRef]
+  private val dockerRegistryApiClient: DockerRegistryApiClient = new SprayDockerRegistryApiClient()(context.system)
 
   override def preStart() {
     restartIncompleteWorkflows()
@@ -247,7 +249,8 @@ class WorkflowManagerActor(backend: Backend) extends Actor with CromwellActor {
 
     val futureId = for {
       descriptor <- Future.fromTry(Try(new WorkflowDescriptor(workflowId, source)))
-      workflowActor = context.actorOf(WorkflowActor.props(descriptor, backend), s"WorkflowActor-$workflowId")
+      workflowActor = context.actorOf(WorkflowActor.props(descriptor, backend, dockerRegistryApiClient),
+        s"WorkflowActor-$workflowId")
       _ <- Future.fromTry(workflowStore.insert(workflowId, workflowActor))
       _ <- workflowActor ? (if (isRestart) Restart else Start)
     } yield workflowId

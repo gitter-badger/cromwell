@@ -6,6 +6,7 @@ import cromwell.binding.values.WdlValue
 import cromwell.engine.backend.local.{LocalBackend, LocalBackendCall}
 import cromwell.engine.workflow.CallKey
 import cromwell.engine.{AbortRegistrationFunction, WorkflowDescriptor, WorkflowId, WorkflowSourceFiles}
+import cromwell.util.docker.DockerRegistryApiClient
 import org.scalatest.{FlatSpec, Matchers}
 
 class WorkflowLoggerSpec extends FlatSpec with Matchers {
@@ -18,12 +19,14 @@ class WorkflowLoggerSpec extends FlatSpec with Matchers {
     )
   )
   val backend = new LocalBackend()
+  val dockerRegistryApiClient: DockerRegistryApiClient = null // Not used in this test.
   val backendCall = LocalBackendCall(
     backend,
     descriptor,
     CallKey(descriptor.namespace.workflow.calls.find(_.unqualifiedName == "x").head, None),
     Map.empty[String, WdlValue],
-    AbortRegistrationFunction(_ => ())
+    AbortRegistrationFunction(_ => ()),
+    dockerRegistryApiClient
   )
 
   "WorkflowLogger" should "create a valid tag" in {

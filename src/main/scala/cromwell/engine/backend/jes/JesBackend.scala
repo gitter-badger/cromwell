@@ -23,6 +23,7 @@ import cromwell.engine.{AbortRegistrationFunction, WorkflowDescriptor, _}
 import cromwell.logging.WorkflowLogger
 import cromwell.parser.BackendType
 import cromwell.util.StringUtil._
+import cromwell.util.docker.DockerRegistryApiClient
 import cromwell.util.google.{GcsPath, GoogleCloudStorage, GoogleCredentialFactory}
 import cromwell.util.{AggregatedException, TryUtil}
 
@@ -259,8 +260,10 @@ class JesBackend extends Backend with LazyLogging with ProductionJesAuthenticati
   override def bindCall(workflowDescriptor: WorkflowDescriptor,
                         key: CallKey,
                         locallyQualifiedInputs: CallInputs,
-                        abortRegistrationFunction: AbortRegistrationFunction): BackendCall = {
-    new JesBackendCall(this, workflowDescriptor, key, locallyQualifiedInputs, abortRegistrationFunction)
+                        abortRegistrationFunction: AbortRegistrationFunction,
+                        dockerRegistryApiClient: DockerRegistryApiClient): BackendCall = {
+    new JesBackendCall(this, workflowDescriptor, key, locallyQualifiedInputs, abortRegistrationFunction,
+      dockerRegistryApiClient)
   }
 
   override def engineFunctions(interface: IOInterface): WdlStandardLibraryFunctions = new JesEngineFunctionsWithoutCallContext(interface)

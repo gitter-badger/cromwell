@@ -9,6 +9,7 @@ import cromwell.engine.backend._
 import cromwell.engine.workflow.CallKey
 import cromwell.engine.{AbortRegistrationFunction, WorkflowDescriptor}
 import cromwell.util.SampleWdl
+import cromwell.util.docker.SprayDockerRegistryApiClient
 import org.specs2.mock.Mockito
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -39,7 +40,8 @@ class LocalBackendSpec extends CromwellTestkitSpec("LocalBackendSpec") with Mock
   def testFailOnStderr(descriptor: WorkflowDescriptor, expectSuccess: Boolean): Unit = {
     val call = descriptor.namespace.workflow.calls.head
     val backend = new LocalBackend()
-    val backendCall = backend.bindCall(descriptor, CallKey(call, None), Map.empty[String, WdlValue], AbortRegistrationFunction(_ => ()))
+    val backendCall = backend.bindCall(descriptor, CallKey(call, None), Map.empty[String, WdlValue],
+      AbortRegistrationFunction(_ => ()), new SprayDockerRegistryApiClient)
     backendCall.execute map { _.result } map {
       case FailedExecution(e, _) => if (expectSuccess) fail("A call in a failOnStderr test which should have succeeded has failed ", e)
       case SuccessfulExecution(_, _, _) => if (!expectSuccess) fail("A call in a failOnStderr test which should have failed has succeeded")

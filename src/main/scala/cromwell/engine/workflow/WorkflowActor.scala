@@ -19,6 +19,7 @@ import cromwell.engine.workflow.WorkflowActor._
 import cromwell.instrumentation.Instrumentation.Monitor
 import cromwell.logging.WorkflowLogger
 import cromwell.util.TerminalUtil
+import cromwell.util.docker.DockerRegistryApiClient
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -152,8 +153,8 @@ object WorkflowActor {
     }
   }
 
-  def props(descriptor: WorkflowDescriptor, backend: Backend): Props = {
-    Props(WorkflowActor(descriptor, backend))
+  def props(descriptor: WorkflowDescriptor, backend: Backend, dockerRegistryApiClient: DockerRegistryApiClient): Props = {
+    Props(WorkflowActor(descriptor, backend, dockerRegistryApiClient))
   }
 
   case class WorkflowData(startMode: Option[StartMode] = None, pendingExecutions: Map[ExecutionStoreKey, Set[ExecutionStatus]] = Map.empty) {
@@ -211,7 +212,8 @@ object WorkflowActor {
   private val MarkdownMaxColumnChars = 100
 }
 
-case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend)
+case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend,
+                         dockerRegistryApiClient: DockerRegistryApiClient)
   extends LoggingFSM[WorkflowState, WorkflowData] with CromwellActor {
 
   lazy implicit val hasher = backend.fileHasher(workflow)
@@ -614,7 +616,7 @@ case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend)
     }
 
     val callActorName = s"CallActor-${workflow.id}-${callKey.tag}"
-    val callActorProps = CallActor.props(callKey, locallyQualifiedInputs, backend, workflow)
+    val callActorProps = CallActor.props(callKey, locallyQualifiedInputs, backend, workflow, dockerRegistryApiClient)
     val callActor = context.actorOf(callActorProps, callActorName)
     callActor ! callActorMessage
     logger.info(s"created call actor for ${callKey.tag}.")
@@ -968,7 +970,8 @@ case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend)
 
   private def sendStartMessage(callKey: CallKey, callInputs: Map[String, WdlValue]) = {
     def registerAbortFunction(abortFunction: AbortFunction): Unit = {}
-    val backendCall = backend.bindCall(workflow, callKey, callInputs, AbortRegistrationFunction(registerAbortFunction))
+    val backendCall = backend.bindCall(workflow, callKey, callInputs, AbortRegistrationFunction(registerAbortFunction),
+      dockerRegistryApiClient)
     val log = backendCall.workflowLoggerWithCall
 
     def loadCachedBackendCallAndMessage(descriptor: WorkflowDescriptor, cachedExecution: Execution) = {
@@ -978,7 +981,8 @@ case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend)
             descriptor,
             CallKey(c, cachedExecution.index.toIndex),
             callInputs,
-            AbortRegistrationFunction(registerAbortFunction)
+            AbortRegistrationFunction(registerAbortFunction),
+            dockerRegistryApiClient
           )
           log.info(s"Call Caching: Cache hit. Using UUID(${cachedCall.workflowDescriptor.shortId}):${cachedCall.call.unqualifiedName} as results for UUID(${backendCall.workflowDescriptor.shortId}):${backendCall.call.unqualifiedName}")
           self ! UseCachedCall(callKey, CallActor.UseCachedCall(cachedCall, backendCall))

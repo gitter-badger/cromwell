@@ -7,6 +7,7 @@ import cromwell.engine.WorkflowDescriptor
 import cromwell.engine.workflow.CallKey
 import cromwell.logging.WorkflowLogger
 import cromwell.util.StringUtil._
+import cromwell.util.docker.DockerRegistryApiClient
 import org.slf4j.LoggerFactory
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -131,7 +132,10 @@ trait BackendCall {
     throw new NotImplementedError(s"resume() called on a non-resumable BackendCall: $this")
   }
 
-  def useCachedCall(cachedBackendCall: BackendCall)(implicit ec: ExecutionContext): Future[ExecutionHandle] = ???
+  def useCachedCall(cachedBackendCall: BackendCall)(implicit ec: ExecutionContext): Future[ExecutionHandle] =
+    throw new NotImplementedError()
+
+  def dockerRegistryApiClient: DockerRegistryApiClient
 
   /**
    * Compute a hash that uniquely identifies this call

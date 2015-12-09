@@ -13,6 +13,7 @@ import cromwell.engine.db.slick.Execution
 import cromwell.engine.workflow.{CallKey, WorkflowActor}
 import cromwell.logging.WorkflowLogger
 import cromwell.instrumentation.Instrumentation.Monitor
+import cromwell.util.docker.DockerRegistryApiClient
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -72,12 +73,14 @@ object CallActor {
 
   val CallCounter = Monitor.minMaxCounter("calls-running")
 
-  def props(key: CallKey, locallyQualifiedInputs: CallInputs, backend: Backend, workflowDescriptor: WorkflowDescriptor): Props =
-    Props(new CallActor(key, locallyQualifiedInputs, backend, workflowDescriptor))
+  def props(key: CallKey, locallyQualifiedInputs: CallInputs, backend: Backend, workflowDescriptor: WorkflowDescriptor,
+            dockerRegistryApiClient: DockerRegistryApiClient): Props =
+    Props(new CallActor(key, locallyQualifiedInputs, backend, workflowDescriptor, dockerRegistryApiClient))
 }
 
 /** Actor to manage the execution of a single call. */
-class CallActor(key: CallKey, locallyQualifiedInputs: CallInputs, backend: Backend, workflowDescriptor: WorkflowDescriptor)
+class CallActor(key: CallKey, locallyQualifiedInputs: CallInputs, backend: Backend,
+                workflowDescriptor: WorkflowDescriptor, dockerRegistryApiClient: DockerRegistryApiClient)
   extends LoggingFSM[CallActorState, CallActorData] with CromwellActor {
 
   import CallActor._
@@ -111,7 +114,8 @@ class CallActor(key: CallKey, locallyQualifiedInputs: CallInputs, backend: Backe
       // There's no special Retry/Ack handling required for CallStarted message, the WorkflowActor can always
       // handle those immediately.
       context.parent ! WorkflowActor.CallStarted(key)
-      val backendCall = backend.bindCall(workflowDescriptor, key, locallyQualifiedInputs, AbortRegistrationFunction(registerAbortFunction))
+      val backendCall = backend.bindCall(workflowDescriptor, key, locallyQualifiedInputs,
+        AbortRegistrationFunction(registerAbortFunction), dockerRegistryApiClient)
       val executionActorName = s"CallExecutionActor-${workflowDescriptor.id}-${call.unqualifiedName}"
       context.actorOf(CallExecutionActor.props(backendCall), executionActorName) ! startMode.executionMessage
       goto(CallRunningAbortUnavailable)

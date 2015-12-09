@@ -10,6 +10,7 @@ import cromwell.engine.workflow.WorkflowActor
 import cromwell.engine.workflow.WorkflowActor._
 import cromwell.util.SampleWdl
 import cromwell.util.SampleWdl.HelloWorld.Addressee
+import cromwell.util.docker.SprayDockerRegistryApiClient
 import org.scalatest.Ignore
 
 import scala.concurrent.duration._
@@ -22,7 +23,7 @@ class SimpleWorkflowActorSpec extends CromwellTestkitSpec("SimpleWorkflowActorSp
   TestFSMRef[WorkflowState, WorkflowData, WorkflowActor] = {
     val workflowSources = WorkflowSourceFiles(sampleWdl.wdlSource(), rawInputsOverride, "{}")
     val descriptor = WorkflowDescriptor(WorkflowId(UUID.randomUUID()), workflowSources)
-    TestFSMRef(new WorkflowActor(descriptor, new LocalBackend))
+    TestFSMRef(new WorkflowActor(descriptor, new LocalBackend, new SprayDockerRegistryApiClient))
   }
 
   val TestExecutionTimeout = 5.seconds.dilated
