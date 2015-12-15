@@ -246,7 +246,7 @@ class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {
 
     it should "support call caching configuration for specified calls in a regular workflow" in {
       assume(canConnect || testRequired)
-      val workflowInfo = new WorkflowDescriptor(WorkflowId(UUID.randomUUID()), SampleWdl.ThreeStep.asWorkflowSources())
+      val workflowInfo = WorkflowDescriptor(WorkflowId(UUID.randomUUID()), SampleWdl.ThreeStep.asWorkflowSources())
 
       (for {
         _ <- dataAccess.createWorkflow(workflowInfo, Nil, workflowInfo.namespace.workflow.calls, localBackend)
@@ -270,7 +270,7 @@ class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {
 
     it should "support call caching configuration for specified calls in a scattered workflow" in {
       assume(canConnect || testRequired)
-      val workflowInfo = new WorkflowDescriptor(WorkflowId(UUID.randomUUID()), SampleWdl.SimpleScatterWdl.asWorkflowSources())
+      val workflowInfo = WorkflowDescriptor(WorkflowId(UUID.randomUUID()), SampleWdl.SimpleScatterWdl.asWorkflowSources())
 
       (for {
         // The `inside_scatter` is a to-be-exploded placeholder, but it will conflict with the collector that the
@@ -313,7 +313,7 @@ class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {
     it should "support call caching configuration for all calls in a regular workflow" in {
       assume(canConnect || testRequired)
 
-      val workflowInfo = new WorkflowDescriptor(WorkflowId(UUID.randomUUID()), SampleWdl.ThreeStep.asWorkflowSources())
+      val workflowInfo = WorkflowDescriptor(WorkflowId(UUID.randomUUID()), SampleWdl.ThreeStep.asWorkflowSources())
       (for {
         _ <- dataAccess.createWorkflow(workflowInfo, Nil, workflowInfo.namespace.workflow.calls, localBackend)
         // Unknown workflow
@@ -331,7 +331,7 @@ class SlickDataAccessSpec extends FlatSpec with Matchers with ScalaFutures {
     it should "support call caching configuration for all calls in a scattered workflow" in {
       assume(canConnect || testRequired)
 
-      val workflowInfo = new WorkflowDescriptor(WorkflowId(UUID.randomUUID()), SampleWdl.SimpleScatterWdl.asWorkflowSources())
+      val workflowInfo = WorkflowDescriptor(WorkflowId(UUID.randomUUID()), SampleWdl.SimpleScatterWdl.asWorkflowSources())
       (for {
         // The `inside_scatter` is a to-be-exploded placeholder, but it will conflict with the collector that the
         // scatter explodes below so filter that out.

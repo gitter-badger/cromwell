@@ -51,7 +51,10 @@ class MockWorkflowManagerActor extends Actor  {
 
   def receive = {
     case SubmitWorkflow(sources) =>
-      sender ! MockWorkflowManagerActor.submittedWorkflowId
+      Future {
+        val id = MockWorkflowManagerActor.submittedWorkflowId
+        val descriptor = WorkflowDescriptor(id, sources)
+      } pipeTo sender
 
     case WorkflowStatus(id) =>
       val msg = id match {
@@ -344,12 +347,8 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
     Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> CromwellApiServiceSpec.MalformedInputsJson))) ~>
       submitRoute ~>
       check {
-        assertResult("Expecting JSON object for workflowInputs and workflowOptions fields") {
-          responseAs[String]
-        }
-        assertResult(StatusCodes.BadRequest) {
-          status
-        }
+        assertResult(StatusCodes.BadRequest) { status }
+        assertResult(true) { responseAs[String].contains("contains bad inputs JSON") }
       }
   }
 
@@ -357,12 +356,9 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
     Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> HelloWorld.rawInputs.toJson.toString(), "workflowOptions" -> CromwellApiServiceSpec.MalformedInputsJson))) ~>
       submitRoute ~>
       check {
-        assertResult("Expecting JSON object for workflowInputs and workflowOptions fields") {
-          responseAs[String]
-        }
-        assertResult(StatusCodes.BadRequest) {
-          status
-        }
+        assertResult(StatusCodes.BadRequest) { status }
+        val x = responseAs[String]
+        assertResult(true) { responseAs[String].contains("contains bad options JSON") }
       }
   }
 

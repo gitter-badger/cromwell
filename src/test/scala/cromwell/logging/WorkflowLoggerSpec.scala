@@ -6,7 +6,7 @@ import cromwell.CromwellTestkitSpec
 import cromwell.binding.values.WdlValue
 import cromwell.engine.backend.local.{LocalBackend, LocalBackendCall}
 import cromwell.engine.workflow.CallKey
-import cromwell.engine.{AbortRegistrationFunction, WorkflowDescriptor, WorkflowId, WorkflowSourceFiles}
+import cromwell.engine.{WorkflowDescriptor, AbortRegistrationFunction, WorkflowId, WorkflowSourceFiles}
 import org.scalatest.{FlatSpec, Matchers}
 
 class WorkflowLoggerSpec extends FlatSpec with Matchers {
