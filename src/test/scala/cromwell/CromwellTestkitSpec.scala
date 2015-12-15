@@ -9,8 +9,7 @@ import better.files.File
 import com.typesafe.config.ConfigFactory
 import cromwell.CromwellTestkitSpec._
 import cromwell.binding._
-import cromwell.binding.types.WdlType
-import cromwell.binding.values.{WdlString, WdlArray, WdlFile, WdlValue}
+import cromwell.binding.values.{WdlArray, WdlFile, WdlString, WdlValue}
 import cromwell.engine.ExecutionIndex.ExecutionIndex
 import cromwell.engine._
 import cromwell.engine.backend.CallLogs
@@ -25,7 +24,6 @@ import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.language.postfixOps
 import scala.reflect.ClassTag
-import scala.util.{Failure, Success}
 import scala.util.matching.Regex
 
 object CromwellTestkitSpec {

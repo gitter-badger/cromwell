@@ -140,12 +140,25 @@ trait BackendCall {
   /**
    * Compute a hash that uniquely identifies this call
    */
-  def hash: String = {
+  def hash(implicit ec: ExecutionContext): Future[String] = {
+    val runtime = call.task.runtimeAttributes
+    for {
+      dockerHash <- dockerHash(runtime)
+    } yield hash(runtime, dockerHash)
+  }
+
+  private def dockerHash(runtime: RuntimeAttributes)(implicit ec: ExecutionContext): Future[String] = {
+    runtime.docker match {
+      case Some(id) => dockerRegistryApiClient.getDockerHash(id).map(_.digest)
+      case None => Future("")
+    }
+  }
+
+  private def hash(runtime: RuntimeAttributes, dockerHash: String): String = {
     val orderedInputs = locallyQualifiedInputs.toSeq.sortBy(_._1)
     val orderedOutputs = call.task.outputs.sortWith((l, r) => l.name > r.name)
-    val runtime = call.task.runtimeAttributes
     val orderedRuntime = Seq(
-      ("docker", runtime.docker.getOrElse("")),
+      ("docker", dockerHash),
       ("defaultZones", runtime.defaultZones.sorted.mkString(",")),
       ("failOnStderr", runtime.failOnStderr.toString),
       ("continueOnReturnCode", runtime.continueOnReturnCode match {

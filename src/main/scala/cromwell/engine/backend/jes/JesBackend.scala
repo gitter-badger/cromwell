@@ -291,22 +291,31 @@ class JesBackend extends Backend with LazyLogging with ProductionJesAuthenticati
     executeOrResume(backendCall, runIdForResumption = runId)
   }
 
-  def useCachedCall(cachedCall: BackendCall, backendCall: BackendCall)(implicit ec: ExecutionContext): Future[ExecutionHandle] = Future {
+  def useCachedCall(cachedCall: BackendCall, backendCall: BackendCall)(implicit ec: ExecutionContext):
+  Future[ExecutionHandle] = {
+    // TODO: Changed the way the future was composed, so exception handling is slightly different.
     val log = workflowLoggerWithCall(backendCall)
     authenticateAsUser(backendCall.workflowDescriptor) { interface =>
       Try(interface.copy(cachedCall.callGcsPath, backendCall.callGcsPath)) match {
         case Failure(ex) =>
-          log.error(s"Exception occurred while attempting to copy outputs from ${cachedCall.callGcsPath} to ${backendCall.callGcsPath}", ex)
-          FailedExecutionHandle(ex)
+          Future {
+            log.error("Exception occurred while attempting to copy outputs from " +
+              s"${cachedCall.callGcsPath} to ${backendCall.callGcsPath}", ex)
+            FailedExecutionHandle(ex)
+          }
         case Success(_) => postProcess(backendCall) match {
-          case Success(outputs) => SuccessfulExecutionHandle(outputs, backendCall.downloadRcFile.get.stripLineEnd.toInt, backendCall.hash)
+          case Success(outputs) => backendCall.hash map { hash =>
+            SuccessfulExecutionHandle(outputs, backendCall.downloadRcFile.get.stripLineEnd.toInt, hash)
+          }
           case Failure(ex: AggregatedException) if ex.exceptions collectFirst { case s: SocketTimeoutException => s } isDefined =>
-            // TODO: What can we return here to retry this operation?
-            // TODO: This match clause is similar to handleSuccess(), though it's subtly different for this specific case
-            val error = "Socket timeout occurred in evaluating one or more of the output expressions"
-            log.error(error, ex)
-            FailedExecutionHandle(new Throwable(error, ex))
-          case Failure(ex) => FailedExecutionHandle(ex)
+            Future {
+              // TODO: What can we return here to retry this operation?
+              // TODO: This match clause is similar to handleSuccess(), though it's subtly different for this specific case
+              val error = "Socket timeout occurred in evaluating one or more of the output expressions"
+              log.error(error, ex)
+              FailedExecutionHandle(new Throwable(error, ex))
+            }
+          case Failure(ex) => Future(FailedExecutionHandle(ex))
         }
       }
     }
@@ -481,7 +490,8 @@ class JesBackend extends Backend with LazyLogging with ProductionJesAuthenticati
     TryUtil.sequenceMap(outputMappings).map(_.mapValues(v => CallOutput(v, v.getHash(fileHasher(backendCall.workflowDescriptor)))))
   }
 
-  def executionResult(status: RunStatus, handle: JesPendingExecutionHandle): ExecutionHandle = {
+  def executionResult(status: RunStatus, handle: JesPendingExecutionHandle)
+                     (implicit ec: ExecutionContext): Future[ExecutionHandle] = {
     val log = workflowLoggerWithCall(handle.backendCall)
 
     try {
@@ -494,31 +504,40 @@ class JesBackend extends Backend with LazyLogging with ProductionJesAuthenticati
 
       status match {
         case Run.Success if backendCall.call.failOnStderr && stderrLength.intValue > 0 =>
-          FailedExecutionHandle(new Throwable(s"${log.tag} execution failed: stderr has length $stderrLength"))
+          Future(FailedExecutionHandle(new Throwable(s"${log.tag} execution failed: stderr has length $stderrLength")))
         case Run.Success if returnCodeContents.isFailure =>
-          val exception = returnCode.failed.get
-          log.warn(s"${log.tag} could not download return code file, retrying: " + exception.getMessage, exception)
-          // Return handle to try again.
-          handle
+          Future {
+            val exception = returnCode.failed.get
+            log.warn(s"${log.tag} could not download return code file, retrying: " + exception.getMessage, exception)
+            // Return handle to try again.
+            handle
+          }
         case Run.Success if returnCode.isFailure =>
-          FailedExecutionHandle(new Throwable(s"${log.tag} execution failed: could not parse return code as integer: " + returnCodeContents.get))
+          Future(FailedExecutionHandle(new Throwable(
+            s"${log.tag} execution failed: could not parse return code as integer: " + returnCodeContents.get)))
         case Run.Success if !continueOnReturnCode.continueFor(returnCode.get) =>
-          FailedExecutionHandle(new Throwable(s"${log.tag} execution failed: disallowed command return code: " + returnCode.get))
+          Future(FailedExecutionHandle(new Throwable(
+            s"${log.tag} execution failed: disallowed command return code: " + returnCode.get)))
         case Run.Success =>
           handleSuccess(outputMappings, backendCall.workflowDescriptor, returnCode.get, backendCall.hash, handle)
         case Run.Failed(errorCode, errorMessage) =>
-          val throwable = if (errorMessage contains "Operation canceled at") {
-            new TaskAbortedException()
-          } else {
-            new Throwable(s"Task ${backendCall.workflowDescriptor.id}:${backendCall.call.unqualifiedName} failed: error code $errorCode. Message: $errorMessage")
+          Future {
+            val throwable = if (errorMessage contains "Operation canceled at") {
+              new TaskAbortedException()
+            } else {
+              new Throwable(s"Task ${backendCall.workflowDescriptor.id}:${backendCall.call.unqualifiedName} " +
+                s"failed: error code $errorCode. Message: $errorMessage")
+            }
+            FailedExecutionHandle(throwable, Option(errorCode))
           }
-          FailedExecutionHandle(throwable, Option(errorCode))
       }
     } catch {
       case e: Exception =>
-        log.warn("Caught exception trying to download result, retrying: " + e.getMessage, e)
-        // Return the original handle to try again.
-        handle
+        Future {
+          log.warn("Caught exception trying to download result, retrying: " + e.getMessage, e)
+          // Return the original handle to try again.
+          handle
+        }
     }
   }
 
@@ -548,14 +567,15 @@ class JesBackend extends Backend with LazyLogging with ProductionJesAuthenticati
   private def handleSuccess(outputMappings: Try[CallOutputs],
                             workflowDescriptor: WorkflowDescriptor,
                             returnCode: Int,
-                            hash: String,
-                            executionHandle: ExecutionHandle): ExecutionHandle = {
+                            hash: Future[String],
+                            executionHandle: ExecutionHandle)
+                           (implicit ec: ExecutionContext): Future[ExecutionHandle] = {
     outputMappings match {
-      case Success(outputs) => SuccessfulExecutionHandle(outputs, returnCode, hash)
+      case Success(outputs) => hash.map(SuccessfulExecutionHandle(outputs, returnCode, _))
       case Failure(ex: AggregatedException) if ex.exceptions collectFirst { case s: SocketTimeoutException => s } isDefined =>
         // Return the execution handle in this case to retry the operation
-        executionHandle
-      case Failure(ex) => FailedExecutionHandle(ex)
+        Future.successful(executionHandle)
+      case Failure(ex) => Future(FailedExecutionHandle(ex))
     }
   }
 

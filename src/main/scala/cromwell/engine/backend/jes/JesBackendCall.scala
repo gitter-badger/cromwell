@@ -81,24 +81,24 @@ class JesBackendCall(val backend: JesBackend,
 
   override def execute(implicit ec: ExecutionContext) = backend.execute(this)
 
-  override def poll(previous: ExecutionHandle)(implicit ec: ExecutionContext) = Future {
+  override def poll(previous: ExecutionHandle)(implicit ec: ExecutionContext) = {
     previous match {
       case handle: JesPendingExecutionHandle =>
         val status = Try(handle.run.checkStatus(this, handle.previousStatus))
         status match {
           case Success(s: TerminalRunStatus) => backend.executionResult(s, handle)
-          case Success(s) => handle.copy(previousStatus = Option(s)) // Copy the current handle with updated previous status.
+          case Success(s) => Future(handle.copy(previousStatus = Option(s))) // Copy the current handle with updated previous status.
           case Failure(e: Exception) =>
             // Log exceptions and return the original handle to try again.
             logger.warn("Caught exception, retrying: " + e.getMessage, e)
-            handle
+            Future(handle)
           case Failure(e: Error) => throw e // JVM-ending calamity.
           case Failure(throwable) =>
             // Someone has subclassed Throwable directly?  Beware the jackwagons, fail the execution/workflow.
-            FailedExecutionHandle(throwable)
+            Future(FailedExecutionHandle(throwable))
         }
-      case f: FailedExecutionHandle => f
-      case s: SuccessfulExecutionHandle => s
+      case f: FailedExecutionHandle => Future(f)
+      case s: SuccessfulExecutionHandle => Future(s)
       case badHandle => throw new IllegalArgumentException(s"Unexpected execution handle: $badHandle")
     }
   }

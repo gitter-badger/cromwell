@@ -1001,18 +1001,23 @@ case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend,
     }
 
     if (backendCall.workflowDescriptor.readFromCache) {
-      val hash = backendCall.hash
-      globalDataAccess.getExecutionsWithResuableResultsByHash(hash) onComplete {
-        case Success(executions) if executions.nonEmpty =>
-          val cachedExecution = executions.head
-          globalDataAccess.getWorkflow(cachedExecution.workflowExecutionId) onComplete { cachedDescriptor =>
-            loadCachedCallOrInitiateCall(cachedDescriptor, cachedExecution)
+      backendCall.hash onComplete {
+        case Success(hash) =>
+          globalDataAccess.getExecutionsWithResuableResultsByHash(hash) onComplete {
+            case Success(executions) if executions.nonEmpty =>
+              val cachedExecution = executions.head
+              globalDataAccess.getWorkflow(cachedExecution.workflowExecutionId) onComplete { cachedDescriptor =>
+                loadCachedCallOrInitiateCall(cachedDescriptor, cachedExecution)
+              }
+            case Success(_) =>
+              log.info(s"Call Caching: cache miss")
+              self ! InitialStartCall(callKey, CallActor.Start)
+            case Failure(ex) =>
+              log.error(s"Call Caching: Failed to look up executions that matched hash '$hash'. Falling back to normal execution", ex)
+              self ! InitialStartCall(callKey, CallActor.Start)
           }
-        case Success(_) =>
-          log.info(s"Call Caching: cache miss")
-          self ! InitialStartCall(callKey, CallActor.Start)
         case Failure(ex) =>
-          log.error(s"Call Caching: Failed to look up executions that matched hash '$hash'. Falling back to normal execution", ex)
+          logger.error("Call Caching: Failed to generate hash. Falling back to normal execution", ex)
           self ! InitialStartCall(callKey, CallActor.Start)
       }
     } else {

@@ -92,18 +92,19 @@ class LocalBackend extends Backend with SharedFileSystem {
       dockerRegistryApiClient)
   }
 
-  def execute(backendCall: BackendCall)(implicit ec: ExecutionContext): Future[ExecutionHandle] = Future {
+  def execute(backendCall: BackendCall)(implicit ec: ExecutionContext): Future[ExecutionHandle] = {
     val logger = workflowLoggerWithCall(backendCall)
     backendCall.instantiateCommand match {
       case Success(instantiatedCommand) =>
         logger.info(s"`$instantiatedCommand`")
         writeScript(backendCall, instantiatedCommand, backendCall.containerCallRoot)
         runSubprocess(backendCall)
-      case Failure(ex) => FailedExecution(ex)
+      case Failure(ex) => Future(FailedExecution(ex))
     }
   } map CompletedExecutionHandle
 
-  def useCachedCall(cachedBackendCall: BackendCall, backendCall: BackendCall)(implicit ec: ExecutionContext): Future[ExecutionHandle] = Future {
+  def useCachedCall(cachedBackendCall: BackendCall, backendCall: BackendCall)
+                   (implicit ec: ExecutionContext): Future[ExecutionHandle] = {
     val source = cachedBackendCall.callRootPath.toAbsolutePath.toString
     val dest = backendCall.callRootPath.toAbsolutePath.toString
     val outputs = for {
@@ -112,8 +113,14 @@ class LocalBackend extends Backend with SharedFileSystem {
     } yield outputs
 
     outputs match {
-      case Success(o) => CompletedExecutionHandle(SuccessfulExecution(o, cachedBackendCall.returnCode.contentAsString.stripLineEnd.toInt, cachedBackendCall.hash))
-      case Failure(ex) => FailedExecutionHandle(ex)
+      case Success(o) =>
+        cachedBackendCall.hash map { hash =>
+          CompletedExecutionHandle(SuccessfulExecution(
+            o, cachedBackendCall.returnCode.contentAsString.stripLineEnd.toInt, hash))
+        } recover {
+          case ex => FailedExecutionHandle(ex)
+        }
+      case Failure(ex) => Future(FailedExecutionHandle(ex))
     }
   }
 
@@ -160,7 +167,7 @@ class LocalBackend extends Backend with SharedFileSystem {
   }
 
 
-  private def runSubprocess(backendCall: BackendCall): ExecutionResult = {
+  private def runSubprocess(backendCall: BackendCall)(implicit ec: ExecutionContext): Future[ExecutionResult] = {
     val logger = workflowLoggerWithCall(backendCall)
     val stdoutWriter = backendCall.stdout.untailed
     val stderrTailed = backendCall.stderr.tailed(100)
@@ -188,16 +195,20 @@ class LocalBackend extends Backend with SharedFileSystem {
       }
     )
     if (backendCall.call.failOnStderr && stderrFileLength > 0) {
-      FailedExecution(new Throwable(s"Call ${backendCall.call.fullyQualifiedName}, " +
-        s"Workflow ${backendCall.workflowDescriptor.id}: stderr has length $stderrFileLength"))
+      Future(FailedExecution(new Throwable(s"Call ${backendCall.call.fullyQualifiedName}, " +
+        s"Workflow ${backendCall.workflowDescriptor.id}: stderr has length $stderrFileLength")))
     } else {
 
-      def processSuccess(rc: Int) = {
+      def processSuccess(rc: Int)(implicit ec: ExecutionContext): Future[ExecutionResult] = {
         postProcess(backendCall) match {
-          case Success(outputs) => SuccessfulExecution(outputs, rc, backendCall.hash)
+          case Success(outputs) => backendCall.hash map { hash =>
+            SuccessfulExecution(outputs, rc, hash)
+          } recover {
+            case e => FailedExecution(e)
+          }
           case Failure(e) =>
             val message = Option(e.getMessage) map { ": " + _ } getOrElse ""
-            FailedExecution(new Throwable("Failed post processing of outputs" + message, e))
+            Future(FailedExecution(new Throwable("Failed post processing of outputs" + message, e)))
         }
       }
 
@@ -211,10 +222,12 @@ class LocalBackend extends Backend with SharedFileSystem {
 
       val continueOnReturnCode = backendCall.call.continueOnReturnCode
       returnCode match {
-        case Success(143) => AbortedExecution // Special case to check for SIGTERM exit code - implying abort
-        case Success(otherReturnCode) if continueOnReturnCode.continueFor(otherReturnCode) => processSuccess(otherReturnCode)
-        case Success(badReturnCode) => FailedExecution(new Exception(badReturnCodeMessage), Option(badReturnCode))
-        case Failure(e) => FailedExecution(new Throwable(badReturnCodeMessage, e))
+        case Success(143) => Future(AbortedExecution) // Special case to check for SIGTERM exit code - implying abort
+        case Success(otherReturnCode) if continueOnReturnCode.continueFor(otherReturnCode) =>
+          processSuccess(otherReturnCode)
+        case Success(badReturnCode) =>
+          Future(FailedExecution(new Exception(badReturnCodeMessage), Option(badReturnCode)))
+        case Failure(e) => Future(FailedExecution(new Throwable(badReturnCodeMessage, e)))
       }
     }
   }
