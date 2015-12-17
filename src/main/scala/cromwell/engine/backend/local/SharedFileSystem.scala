@@ -18,6 +18,7 @@ import cromwell.engine.workflow.{CallKey, WorkflowOptions}
 import cromwell.util.TryUtil
 import org.apache.commons.io.FileUtils
 import scala.collection.JavaConverters._
+import scala.concurrent.{Future, ExecutionContext}
 import scala.language.postfixOps
 import scala.util.{Failure, Success, Try}
 

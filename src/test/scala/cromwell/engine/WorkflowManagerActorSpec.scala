@@ -74,7 +74,7 @@ class WorkflowManagerActorSpec extends CromwellTestkitSpec("WorkflowManagerActor
       val setupFuture = Future.sequence(
         workflows map { case (workflowId, workflowState) =>
           val status = if (workflowState == WorkflowSubmitted) NotStarted else Running
-          val descriptor = new WorkflowDescriptor(workflowId, SampleWdl.HelloWorld.asWorkflowSources())
+          val descriptor = WorkflowDescriptor(workflowId, SampleWdl.HelloWorld.asWorkflowSources())
           val worldSymbolHash = worldWdlString.getHash(backendInstance.fileHasher(descriptor))
           val symbols = Map(key -> new SymbolStoreEntry(key, WdlStringType, Option(worldWdlString), Option(worldSymbolHash)))
           // FIXME? null AST
