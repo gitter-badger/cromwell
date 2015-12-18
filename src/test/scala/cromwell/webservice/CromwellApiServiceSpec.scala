@@ -51,6 +51,11 @@ class MockWorkflowManagerActor extends Actor  {
 
   def receive = {
     case SubmitWorkflow(sources) =>
+//      val id = for {
+//        i <- Future(MockWorkflowManagerActor.submittedWorkflowId)
+//        d <- WorkflowDescriptor(i, sources)
+//      } yield i
+
       Future {
         val id = MockWorkflowManagerActor.submittedWorkflowId
         val descriptor = WorkflowDescriptor(id, sources)
@@ -330,6 +335,7 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
     Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> HelloWorld.rawInputs.toJson.toString()))) ~>
       submitRoute ~>
       check {
+        val z = response
         assertResult(
           s"""{
               |  "id": "${MockWorkflowManagerActor.submittedWorkflowId.toString}",
