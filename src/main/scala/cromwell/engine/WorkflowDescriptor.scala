@@ -55,7 +55,7 @@ case class WorkflowDescriptor(id: WorkflowId,
   lazy val writeToCache = configCallCaching && optionCacheWriting
   lazy val readFromCache = configCallCaching && optionCacheReading
 
-  val workflowLogger = props.get("LOG_MODE") match {
+  lazy val workflowLogger = props.get("LOG_MODE") match {
     case Some(x) if x.toUpperCase.contains("SERVER") => makeFileLogger(
       Paths.get(props.getOrElse("LOG_ROOT", ".")),
       s"workflow.$id.log",

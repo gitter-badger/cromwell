@@ -4,6 +4,7 @@ import java.util.UUID
 
 import akka.actor.{Actor, Props}
 import akka.pattern.pipe
+import cromwell.CromwellTestkitSpec
 import cromwell.binding._
 import cromwell.binding.values.{WdlFile, WdlInteger, WdlValue}
 import cromwell.engine._
@@ -21,7 +22,7 @@ import spray.json._
 import spray.testkit.ScalatestRouteTest
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.{Await, Future}
 
 object MockWorkflowManagerActor {
   sealed trait WorkflowManagerMessage
@@ -51,15 +52,10 @@ class MockWorkflowManagerActor extends Actor  {
 
   def receive = {
     case SubmitWorkflow(sources) =>
-//      val id = for {
-//        i <- Future(MockWorkflowManagerActor.submittedWorkflowId)
-//        d <- WorkflowDescriptor(i, sources)
-//      } yield i
-
-      Future {
+      val z = Future {
         val id = MockWorkflowManagerActor.submittedWorkflowId
         val descriptor = WorkflowDescriptor(id, sources)
-      } pipeTo sender
+      }
 
     case WorkflowStatus(id) =>
       val msg = id match {
@@ -242,8 +238,8 @@ object CromwellApiServiceSpec {
 }
 
 class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with ScalatestRouteTest with Matchers {
-  def actorRefFactory = system
-  val workflowManager = system.actorOf(Props(new MockWorkflowManagerActor()))
+  override def actorRefFactory = system
+  override val workflowManager = system.actorOf(Props(new MockWorkflowManagerActor()))
   val version = "v1"
 
   s"CromwellApiService $version" should "return 404 for get of unknown workflow" in {
@@ -335,7 +331,6 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
     Post("/workflows/$version", FormData(Seq("wdlSource" -> HelloWorld.wdlSource(), "workflowInputs" -> HelloWorld.rawInputs.toJson.toString()))) ~>
       submitRoute ~>
       check {
-        val z = response
         assertResult(
           s"""{
               |  "id": "${MockWorkflowManagerActor.submittedWorkflowId.toString}",
