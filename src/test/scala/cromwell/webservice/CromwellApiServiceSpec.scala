@@ -4,7 +4,6 @@ import java.util.UUID
 
 import akka.actor.{Actor, Props}
 import akka.pattern.pipe
-import cromwell.CromwellTestkitSpec
 import cromwell.binding._
 import cromwell.binding.values.{WdlFile, WdlInteger, WdlValue}
 import cromwell.engine._
@@ -22,7 +21,8 @@ import spray.json._
 import spray.testkit.ScalatestRouteTest
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.{Await, Future}
+import scala.concurrent.Future
+import scala.util.{Failure, Success, Try}
 
 object MockWorkflowManagerActor {
   sealed trait WorkflowManagerMessage
@@ -52,11 +52,12 @@ class MockWorkflowManagerActor extends Actor  {
 
   def receive = {
     case SubmitWorkflow(sources) =>
-      val z = Future {
-        val id = MockWorkflowManagerActor.submittedWorkflowId
-        val descriptor = WorkflowDescriptor(id, sources)
+      val id = MockWorkflowManagerActor.submittedWorkflowId
+      val response = Try(WorkflowDescriptor(id, sources)) match {
+        case Success(_) => Future.successful(id)
+        case Failure(ex) => Future.failed(ex)
       }
-
+      response pipeTo sender
     case WorkflowStatus(id) =>
       val msg = id match {
         case MockWorkflowManagerActor.runningWorkflowId =>
@@ -67,7 +68,6 @@ class MockWorkflowManagerActor extends Actor  {
           None
       }
       sender ! msg
-
     case WorkflowAbort(id) =>
       val msg = id match {
         case MockWorkflowManagerActor.runningWorkflowId =>
@@ -76,7 +76,6 @@ class MockWorkflowManagerActor extends Actor  {
           None
       }
       sender ! msg
-
     case WorkflowOutputs(id) =>
       val futureOutputs = id match {
         case MockWorkflowManagerActor.submittedWorkflowId =>
@@ -87,7 +86,6 @@ class MockWorkflowManagerActor extends Actor  {
         case w => Future.failed(new WorkflowNotFoundException(s"Workflow '$w' not found"))
       }
       futureOutputs pipeTo sender
-
     case CallOutputs(id, callFqn) =>
       val futureOutputs =
         Future {
@@ -103,7 +101,6 @@ class MockWorkflowManagerActor extends Actor  {
           }
         }
       futureOutputs pipeTo sender
-
     case CallStdoutStderr(id, callFqn) =>
       val futureOutputs =
       Future {
@@ -122,7 +119,6 @@ class MockWorkflowManagerActor extends Actor  {
         }
       }
       futureOutputs pipeTo sender
-
     case WorkflowStdoutStderr(id) =>
       val futureOutputs =
       Future {
@@ -137,7 +133,6 @@ class MockWorkflowManagerActor extends Actor  {
         }
       }
       futureOutputs pipeTo sender
-
     case WorkflowQuery(rawParameters) =>
       val futureResult = Future {
         val head = rawParameters.head
@@ -158,7 +153,6 @@ class MockWorkflowManagerActor extends Actor  {
         }
       }
       futureResult pipeTo sender
-
     case CallCaching(id, parameters, callFqn) =>
       val parametersByKey = parameters.groupBy(_.key.toLowerCase.capitalize) mapValues { _ map { _.value } } mapValues { _.toSet }
       val futureResponse =
