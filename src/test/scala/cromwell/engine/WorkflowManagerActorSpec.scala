@@ -114,7 +114,7 @@ class WorkflowManagerActorSpec extends CromwellTestkitSpec("WorkflowManagerActor
           } match {
             case Success(_) => fail("Expected submission to fail with uncoercable inputs")
             case Failure(e) =>
-              e.getMessage shouldBe "The following errors occurred while processing your inputs:\n\nCould not coerce value for 'incr.incr.val' into: WdlIntegerType"
+              e.getMessage shouldBe "\nThe following errors occurred while processing your inputs:\n\nCould not coerce value for 'incr.incr.val' into: WdlIntegerType"
           }
         }
       }
@@ -126,7 +126,7 @@ class WorkflowManagerActorSpec extends CromwellTestkitSpec("WorkflowManagerActor
       implicit val workflowManagerActor = TestActorRef(WorkflowManagerActor.props(backendInstance), self, "Test a workflowless submission")
       Try(messageAndWait[WorkflowId](SubmitWorkflow(HelloWorldWithoutWorkflow.asWorkflowSources()))) match {
         case Success(_) => fail("Expected submission to fail due to no runnable workflows")
-        case Failure(e) => e.getMessage shouldBe "Namespace does not have a local workflow to run"
+        case Failure(e) => e.getMessage contains  "Namespace does not have a local workflow to run"
       }
 
     }
