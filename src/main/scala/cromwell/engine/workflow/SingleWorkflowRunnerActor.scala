@@ -116,8 +116,7 @@ case class SingleWorkflowRunnerActor(source: WorkflowSourceFiles,
   when (Done) {
     case Event(IssueReply, data) =>
       data.terminalState foreach { state => log.info(s"$tag workflow finished with status '$state'.") }
-      data.failures foreach { e => log.error(e, e.getMessage) }
-
+      data.failures foreach { e => log.error(e, s"$tag received failure message: $e.getMessage") }
       val message = data.terminalState collect { case WorkflowSucceeded => () } getOrElse Status.Failure(data.failures.head)
       data.replyTo foreach  { _ ! message }
       stay()
@@ -125,7 +124,6 @@ case class SingleWorkflowRunnerActor(source: WorkflowSourceFiles,
 
   whenUnhandled {
     case Event(Status.Failure(e), data) =>
-      log.error(e, s"$tag received Failure message: " + e.getMessage)
       issueReply using data.addFailure(e)
     case Event(m, _) =>
       log.warning(s"$tag: received unexpected message: $m")

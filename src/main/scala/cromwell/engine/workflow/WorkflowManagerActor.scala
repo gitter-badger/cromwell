@@ -250,12 +250,6 @@ class WorkflowManagerActor(backend: Backend) extends Actor with CromwellActor {
       _ <- workflowActor ? (if (isRestart) Restart else Start)
     } yield workflowId
 
-    futureId onFailure {
-      case e =>
-        val messageOrBlank = Option(e.getMessage).mkString
-        log.error(e, s"$tag: Workflow failed submission: " + messageOrBlank)
-    }
-
     futureId
   }
 

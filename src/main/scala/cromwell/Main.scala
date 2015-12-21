@@ -192,7 +192,8 @@ class Main private[cromwell](enableTermination: Boolean, managerSystem: () => Wo
     futureResult.value.get match {
       case Success(_) => exit(0)
       case Failure(e) =>
-        Console.err.println(e.getMessage)
+        Thread.sleep(1500)
+        Console.err.println("Failure detected in workflow, shutting down.")
         exit(1)
     }
   }

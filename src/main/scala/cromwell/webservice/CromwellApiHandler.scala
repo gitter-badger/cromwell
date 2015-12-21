@@ -92,6 +92,7 @@ class CromwellApiHandler(workflowManager: ActorRef) extends Actor {
         case Success(id) =>
           context.parent ! RequestComplete(StatusCodes.Created, WorkflowSubmitResponse(id.toString, engine.WorkflowSubmitted.toString))
         case Failure(ex) =>
+          log.error(ex, "Workflow failed submission: " + Option(ex.getMessage).mkString)
           ex match {
             case _: IllegalArgumentException => context.parent ! RequestComplete(StatusCodes.BadRequest, ex.getMessage)
             case _ => context.parent ! RequestComplete(StatusCodes.InternalServerError, ex.getMessage)
