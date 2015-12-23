@@ -52,6 +52,7 @@ case class WorkflowDescriptor(id: WorkflowId,
   val relativeWorkflowRootPath = s"$name/$id"
   val wfOutputsRoot = workflowOptions.get("outputs_path")
   lazy val fileHasher: FileHasher = { wdlFile: WdlFile => SymbolHash(ioManager.hash(wdlFile.value)) }
+  lazy val workflowOutputsDestination = workflowOptions get "workflow_outputs_destination" toOption
 
   // GCS FS with the workflow working directory as root
   val gcsFilesystem = for {
@@ -67,8 +68,8 @@ case class WorkflowDescriptor(id: WorkflowId,
   } yield fs
 
 
-  private lazy val optionCacheWriting = workflowOptions.getBoolean("write_to_cache") getOrElse configCallCaching
-  private lazy val optionCacheReading = workflowOptions.getBoolean("read_from_cache") getOrElse configCallCaching
+  private lazy val optionCacheWriting = workflowOptions getBoolean "write_to_cache" getOrElse configCallCaching
+  private lazy val optionCacheReading = workflowOptions getBoolean "read_from_cache" getOrElse configCallCaching
 
   if (!configCallCaching) {
     if (optionCacheWriting) logWriteDisabled()
