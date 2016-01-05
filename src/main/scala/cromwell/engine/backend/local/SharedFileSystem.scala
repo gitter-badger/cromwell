@@ -122,15 +122,7 @@ trait SharedFileSystem {
   def postProcess(backendCall: LocalFileSystemBackendCall): Try[CallOutputs] = {
     implicit val hasher = backendCall.workflowDescriptor.fileHasher
     // Evaluate output expressions, performing conversions from String -> File where required.
-    val outputMappings = backendCall.call.task.outputs map { taskOutput =>
-      val tryConvertedValue =
-        for {
-          expressionValue <- taskOutput.expression.evaluate(backendCall.lookupFunction, backendCall.engineFunctions)
-          convertedValue <- outputAutoConversion(backendCall, taskOutput, expressionValue)
-          pathAdjustedValue <- Success(absolutizeOutputWdlFile(convertedValue, backendCall.callRootPath))
-        } yield pathAdjustedValue
-      taskOutput.name -> tryConvertedValue
-    }
+    val outputMappings = postProcessInner(backendCall, backendCall.call.task.outputs, Seq.empty)
 
     val taskOutputFailures = outputMappings filter { _._2.isFailure }
 
@@ -140,6 +132,22 @@ trait SharedFileSystem {
     } else {
       val message = taskOutputFailures collect { case (name, Failure(e)) => s"$name: $e\n${ExceptionUtils.getStackTrace(e)}" }
       Failure(new Throwable(s"Workflow ${backendCall.workflowDescriptor.id}: ${message.mkString("\n")}"))
+    }
+  }
+
+  private def postProcessInner(backendCall: LocalFileSystemBackendCall, taskOutputs: Seq[TaskOutput], listBeingBuilt: Seq[(String, Try[WdlValue])]): Seq[(String, Try[WdlValue])] = {
+    taskOutputs match {
+      case Nil => listBeingBuilt
+      case head :: tail =>
+        val taskOutput = head
+        val alreadyEvaluatedExpressions: Map[String, WdlValue] = listBeingBuilt filter { _._2.isSuccess } map { case(x,y) => (x,y.get) } toMap
+        val tryConvertedValue =
+          for {
+            expressionValue <- taskOutput.expression.evaluate(backendCall.lookupFunction(alreadyEvaluatedExpressions), backendCall.engineFunctions)
+            convertedValue <- outputAutoConversion(backendCall, taskOutput, expressionValue)
+            pathAdjustedValue <- Success(absolutizeOutputWdlFile(convertedValue, backendCall.callRootPath))
+          } yield pathAdjustedValue
+        postProcessInner(backendCall, tail, listBeingBuilt ++ Seq((taskOutput.name, tryConvertedValue)))
     }
   }
 

@@ -349,7 +349,7 @@ case class JesBackend(actorSystem: ActorSystem)
   def generateJesOutputs(backendCall: BackendCall): Seq[JesOutput] = {
     val log = workflowLoggerWithCall(backendCall)
     val wdlFileOutputs = backendCall.call.task.outputs flatMap { taskOutput =>
-      taskOutput.expression.evaluateFiles(backendCall.lookupFunction, new NoFunctions, taskOutput.wdlType) match {
+      taskOutput.expression.evaluateFiles(backendCall.lookupFunction(Map.empty), new NoFunctions, taskOutput.wdlType) match {
         case Success(wdlFiles) => wdlFiles map gcsPathToLocal
         case Failure(ex) =>
           log.warn(s"Could not evaluate $taskOutput: ${ex.getMessage}")
@@ -450,8 +450,8 @@ case class JesBackend(actorSystem: ActorSystem)
     }
   }
 
-  private def customLookupFunction(backendCall: BackendCall) = { toBeLookedUp: String =>
-    val originalLookup = backendCall.lookupFunction
+  private def customLookupFunction(backendCall: BackendCall): String => WdlValue = (toBeLookedUp: String) => {
+    val originalLookup = backendCall.lookupFunction(Map.empty)
     gcsInputToGcsOutput(backendCall, originalLookup(toBeLookedUp))
   }
 
