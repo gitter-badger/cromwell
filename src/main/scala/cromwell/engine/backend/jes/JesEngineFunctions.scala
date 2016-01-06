@@ -1,12 +1,12 @@
 package cromwell.engine.backend.jes
 
 import cromwell.binding.values.WdlValue
+import cromwell.engine.Hashing._
+import cromwell.engine.PathString._
 import cromwell.engine._
 import cromwell.engine.io.IoInterface
-import cromwell.util.PathUtil._
 
 import scala.util.Try
-import Hashing._
 
 class JesWorkflowEngineFunctions(interface: IoInterface, context: WorkflowContext) extends WorkflowEngineFunctions(interface, context){
 

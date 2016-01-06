@@ -46,7 +46,7 @@ object SharedFileSystem {
   }).+:(localizeFromGcs _)
 
   private def localizeFromGcs(originalPath: String, executionPath: Path, descriptor: WorkflowDescriptor): Try[Unit] = Try {
-    import cromwell.util.PathUtil._
+    import PathString._
     assert(originalPath.isGcsUrl)
     val content = descriptor.gcsInterface.get.downloadObject(GcsPath(originalPath))
     new ScalaFile(executionPath).createIfNotExists().write(content)
@@ -166,7 +166,7 @@ trait SharedFileSystem {
    * been performed for this `Backend` implementation.
    */
   def adjustInputPaths(callKey: CallKey, inputs: CallInputs, workflowDescriptor: WorkflowDescriptor): CallInputs = {
-    import cromwell.util.PathUtil._
+    import PathString._
 
     val call = callKey.scope
     val strategies = if (call.docker.isDefined) DockerLocalizers else Localizers
