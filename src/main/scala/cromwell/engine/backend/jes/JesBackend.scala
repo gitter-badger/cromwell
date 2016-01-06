@@ -450,8 +450,8 @@ case class JesBackend(actorSystem: ActorSystem)
     }
   }
 
-  private def customLookupFunction(backendCall: BackendCall): String => WdlValue = (toBeLookedUp: String) => {
-    val originalLookup = backendCall.lookupFunction(Map.empty)
+  private def customLookupFunction(backendCall: BackendCall, alreadyGeneratedOutputs: Map[String, WdlValue]): String => WdlValue = (toBeLookedUp: String) => {
+    val originalLookup = backendCall.lookupFunction(alreadyGeneratedOutputs)
     gcsInputToGcsOutput(backendCall, originalLookup(toBeLookedUp))
   }
 
@@ -468,32 +468,38 @@ case class JesBackend(actorSystem: ActorSystem)
   }
 
   def postProcess(backendCall: BackendCall): Try[CallOutputs] = {
-    val outputMappings = backendCall.call.task.outputs.map({ taskOutput =>
-      /**
-        * This will evaluate the task output expression and coerces it to the task output's type.
-        * If the result is a WdlFile, then attempt to find the JesOutput with the same path and
-        * return a WdlFile that represents the GCS path and not the local path.  For example,
-        *
-        * <pre>
-        * output {
-        *   File x = "out" + ".txt"
-        * }
-        * </pre>
-        *
-        * "out" + ".txt" is evaluated to WdlString("out.txt") and then coerced into a WdlFile("out.txt")
-        * Then, via wdlFileToGcsPath(), we attempt to find the JesOutput with .name == "out.txt".
-        * If it is found, then WdlFile("gs://some_bucket/out.txt") will be returned.
-        */
-      val attemptedValue = for {
-        wdlValue <- taskOutput.expression.evaluate(customLookupFunction(backendCall), backendCall.engineFunctions)
-        coercedValue <- taskOutput.wdlType.coerceRawValue(wdlValue)
-        value = wdlValueToGcsPath(generateJesOutputs(backendCall))(coercedValue)
-      } yield value
-
-      taskOutput.name -> attemptedValue
-    }).toMap
-
+    val outputMappings = postProcessInner(backendCall, backendCall.call.task.outputs, Seq.empty).toMap
     TryUtil.sequenceMap(outputMappings).map(_.mapValues(v => CallOutput(v, v.getHash(backendCall.workflowDescriptor.fileHasher))))
+  }
+
+  private def postProcessInner(backendCall: JesBackendCall, taskOutputs: Seq[TaskOutput], listBeingBuilt: Seq[(String, Try[WdlValue])]): Seq[(String, Try[WdlValue])] = {
+    taskOutputs match {
+      case Nil => listBeingBuilt
+      case head :: tail =>
+        val taskOutput = head
+        val alreadyEvaluatedExpressions: Map[String, WdlValue] = listBeingBuilt filter { _._2.isSuccess } map { case(x,y) => (x,y.get) } toMap
+        /**
+          * This will evaluate the task output expression and coerces it to the task output's type.
+          * If the result is a WdlFile, then attempt to find the JesOutput with the same path and
+          * return a WdlFile that represents the GCS path and not the local path.  For example,
+          *
+          * <pre>
+          * output {
+          *   File x = "out" + ".txt"
+          * }
+          * </pre>
+          *
+          * "out" + ".txt" is evaluated to WdlString("out.txt") and then coerced into a WdlFile("out.txt")
+          * Then, via wdlFileToGcsPath(), we attempt to find the JesOutput with .name == "out.txt".
+          * If it is found, then WdlFile("gs://some_bucket/out.txt") will be returned.
+          */
+        val attemptedValue = for {
+          wdlValue <- taskOutput.expression.evaluate(customLookupFunction(backendCall, alreadyEvaluatedExpressions), backendCall.engineFunctions)
+          coercedValue <- taskOutput.wdlType.coerceRawValue(wdlValue)
+          value = wdlValueToGcsPath(generateJesOutputs(backendCall))(coercedValue)
+        } yield value
+        postProcessInner(backendCall, tail, listBeingBuilt ++ Seq((taskOutput.name, attemptedValue)))
+    }
   }
 
   def executionResult(status: RunStatus, handle: JesPendingExecutionHandle)(implicit ec: ExecutionContext): Future[ExecutionHandle] = Future {
