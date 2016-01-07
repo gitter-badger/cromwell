@@ -299,6 +299,7 @@ class WorkflowManagerActor(backend: Backend) extends Actor with CromwellActor {
 
   private def callCaching(id: WorkflowId, parameters: QueryParameters, callName: Option[String]): Future[Int] = {
     for {
+      _ <- assertWorkflowExistence(id)
       cachingParameters <- CallCachingParameters.from(id, callName, parameters)
       updateCount <- globalDataAccess.updateCallCaching(cachingParameters)
     } yield updateCount

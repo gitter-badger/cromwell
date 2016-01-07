@@ -4,7 +4,7 @@ import wdl4s.FullyQualifiedName
 import wdl4s.values.WdlValue
 import cromwell.engine.backend.{WorkflowQueryResult, CallMetadata, CallLogs}
 import org.joda.time.DateTime
-import spray.json.JsObject
+import spray.json.{JsValue, JsObject}
 
 case class WorkflowValidateResponse(valid: Boolean, error: Option[String])
 
@@ -33,3 +33,32 @@ case class WorkflowMetadataResponse(id: String,
 case class WorkflowQueryResponse(results: Seq[WorkflowQueryResult])
 
 final case class CallCachingResponse(updateCount: Int)
+
+object APIResponse {
+
+  private def sanitize(message: String) = message.replaceAll("\n", " - ")
+
+  /**
+    * When an exception was thrown during processing of the request
+    */
+  def success(data: JsValue, message: Option[String]) = {
+    SuccessResponse("success", data, message map sanitize)
+  }
+
+  /**
+    * When an exception was thrown during processing of the request
+    */
+  def error(message: String, data: Option[JsValue] = None) = {
+    FailureResponse("error", sanitize(message), data)
+  }
+
+  /**
+    * When the data submitted in the request is incorrect.
+    */
+  def fail(message: String, data: Option[JsValue] = None) = {
+    FailureResponse("fail", sanitize(message), data)
+  }
+}
+
+case class FailureResponse(status: String, message: String, data: Option[JsValue] = None)
+case class SuccessResponse(status: String, data: JsValue, message: Option[String] = None)

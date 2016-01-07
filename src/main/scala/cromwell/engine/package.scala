@@ -1,6 +1,7 @@
 package cromwell
 
 import wdl4s._
+import cromwell.webservice.WorkflowJsonSupport._
 import org.joda.time.DateTime
 import wdl4s.values.{WdlValue, WdlFile}
 
