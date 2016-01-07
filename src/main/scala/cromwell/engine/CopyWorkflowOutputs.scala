@@ -16,6 +16,5 @@ case class CopyWorkflowOutputs(workflow: WorkflowDescriptor) extends FinalCall {
 
   override def rootWorkflow: Workflow = workflow.namespace.workflow
 
-  /** TODO replace snarky println with call to Thibault's code that actually copies files. */
-  override def execute(implicit ec: ExecutionContext): Future[Unit] = Future.successful( { println("I have copied your outputs.  You're welcome.") } )
+  override def execute(implicit ec: ExecutionContext): Future[Unit] = workflow.copyWorkflowOutputs
 }

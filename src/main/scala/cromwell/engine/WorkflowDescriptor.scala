@@ -23,8 +23,8 @@ import org.slf4j.{Logger, LoggerFactory}
 import spray.json.{JsObject, _}
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future}
-import scala.concurrent.duration.{Duration, _}
 import scala.language.postfixOps
 import scala.util.{Failure, Success, Try}
 import scalaz.Scalaz._
@@ -50,9 +50,8 @@ case class WorkflowDescriptor(id: WorkflowId,
   val actualInputs: WorkflowCoercedInputs = coercedInputs ++ declarations
   val props = sys.props
   val relativeWorkflowRootPath = s"$name/$id"
-  val wfOutputsRoot = workflowOptions.get("outputs_path")
+  val workflowOutputsPath = workflowOptions.get("outputs_path")
   lazy val fileHasher: FileHasher = { wdlFile: WdlFile => SymbolHash(ioManager.hash(wdlFile.value)) }
-  lazy val workflowOutputsDestination = workflowOptions get "workflow_outputs_destination" toOption
 
   // GCS FS with the workflow working directory as root
   val gcsFilesystem = for {
@@ -62,7 +61,7 @@ case class WorkflowDescriptor(id: WorkflowId,
 
   // GCS FS with the workflow outputs directory as root
   val gcsOutputsFilesystem = for {
-    root <- wfOutputsRoot
+    root <- workflowOutputsPath
     interface <- gcsInterface
     fs <- Try(GcsFileSystem.instance(interface, root))
   } yield fs
@@ -88,9 +87,9 @@ case class WorkflowDescriptor(id: WorkflowId,
     case _ => NOPLogger.NOP_LOGGER
   }
 
-  def postProcessWorkflow(implicit executionContext: ExecutionContext): Future[Any] = {
+  def copyWorkflowOutputs(implicit executionContext: ExecutionContext): Future[Unit] = {
     // Try to copy outputs to final destination
-    wfOutputsRoot map copyOutputFiles getOrElse Future.successful({})
+    workflowOutputsPath map copyOutputFiles getOrElse Future.successful(())
   }
 
   private def copyOutputFiles(destDirectory: String)(implicit executionContext: ExecutionContext): Future[Unit] = {

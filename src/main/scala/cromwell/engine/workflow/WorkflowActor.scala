@@ -223,7 +223,7 @@ case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend)
     val symbolStoreEntries = buildSymbolStoreEntries(workflow.namespace, inputs)
     symbolCache = symbolStoreEntries.groupBy(entry => SymbolCacheKey(entry.scope, entry.isInput))
     // Currently assumes there is at most one possible final call, a `CopyWorkflowOutputs`.
-    val finalCall = workflow.workflowOutputsDestination map { _ => CopyWorkflowOutputs(workflow) }
+    val finalCall = workflow.workflowOutputsPath map { _ => CopyWorkflowOutputs(workflow) }
     globalDataAccess.createWorkflow(
       workflow, symbolStoreEntries, workflow.namespace.workflow.children ++ finalCall, backend)
   }
@@ -411,11 +411,18 @@ case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend)
 
   private def handleFinalCallStarted(finalCallKey: FinalCallKey): State = {
     executionStore += finalCallKey -> ExecutionStatus.Running
-    for {
+    val finalCallWork = for {
       _ <- persistStatus(finalCallKey, ExecutionStatus.Running)
       _ <- finalCallKey.scope.execute
       _ = self ! CallCompleted(finalCallKey, callOutputs = Map.empty, executionEvents = Seq.empty, returnCode = 0, hash = None, resultsClonedFrom = None)
     } yield ()
+
+    finalCallWork onFailure {
+      case t =>
+        log.error("Final call work failed", t)
+        scheduleTransition(WorkflowFailed)
+    }
+
     val updatedData = stateData.addPersisting(finalCallKey, ExecutionStatus.Running)
     stay() using updatedData
   }
