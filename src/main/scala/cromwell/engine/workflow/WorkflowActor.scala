@@ -223,7 +223,7 @@ case class WorkflowActor(workflow: WorkflowDescriptor, backend: Backend)
     val symbolStoreEntries = buildSymbolStoreEntries(workflow.namespace, inputs)
     symbolCache = symbolStoreEntries.groupBy(entry => SymbolCacheKey(entry.scope, entry.isInput))
     // Currently assumes there is at most one possible final call, a `CopyWorkflowOutputs`.
-    val finalCall = workflow.workflowOutputsPath map { _ => CopyWorkflowOutputs(workflow) }
+    val finalCall = workflow.workflowOutputsPath.toOption map { _ => CopyWorkflowOutputs(workflow) }
     globalDataAccess.createWorkflow(
       workflow, symbolStoreEntries, workflow.namespace.workflow.children ++ finalCall, backend)
   }
