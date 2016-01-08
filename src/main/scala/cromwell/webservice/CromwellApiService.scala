@@ -198,7 +198,8 @@ trait CromwellApiService extends HttpService with PerRequestCreator {
         post {
           Try(WorkflowId.fromString(workflowId)) match {
             case Success(w) =>
-              requestContext => perRequest(requestContext, CromwellApiHandler.props(workflowManager), CromwellApiHandler.CallCaching(w, queryParameters, callFqn))
+              requestContext =>
+                perRequest(requestContext, CromwellApiHandler.props(workflowManager), CromwellApiHandler.CallCaching(w, queryParameters, callFqn))
             case Failure(_) => invalidWorkflowId(workflowId)
           }
         }

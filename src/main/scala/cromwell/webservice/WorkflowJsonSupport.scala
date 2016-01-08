@@ -18,7 +18,6 @@ object WorkflowJsonSupport extends DefaultJsonProtocol {
   implicit val callStdoutStderrResponse = jsonFormat2(CallStdoutStderrResponse)
   implicit val workflowSourceData = jsonFormat3(WorkflowSourceFiles)
   implicit val errorResponse = jsonFormat3(FailureResponse)
-  implicit val successResponse = jsonFormat3(SuccessResponse)
 
   implicit object DateJsonFormat extends RootJsonFormat[DateTime] {
     private val parserISO = ISODateTimeFormat.dateTime()

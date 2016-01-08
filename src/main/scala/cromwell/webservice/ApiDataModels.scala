@@ -39,10 +39,10 @@ object APIResponse {
   private def sanitize(message: String) = message.replaceAll("\n", " - ")
 
   /**
-    * When an exception was thrown during processing of the request
+    * When the data submitted in the request is incorrect.
     */
-  def success(data: JsValue, message: Option[String]) = {
-    SuccessResponse("success", data, message map sanitize)
+  def fail(message: String, data: Option[JsValue] = None) = {
+    FailureResponse("fail", sanitize(message), data)
   }
 
   /**
@@ -51,14 +51,6 @@ object APIResponse {
   def error(message: String, data: Option[JsValue] = None) = {
     FailureResponse("error", sanitize(message), data)
   }
-
-  /**
-    * When the data submitted in the request is incorrect.
-    */
-  def fail(message: String, data: Option[JsValue] = None) = {
-    FailureResponse("fail", sanitize(message), data)
-  }
 }
 
 case class FailureResponse(status: String, message: String, data: Option[JsValue] = None)
-case class SuccessResponse(status: String, data: JsValue, message: Option[String] = None)
