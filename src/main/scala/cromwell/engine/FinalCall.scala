@@ -6,7 +6,6 @@ import cromwell.engine.workflow.{ExecutionStoreKey, FinalCallKey}
 import scala.concurrent.{ExecutionContext, Future}
 
 object FinalCall {
-
   implicit class FinalCallString(val fqn: FullyQualifiedName) extends AnyVal {
     /** Does this FQN conform to a final call? */
     def isFinalCall = fqn startsWith "$final_call"
@@ -24,7 +23,7 @@ object FinalCall {
 trait FinalCall extends Scope {
   def execute(implicit ec: ExecutionContext): Future[Unit]
 
-  def prerequisiteCallNames: Set[LocallyQualifiedName] = ???
+  def prerequisiteCallNames: Set[LocallyQualifiedName] = throw new UnsupportedOperationException("prerequisiteCallNames not supported for FinalCalls")
 
   /**
     * Note: This implementation makes final calls dependent on all "real" scopes in the workflow.  For a system with

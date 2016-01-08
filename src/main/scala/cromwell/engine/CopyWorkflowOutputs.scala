@@ -13,8 +13,6 @@ object CopyWorkflowOutputs {
   */
 case class CopyWorkflowOutputs(workflow: WorkflowDescriptor) extends FinalCall {
   override def unqualifiedName = CopyWorkflowOutputs.Name
-
   override def rootWorkflow: Workflow = workflow.namespace.workflow
-
   override def execute(implicit ec: ExecutionContext): Future[Unit] = workflow.copyWorkflowOutputs
 }
