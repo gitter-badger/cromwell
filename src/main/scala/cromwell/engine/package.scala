@@ -8,7 +8,7 @@ import org.joda.time.DateTime
 import org.slf4j.Logger
 
 import scala.language.implicitConversions
-import scala.util.Try
+import scala.util.{Failure, Try}
 import scalaz.ValidationNel
 
 package object engine {
@@ -35,7 +35,7 @@ package object engine {
       def isGcsUrl: Boolean = str.startsWith("gs://")
       def isUriWithProtocol: Boolean = "^[a-z]+://".r.findFirstIn(str).nonEmpty
 
-      def toPath(workflowLogger: Logger, gcsFileSystem: Try[GcsFileSystem] = None): Path = {
+      def toPath(workflowLogger: Logger, gcsFileSystem: Try[GcsFileSystem] = Failure(new Throwable("No GCS Filesystem"))): Path = {
         str match {
           case path if path.isGcsUrl && gcsFileSystem.isSuccess => gcsFileSystem.get.getPath(str)
           case path if path.isGcsUrl => throw new Throwable(s"Unable to parse GCS path $path: ${gcsFileSystem.failed.get.getMessage}")
