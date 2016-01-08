@@ -53,4 +53,19 @@ package object engine {
       case (k, CallOutput(wdlValue, hash)) => (k, wdlValue)
     }
   }
+
+  type ErrorsOr[+A] = ValidationNel[List[String], A]
+
+  trait CromwellException extends Throwable {
+    def rawMessage: String
+    def  errors: List[String]
+
+    override def getMessage = {
+      s"""$rawMessage\n${errors.mkString("\n")}"""
+    }
+  }
+
+  case class CromwellThrowable(rawMessage: String, errors: List[String] = List.empty) extends Throwable(rawMessage) with CromwellException
+  case class CromwellIllegalArgumentException(rawMessage: String, errors: List[String] = List.empty) extends IllegalArgumentException(rawMessage) with CromwellException
+
 }

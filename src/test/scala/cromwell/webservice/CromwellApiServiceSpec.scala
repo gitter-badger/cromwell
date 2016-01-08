@@ -259,6 +259,16 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
         assertResult(StatusCodes.BadRequest) {
           status
         }
+        val errorMessage =
+          """
+            |{
+            |  "status": "fail",
+            |  "message": "Invalid workflow ID: 'foobar'."
+            |}
+          """.stripMargin
+        assertResult(errorMessage) {
+          responseAs[String]
+        }
       }
   }
 

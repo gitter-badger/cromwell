@@ -12,9 +12,9 @@ import lenthall.spray.SwaggerUiResourceHttpService
 import lenthall.spray.WrappedRoute._
 import spray.http.MediaTypes._
 import spray.http.StatusCodes
+import spray.json._
 import spray.routing.Directive.pimpApply
 import spray.routing._
-import spray.json._
 
 import scala.util.{Failure, Success, Try}
 
@@ -50,7 +50,7 @@ trait CromwellApiService extends HttpService with PerRequestCreator {
   val workflowManager: ActorRef
 
   private def invalidWorkflowId(id: String) = respondWithMediaType(`application/json`) {
-    complete(StatusCodes.BadRequest, APIResponse.fail(s"Invalid workflow ID: '$id'.").toJson.prettyPrint)
+    complete(StatusCodes.BadRequest, APIResponse.fail(new Throwable(s"Invalid workflow ID: '$id'.")).toJson.prettyPrint)
   }
 
   val workflowRoutes = queryRoute ~ workflowOutputsRoute ~ submitRoute ~ workflowStdoutStderrRoute ~ abortRoute ~
