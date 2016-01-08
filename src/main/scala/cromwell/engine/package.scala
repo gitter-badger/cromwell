@@ -1,12 +1,14 @@
 package cromwell
 
-import java.nio.file.{Paths, Path}
+import java.nio.file.{Path, Paths}
 
 import cromwell.binding._
 import cromwell.engine.io.gcs.GcsFileSystem
 import org.joda.time.DateTime
+import org.slf4j.Logger
 
 import scala.language.implicitConversions
+import scala.util.Try
 import scalaz.ValidationNel
 
 package object engine {
@@ -33,9 +35,10 @@ package object engine {
       def isGcsUrl: Boolean = str.startsWith("gs://")
       def isUriWithProtocol: Boolean = "^[a-z]+://".r.findFirstIn(str).nonEmpty
 
-      def toPath(gcsFileSystem: Option[GcsFileSystem] = None): Path = {
+      def toPath(workflowLogger: Logger, gcsFileSystem: Try[GcsFileSystem] = None): Path = {
         str match {
-          case path if path.isGcsUrl && gcsFileSystem.isDefined => gcsFileSystem.get.getPath(str)
+          case path if path.isGcsUrl && gcsFileSystem.isSuccess => gcsFileSystem.get.getPath(str)
+          case path if path.isGcsUrl => throw new Throwable(s"Unable to parse GCS path $path: ${gcsFileSystem.failed.get.getMessage}")
           case path if !path.isUriWithProtocol => Paths.get(path)
           case path => throw new Throwable(s"Unable to parse $path")
         }
