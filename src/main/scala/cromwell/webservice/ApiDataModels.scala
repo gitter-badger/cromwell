@@ -41,7 +41,7 @@ object APIResponse {
 
   private def constructResponse(status: String, ex: Throwable) ={
     ex match {
-      case cex: CromwellException => FailureResponse(status, cex.rawMessage, Option(JsArray(cex.errors.map(JsString(_)).toVector)))
+      case cex: CromwellException => FailureResponse(status, cex.message, Option(JsArray(cex.errors.map(JsString(_)).toVector)))
       case e: Throwable => FailureResponse(status, e.getMessage, None)
     }
   }

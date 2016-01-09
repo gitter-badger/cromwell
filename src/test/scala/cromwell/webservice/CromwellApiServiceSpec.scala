@@ -7,6 +7,7 @@ import akka.pattern.pipe
 import cromwell.engine.{CallOutput, SymbolHash}
 import wdl4s._
 import wdl4s.values.{WdlFile, WdlInteger, WdlValue}
+import cromwell.CromwellTestkitSpec.TestWorkflowManagerSystem
 import cromwell.engine._
 import cromwell.engine.backend.{CallLogs, WorkflowQueryResult}
 import cromwell.engine.workflow.WorkflowManagerActor._
@@ -238,8 +239,9 @@ object CromwellApiServiceSpec {
 }
 
 class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with ScalatestRouteTest with Matchers {
-  override def actorRefFactory = system
-  override val workflowManager = system.actorOf(Props(new MockWorkflowManagerActor()))
+  val testWorkflowManagerSystem = new TestWorkflowManagerSystem
+  override def actorRefFactory = testWorkflowManagerSystem.actorSystem
+  override val workflowManager = actorRefFactory.actorOf(Props(new MockWorkflowManagerActor()))
   val version = "v1"
 
   s"CromwellApiService $version" should "return 404 for get of unknown workflow" in {
@@ -260,12 +262,10 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
           status
         }
         val errorMessage =
-          """
-            |{
+          """{
             |  "status": "fail",
             |  "message": "Invalid workflow ID: 'foobar'."
-            |}
-          """.stripMargin
+            |}""".stripMargin
         assertResult(errorMessage) {
           responseAs[String]
         }
@@ -409,7 +409,7 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
         assertResult(
           s"""{
               |  "valid": false,
-              |  "error": "The following errors occurred while processing your inputs:\\n\\nRequired workflow input 'hello.hello.addressee' not specified."
+              |  "error": "The following errors occurred while processing your inputs\\nRequired workflow input 'hello.hello.addressee' not specified.\\n"
               |}""".stripMargin) {
           responseAs[String]
         }
