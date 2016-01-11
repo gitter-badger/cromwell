@@ -38,7 +38,6 @@ case class WorkflowQueryResponse(results: Seq[WorkflowQueryResult])
 final case class CallCachingResponse(updateCount: Int)
 
 object APIResponse {
-
   private def constructResponse(status: String, ex: Throwable) ={
     ex match {
       case cex: CromwellException => FailureResponse(status, cex.message, Option(JsArray(cex.errors.map(JsString(_)).toVector)))
@@ -46,14 +45,10 @@ object APIResponse {
     }
   }
 
-  /**
-    * When the data submitted in the request is incorrect.
-    */
+  /** When the data submitted in the request is incorrect. */
   def fail(ex: Throwable) = constructResponse("fail", ex)
 
-  /**
-    * When an exception was thrown during processing of the request
-    */
+  /** When an exception is thrown while processing the request. */
   def error(ex: Throwable) = constructResponse("error", ex)
 }
 
