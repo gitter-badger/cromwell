@@ -102,7 +102,10 @@ object WorkflowDescriptor {
     validateWorkflowDescriptor(id, sourceFiles, CromwellBackend.backend(), conf) match {
       case scalaz.Success(w) => w
       case scalaz.Failure(f) =>
-        throw new CromwellIllegalArgumentException(s"""Workflow $id failed to process inputs""", f.list.flatten)
+        throw new IllegalArgumentException() with CromwellException {
+          val message = s"""Workflow $id failed to process inputs"""
+          val errors = f.list.flatten
+        }
     }
   }
 
