@@ -16,6 +16,7 @@ import cromwell.engine.io.gcs.{GcsFileSystem, GoogleCloudStorage}
 import cromwell.engine.io.shared.SharedFileSystemIoInterface
 import cromwell.engine.io.{IoInterface, IoManager}
 import cromwell.engine.workflow.WorkflowOptions
+import cromwell.logging.WorkflowLogger
 import cromwell.util.TryUtil
 import lenthall.config.ScalaConfig._
 import org.slf4j.helpers.NOPLogger
@@ -50,7 +51,11 @@ case class WorkflowDescriptor(id: WorkflowId,
   val actualInputs: WorkflowCoercedInputs = coercedInputs ++ declarations
   val props = sys.props
   val relativeWorkflowRootPath = s"$name/$id"
-  val workflowOutputsPath = workflowOptions.get("outputs_path")
+  private val log = WorkflowLogger("WorkflowDescriptor", this)
+  val workflowOutputsPath = workflowOptions.get("outputs_path") recover { case e: IllegalArgumentException =>
+    log.warn("outputs_path expected to be of type String", e)
+    throw e
+  }
   lazy val fileHasher: FileHasher = { wdlFile: WdlFile => SymbolHash(ioManager.hash(wdlFile.value)) }
 
   // GCS FS with the workflow working directory as root

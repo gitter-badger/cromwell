@@ -289,20 +289,8 @@ $ java -jar cromwell.jar run my_workflow.wdl -
 
 The third, optional parameter to the 'run' subcommand is a JSON file of workflow options.  By default, the command line will look for a file with the same name as the WDL file but with the extension `.options`.  But one can also specify a value of `-` manually to specify that there are no workflow options.
 
-Only a few workflow options are available currently and are all to be used with the JES backend. See the section on the [JES backend](#google-jes) for more details.
-
 ```
 $ java -jar cromwell.jar run my_jes_wf.wdl my_jes_wf.json wf_options.json
-```
-
-Where `wf_options.json` would contain:
-
-```
-{
-  "jes_gcs_root": "gs://my-bucket/workflows",
-  "google_project": "my_google_project",
-  "refresh_token": "1/Fjf8gfJr5fdfNf9dk26fdn23FDm4x"
-}
 ```
 
 The fourth, optional parameter to the 'run' subcommand is a path where the workflow metadata will be written.  By default, no workflow metadata will be written.
@@ -1306,7 +1294,6 @@ Example workflow options file:
 
 ```json
 {
-  "default_backend": "jes",
   "jes_gcs_root": "gs://my-bucket/workflows",
   "google_project": "my_google_project",
   "refresh_token": "1/Fjf8gfJr5fdfNf9dk26fdn23FDm4x"
@@ -1315,10 +1302,10 @@ Example workflow options file:
 
 Valid keys and their meanings:
 
-* **default_backend** - Backend to use to run this workflow.  Accepts values `jes`, `local`, or `sge`.
 * **write_to_cache** - Accepts values `true` or `false`.  If `false`, the completed calls from this workflow will not be added to the cache.  See the [Call Caching](#call-caching) section for more details.
 * **read_from_cache** - Accepts values `true` or `false`.  If `false`, Cromwell will not search the cache when invoking a call (i.e. every call will be executed unconditionally).  See the [Call Caching](#call-caching) section for more details.
 * **jes_gcs_root** - (JES backend only) Specifies where outputs of the workflow will be written.  Expects this to be a GCS URL (e.g. `gs://my-bucket/workflows`).
+* **outputs_path** - Specifies a path where final workflow outputs will be written.  If this is not specified, workflow outputs will not be copied out of the Cromwell workflow execution directory/path.
 * **google_project** - (JES backend only) Specifies which google project to execute this workflow.
 * **refresh_token** - (JES backend only) Only used if `localizeWithRefreshToken` is specified in the [configuration file](#configuring-cromwell).  See the [Data Localization](#data-localization) section below for more details.
 * **auth_bucket** - (JES backend only) defaults to the the value in **jes_gcs_root**.  This should represent a GCS URL that only Cromwell can write to.  The Cromwell account is determined by the `google.authScheme` (and the corresponding `google.userAuth` and `google.serviceAuth`)

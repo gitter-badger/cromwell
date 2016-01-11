@@ -37,6 +37,8 @@ class CopyWorkflowOutputsSpec extends CromwellTestkitSpec {
         val path = tmpDir.resolve(Paths.get("wfoutputs", workflowId.id.toString, call, file))
         Files.exists(path) shouldBe true
       }
+      val path = tmpDir.resolve(Paths.get("wfoutputs", workflowId.id.toString, "call-C", "out"))
+      Files.exists(path) shouldBe false
     }
   }
 
