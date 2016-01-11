@@ -164,6 +164,7 @@ class WorkflowManagerActor(backend: Backend) extends Actor with CromwellActor {
     for {
         _ <- assertWorkflowExistence(workflowId)
         descriptor <- globalDataAccess.getWorkflow(workflowId)
+        _ <- assertCallExistence(workflowId, callFqn)
         callName <- Future.fromTry(assertCallFqnWellFormed(descriptor, callFqn))
         callLogKeys <- getCallLogKeys(workflowId, callFqn)
         callStandardOutput <- Future.successful(callLogKeys map { key => backend.stdoutStderr(descriptor, callName, key.index) })
