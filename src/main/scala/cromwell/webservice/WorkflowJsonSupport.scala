@@ -1,7 +1,9 @@
 package cromwell.webservice
 
-import cromwell.engine.backend.{CallLogs, CallMetadata, WorkflowQueryResult}
-import cromwell.engine.{ExecutionEventEntry, WorkflowSourceFiles}
+import WdlFileJsonFormatter._
+import WdlValueJsonFormatter._
+import cromwell.engine.{WorkflowSourceFiles, ExecutionEventEntry}
+import cromwell.engine.backend.{WorkflowQueryResult, CallMetadata, CallLogs}
 import org.joda.time.DateTime
 import org.joda.time.format.ISODateTimeFormat
 import spray.json.{DefaultJsonProtocol, JsString, JsValue, RootJsonFormat}

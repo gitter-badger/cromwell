@@ -457,7 +457,7 @@ class CromwellApiServiceSpec extends FlatSpec with CromwellApiService with Scala
         assertResult(
           s"""{
               |  "valid": false,
-              |  "error": "The following errors occurred while processing your inputs\\nRequired workflow input 'hello.hello.addressee' not specified.\\n"
+              |  "error": "The following errors occurred while processing your inputs:\\n\\nRequired workflow input 'hello.hello.addressee' not specified."
               |}""".stripMargin) {
           responseAs[String]
         }
